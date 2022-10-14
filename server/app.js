@@ -3,7 +3,8 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
-
+import Playlist from "./models/playlist.js"
+import fetch from 'node-fetch'
 // ROUTE IMPORTS----------------------------------------------------------
 import userRoutes from './routes/user.js'
 import beatRoutes from './routes/beat.js'
@@ -14,7 +15,7 @@ import orderRoutes from './routes/order.js'
 
 // CONFIGURATION----------------------------------------------------------
 const app = express()
-
+app.set("view engine", "ejs")
 // allow cross-origin requests
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

@@ -1,17 +1,28 @@
 import { Button, FormControl, ImageList, InputAdornment, InputLabel, OutlinedInput, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ArtistItem from "../../components/ArtistItem/artist-item.component";
-import PlayListItem from "../../components/PlaylistItem/playlist-item.component";
-import Search from "../../components/Search/search.component";
+import PlayListItem from "../../components/PlaylistItem/playlist-item.component.jsx";
+import SearchBar from "../../components/Search/search.component";
 import CreateIcon from '@mui/icons-material/Create';
 import { data } from "../../data/data";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from 'react-redux'
+import { getHomePageData } from "../../redux/homepage/homepage.actions";
+import { useEffect } from "react";
 
 const Home = () => {
+    const dispatch = useDispatch()
     
+    useEffect(() => {
+        dispatch(getHomePageData())
+    }, [])
+    const artists = useSelector(state => state.homepage.artists)
+    const playlists = useSelector(state => state.homepage.playlists)
+
+
     return (
         <Box sx={{ minHeight: '100vh' }} m={0} flex={4} p={2}  >
-            <Search />
+            <SearchBar />
             <img style={{ marginTop: 14 }} src="https://ik.imagekit.io/xcuqahb2st38/asasasas_cWukludFt?ik-sdk-version=javascript-1.4.3&updatedAt=1664532792034" />
             <Box mt={2} gap={2} sx={{ display: "flex" }} alignItems="center" alignContent={"center"} justifyContent={"center"} >
                 <Button variant="contained" sx={{ borderRadius: "20px", bgcolor: "#1DB954" }} >Explore</Button>
@@ -28,8 +39,8 @@ const Home = () => {
                         }}
                     >
                         {
-                            data.featured.map(e =>
-                                <ArtistItem img={`${e}`} />
+                            artists?.map(e =>
+                                <ArtistItem img={`${e.img}`} id={e._id} key={e._id} />
                             )
                         }
                     </ImageList>
@@ -44,8 +55,8 @@ const Home = () => {
                         }}
                     >
                         {
-                            data.playlist.map(e =>
-                                <PlayListItem img={`${e}`} />
+                            playlists?.map(e =>
+                                <PlayListItem img={`${e.img}`} id={e._id} key={e._id} />
                             )
                         }
                     </ImageList>
@@ -67,7 +78,7 @@ const Home = () => {
                 >
                     {
                         data.artist.map(e =>
-                            <ArtistItem img={`${e}`} />
+                            <ArtistItem img={`${e}`} key={e} />
                         )
                     }
                 </ImageList>

@@ -1,10 +1,6 @@
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import CircularProgress from '@mui/material/CircularProgress';
-import { useEffect, useState } from 'react';
-import { Container } from '@mui/system';
-import { Paper } from '@mui/material';
-
+import styled from '@emotion/styled';
+import { alpha, InputBase } from  '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
 // Top films as rated by IMDb users. http://www.imdb.com/chart/top
 const topFilms = [
     { title: 'kanye west' },
@@ -14,75 +10,60 @@ const topFilms = [
     { title: 'pop' },
 ];
 
-const Search = () => {
-    const [open, setOpen] = useState(false);
-    const [options, setOptions] = useState([]);
-    const loading = open && options.length === 0;
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
+}));
 
-    useEffect(() => {
-        let active = true;
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
 
-        if (!loading) {
-            return undefined;
-        }
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    },
+}));
 
-        (async () => {
-            if (active) {
-                setOptions([...topFilms]);
-            }
-        })();
-
-        return () => {
-            active = false;
-        };
-    }, [loading]);
-
-    useEffect(() => {
-        if (!open) {
-            setOptions([]);
-        }
-    }, [open]);
-
+const SearchBar = () => {
     return (
-        <Paper p={2} >
-            <Container  >
-                <Autocomplete
-                    sx={{ width: 300 }}
-                    open={open}
-                    onOpen={() => {
-                        setOpen(true);
-                    }}
-                    onClose={() => {
-                        setOpen(false);
-                    }}
-                    size='small'
-                    isOptionEqualToValue={(option, value) => option.title === value.title}
-                    getOptionLabel={(option) => option.title}
-                    options={options}
-                    loading={loading}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label="Search ... "
-                            InputProps={{
-                                ...params.InputProps,
-                                endAdornment: (
-                                    <>
-                                        {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                                        {params.InputProps.endAdornment}
-                                    </>
-                                ),
-                            }}
-                        />
-                    )}
-                />
-            </Container>
-
-        </Paper>
-
+        <Search>
+            <SearchIconWrapper>
+                <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+            />
+        </Search>
     );
 
 }
 
 
-export default Search
+export default SearchBar

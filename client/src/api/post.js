@@ -11,18 +11,20 @@ API.interceptors.request.use((req) => {
     return req
 })
 
-//POST ROUTES
 export const getPosts = () => API.get('/')
-export const getFeedPosts = () => API.get('/feed')
-export const getPost = (postId) => API.get(`/${postId}`)
-export const createPost = (data) => API.post('/', data)
-export const getSavedPosts = () => API.post(`/saved`)
-export const getPreferredPosts = () => API.get('/preferred')
-export const getPostByUser = (id) => API.post(`/postsby/${id}`)
-export const getPostByTag = (id) => API.get(`/tag/${id}`)
 
-//POST UTILS ROUTES
-export const likePost = (postId) => API.patch(`/${postId}/like`)
-export const savePost = (postId) => API.post(`/${postId}/save`)
-export const commentPost = (postId, comment) => API.patch(`/${postId}/comment`, comment)
-export const deletePost = (postId) => API.delete(`/${postId}`)
+// //POST ROUTES
+// export const getPosts = () => API.get('/')
+// export const getFeedPosts = () => API.get('/feed')
+// export const getPost = (postId) => API.get(`/${postId}`)
+// export const createPost = (data) => API.post('/', data)
+// export const getSavedPosts = () => API.post(`/saved`)
+// export const getPreferredPosts = () => API.get('/preferred')
+// export const getPostByUser = (id) => API.post(`/postsby/${id}`)
+// export const getPostByTag = (id) => API.get(`/tag/${id}`)
+
+// //POST UTILS ROUTES
+// export const likePost = (postId) => API.patch(`/${postId}/like`)
+// export const savePost = (postId) => API.post(`/${postId}/save`)
+// export const commentPost = (postId, comment) => API.patch(`/${postId}/comment`, comment)
+// export const deletePost = (postId) => API.delete(`/${postId}`)

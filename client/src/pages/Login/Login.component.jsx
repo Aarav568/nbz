@@ -1,10 +1,9 @@
 import { Stack, Box, Container, Typography, Card, TextField, Button, CardContent, Grid } from "@mui/material";
 import { useState } from "react";
-import { loginUser } from "../../api/user";
 import { setCurrentUser } from "../../redux/user/user.actions";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom'
-
+import { loginUser } from "../../api/user";
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()

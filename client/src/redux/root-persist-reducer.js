@@ -6,14 +6,13 @@ import { combineReducers } from 'redux'
 import storage from 'redux-persist/lib/storage'
 import postLoadingReducer from './post-loading/post-loading.reducer'
 import settingsReducer from './settings/settings.reducer'
+import HomePageReducer from './homepage/homepage.reducers'
 
 
 const rootReducer = combineReducers({
     user: userReducer,
     theme: themeReducer,
-    notifcations: notificationsReducer,
-    post_loading: postLoadingReducer,
-    settings: settingsReducer
+    homepage: HomePageReducer
 })
 
 const persistConfig = {

@@ -1,8 +1,23 @@
-//POST GET AND SETS
-export const getBeat = async (req, res) => {
+import Artist from "../models/artist.js"
+import Beat from "../models/beat.js"
+import Genre from "../models/genre.js"
+import Playlist from "../models/playlist.js"
+
+export const getAllBeats = async (req, res) => {
     try {
-        // const post = await Post.findById(req.params.id).populate('author', 'displayName avatar')
-        // res.status(200).json(post)
+        const beats = await Beat.find({})
+        res.status(200).json(beats)
+
+    } catch (err) {
+        res.status(404).json({ error: err.message })
+    }
+}
+
+export const getBeat = async (req, res) => {
+    const { beatId } = req.params
+    try {
+        const beat = await Beat.findById(beatId)
+        res.status(200).json(beat)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
@@ -10,66 +25,63 @@ export const getBeat = async (req, res) => {
 }
 
 export const getBeatsByArtist = async (req, res) => {
+    const { artistId } = req.params
     try {
-        // const posts = await Post.find({ author: req.params.id }).populate('author comments.user', 'displayName avatar')
-        // res.status(200).json(posts)
+        const beats = await Beat.find({ artist: { _id: artistId } })
+        res.status(200).json(beats)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
 }
 export const getBeatsByPlaylist = async (req, res) => {
+    const { playlistId } = req.params
     try {
-        // const posts = await Post.find({ author: req.params.id }).populate('author comments.user', 'displayName avatar')
-        // res.status(200).json(posts)
+        const { beats } = await Playlist.findById(playlistId).populate("beats")
+        res.status(200).json(beats)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
 }
 export const getBeatsByGenre = async (req, res) => {
+    const { genreId } = req.params
     try {
-        // const posts = await Post.find({ author: req.params.id }).populate('author comments.user', 'displayName avatar')
-        // res.status(200).json(posts)
+        const beats = await Beat.find({ genre: { _id: genreId } })
+        res.status(200).json(beats)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
 }
 export const getBeatsByTags = async (req, res) => {
     try {
-        // const posts = await Post.find({ author: req.params.id }).populate('author comments.user', 'displayName avatar')
-        // res.status(200).json(posts)
+        const beats = await Beat.find()
+        res.status(200).json(beats)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
 }
 
 export const createBeat = async (req, res) => {
-    const newPost = {
-        artist: req.body.caption,
-        genre: req.body.img,
-        tag: req.userId
-    }
+    var tags = req.body.tags
+    tags = tags.split(" ")
+    const { name, artistId, genreId } = req.body
+
     try {
-        // const createdPost = await Post.create(newPost)
-        // const user = await User.findById(req.userId)
-        // user.posts.push(createdPost)
-        // const savedPost = await user.save()
-        // res.status(200).json(savedPost)
+        const existingBeat = await Beat.findOne({ name })
+        if (existingBeat) return res.status(404).json({ message: "Beat already exists!" })
+
+        const artist = await Artist.findById(artistId)
+        const genre = await Genre.findById(genreId)
+        const newBeat = {
+            artist, genre, tags, name
+        }
+        const createdBeat = await Beat.create(newBeat)
+        await artist.beats.push(createdBeat)
+        await artist.save()
+        res.status(200).redirect("/beat")
+        // .json(createdBeat)
     } catch (err) {
-        res.status(500).json({ message: err.message })
+        res.status(500).json({ message: err })
     }
-}
-
-
-export const getSavedPosts = async (req, res) => {
-    try {
-        // const user = await User.findById(req.userId).populate('saved_posts', 'img')
-        // const savedPosts = [...user.saved_posts]
-        // savedPosts.splice(9)
-        // res.status(200).json(savedPosts)
-    } catch (err) {
-        res.status(404).json({ error: err.message })
-    }
-
 }
 
 export const deleteBeat = async (req, res) => {
@@ -84,5 +96,5 @@ export const deleteBeat = async (req, res) => {
 }
 
 //GET TRENDING TAGS
-//SORT POSTS BY MOST LIKED SLICE TO 10 POSTS 
+//SORT POSTS BY MOST LIKED SLICE TO 10 POSTS
 //EXTRACT TAGS AND RENDER

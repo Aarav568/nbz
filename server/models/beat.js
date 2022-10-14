@@ -2,12 +2,13 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const BeatSchema = new mongoose.Schema({
+    name: {type : String, required: true},
     artist: {
         type: Schema.Types.ObjectId, ref: 'Artist'
     },
-    genre: [{
+    genre: {
         type: Schema.Types.ObjectId, ref: 'User'
-    }],
+    },
     tags: { type: Array, default: []},
     createdAt: { type: Date, default: Date.now }
 })

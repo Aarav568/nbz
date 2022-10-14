@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getPost } from "../../api/post";
 import Post from "../../components/PostItem/post.component";
 import { Stack, Box } from "@mui/material";
 import { Container } from "@mui/system";

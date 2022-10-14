@@ -7,7 +7,6 @@ import Sidebar from "../../components/Sidebar/sidebar.component";
 import { StyledAvatar } from "./user-profile.styled";
 import { useSelector } from "react-redux";
 import ImageSection from "../../components/ImageSection/image-section.component";
-import { getPostByUser } from "../../api/post";
 
 const UserProfile = () => {
     const params = useParams()

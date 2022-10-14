@@ -1,7 +1,7 @@
 import { AppBar, Grid, Typography, Box, InputBase, Badge, Avatar, MenuItem, Menu, Button, MenuList, List, ListItem, Divider, ListItemText, ListItemAvatar, IconButton, Toolbar, ListItemButton, Drawer } from "@mui/material";
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { useState } from 'react';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import Logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { StyledToolbar, UserBox, Search, Icons } from './navbar.styled';
@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import { ClassNames } from "@emotion/react";
 
 const Navbar = (props) => {
     const navigate = useNavigate()
@@ -81,7 +82,7 @@ const Navbar = (props) => {
                     <MenuIcon />
                 </IconButton>
                 <IconButton size='large' edge='start' color='inherit' onClick={() => navigate('/')} >
-                    <HeadphonesIcon />
+                    <img height={25} src={Logo} />
                 </IconButton>
                 <Typography variant='h5' sx={{ flexGrow: 1 }} />
                 {

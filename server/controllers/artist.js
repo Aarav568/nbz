@@ -3,8 +3,18 @@ import Genre from '../models/genre.js'
 
 export const getAllArtists = async (req, res) => {
     try {
-        const artists = await Artist.find({})
+        const artists = await Artist.find({}).populate("beats")
         res.status(200).json(artists)
+    } catch (err) {
+        res.status(404).json({ message: err.message })
+    }
+}
+
+export const getArtist = async (req, res) => {
+    const { id } = req.params
+    try {
+        const artist = await Artist.findById(id).populate("beats")
+        res.status(200).json(artist)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
@@ -13,9 +23,13 @@ export const getAllArtists = async (req, res) => {
 export const createArtist = async (req, res) => {
     const { name, genreId, img } = req.body
     try {
+        const existingArtist = await Artist.findOne({ name })
+        if (existingArtist) return res.status(404).json({ message: "Artist already exists!" })
+
         const genre = await Genre.findById(genreId)
         const createdArtist = await Artist.create({ name, genre, img })
-        res.status(200).json(createdArtist)
+        res.status(200).redirect("/artist")
+        // .json(createdArtist)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }

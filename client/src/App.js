@@ -10,23 +10,17 @@ import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 //COMPONENT IMPORTS
-const Sidebar = lazy(() => import("./components/Sidebar/sidebar.component"))
-const Rightbar = lazy(() => import("./components/Rightbar/rightbar.component"))
-const BottomNav = lazy(() => import("./components/BottomNav/bottom-nav.component"))
 const Navbar = lazy(() => import("./components/Navbar/navbar.component"))
 const Footer = lazy(() => import("./components/Footer/footer.component"))
 
 //ROUTE COMPONENTS IMPORTS
 const Login = lazy(() => import("./pages/Login/Login.component"))
 const SignUp = lazy(() => import("./pages/SignUp/SignUp.component"))
-const Profile = lazy(() => import("./pages/ProfileSettings/profile.component"))
 const Discover = lazy(() => import("./pages/Discover/discover.component"))
 const SocialCircle = lazy(() => import("./pages/SocialCircle/social-circle.component"))
 const Settings = lazy(() => import("./pages/Settings/Settings.component"))
 const Home = lazy(() => import("./pages/Home/home.component"))
 const UserProfile = lazy(() => import("./pages/UserProfile/user-profile.component"))
-const PostViewEdit = lazy(() => import("./pages/PostView-Edit/post-view-edit.component"))
-const SavedPosts = lazy(() => import("./pages/SavedPosts/saved-posts.component"))
 
 function App() {
   const dispatch = useDispatch()
@@ -54,15 +48,14 @@ function App() {
               <Route exact path='/settings' element={<Settings />} />
               <Route exact path='/login' element={<Login />} />
               <Route exact path='/signup' element={<SignUp />} />
-              <Route exact path='/saved-posts' element={<SavedPosts />} />
               <Route path='/user'>
                 <Route path=":id" element={<UserProfile />} />
               </Route>
-              <Route path='/post'>
-                <Route path="edit">
-                  <Route path=":id" element={<PostViewEdit edit />} />
-                </Route>
-                <Route path=":id" element={<PostViewEdit />} />
+              <Route path='/artist'>
+                <Route path=":id" element={<Discover />} />
+              </Route>
+              <Route path='/playlist'>
+                <Route path=":id" element={<Settings />} />
               </Route>
             </Routes>
           </Stack>

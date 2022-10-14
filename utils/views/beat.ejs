@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+    <title>Create Beat</title>
+</head>
+
+<body style="background-color: gray">
+    <div class="container">
+        <div style="margin-bottom: 5px;">
+            <h1>Create Beat</h1>
+            <form action="/api/beat/create" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Beat Name</label required>
+                    <input type="name" class="form-control" id="name" name="name" placeholder="beat name">
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Artist</label required>
+                    <select class="form-select" required name="artistId">
+                        <option selected>Select Artist</option>
+                        <% artists.forEach(e=> { %>
+                            <option value="<%=e._id%>">
+                                <%=e.name%>
+                            </option>
+                            <% })%>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Genres</label required>
+                    <select class="form-select" required name="genreId">
+                        <option selected>Select Genre</option>
+                        <% genres.forEach(e=> { %>
+                            <option value="<%=e._id%>">
+                                <%=e.genre%>
+                            </option>
+                            <% })%>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Add Tags (separated by space)</label>
+                    <textarea class="form-control" id="tags" rows="3" required name="tags"></textarea>
+                </div>
+                <button class="btn btn-primary" role="button">Create Beat</button>
+            </form>
+            <a class="btn btn-danger" href="/" role="button">Back</a>
+            <% if(beats.length !== 0) { %>
+                <h2>Existing Beats</h2>
+                <% beats.forEach(e=> { %>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-primary">
+                            <%= e.name %>
+                        </li>
+                    </ul>
+                <% })%>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

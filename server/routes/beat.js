@@ -6,19 +6,20 @@ import {
     getBeatsByTags,
     getBeat,
     createBeat,
-    deleteBeat
+    deleteBeat,
+    getAllBeats
 } from '../controllers/beat.js'
 
 const router = express.Router()
 
-router.get('/:artist', getBeatsByArtist) //find beats by filtering the artist 
-router.get('/:playlist', getBeatsByPlaylist) //find the playlist populate the beats
-router.get('/:genre', getBeatsByGenre) //find and match genre of beats
-router.get('/:genre', getBeatsByTags) //find and match tags of beats
+router.get('/artist/:artistId', getBeatsByArtist) 
+router.get('/playlist/:playlistId', getBeatsByPlaylist)
+router.get('/genre/:genreId', getBeatsByGenre)
+router.get('/tag/:tag', getBeatsByTags) //find and match tags of beats
 
-router.get('/:id', getBeat)
-router.post('/', createBeat)
-router.delete('/:id', deleteBeat)
-
+router.get('/', getAllBeats)
+router.get('/:beatId', getBeat)
+router.post('/create', createBeat)
+router.delete('/:id', deleteBeat) //pending
 
 export default router

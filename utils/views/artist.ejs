@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+    <title>Create Artist</title>
+</head>
+
+<body style="background-color: gray">
+    <div class="container">
+        <div style="margin-bottom: 5px;">
+            <h1>Create Artist</h1>
+            <form action="/api/artist/create" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Artist Name</label required>
+                    <input type="name" class="form-control" id="name" name="name" placeholder="name">
+                </div>
+                <select class="form-select" required name="genreId">
+                    <option selected>Select Genre</option>
+                    <% genres.forEach(e=> { %>
+                        <option value="<%=e._id%>">
+                            <%=e.genre%>
+                        </option>
+                        <% })%>
+                </select>
+                <div class="mb-3">
+                    <label for="img" class="form-label">Paste Image Link</label>
+                    <textarea class="form-control" id="img" rows="3" required name="img"></textarea>
+                </div>
+                <button class="btn btn-primary" role="button">Create Artist</button>
+            </form>
+            <a class="btn btn-danger" href="/" role="button">Back</a>
+            <% if(artists.length !== 0) { %>
+                <h2>Existing Artists</h2>
+                <% artists.forEach(e => { %>
+                    
+                    <div class="card" style="width: 18rem;">
+                        <img src="<%=e.img%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"><%= e.name %></p>
+                        </div>
+                    </div>
+                <% })%>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>
