@@ -1,0 +1,27 @@
+.ripple{
+    transition: background 0.8s;
+}
+.ripple:hover{
+    background-position: center;
+    scale: 1.07;
+    background-size: 15000%;
+}
+
+.ripple:active{
+    transition: background 0s ease-in;
+    background-color: #ffffff4d;
+    background-size: 100%;
+}
+
+.ripple[data-color="p"]:hover{
+    background-image: radial-gradient(circle, transparent 1%, #ff266770 1%);
+}
+.ripple[data-color="s"]:hover{
+    background-image: radial-gradient(circle, transparent 1%, #fdbe50b7 1%);
+}
+.ripple[data-color="a"]:hover{
+    background-image: radial-gradient(circle, transparent 1%, #2a2c4191 1%);
+}
+.ripple[data-color="ip"]:hover{
+    background-image: radial-gradient(circle, transparent 1%, #ffffff57 1%);
+}
