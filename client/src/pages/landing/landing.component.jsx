@@ -11,7 +11,7 @@ import PillButton from '../../components/pill-button/pill-button.component';
 const Landing = () => {
     return (
         <div className="" >
-            <Navbar />
+            <Navbar landing />
 
             {/* HERO */}
             <div className="bg-center bg-cover w-full min-h-[1080px] flex justify-around items-center" style={{ backgroundImage: `url(${banner})` }} >
