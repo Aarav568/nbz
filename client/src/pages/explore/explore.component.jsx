@@ -23,7 +23,6 @@ const Explore = () => {
                 <CardList heading={"Featured Playlist"} />
                 <CardList artist heading={"Featured Artists"} />
             </div>
-            <Footer />
         </div>
     );
 }

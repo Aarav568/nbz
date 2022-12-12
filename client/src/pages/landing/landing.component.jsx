@@ -78,9 +78,8 @@ const Landing = () => {
             {/* SECTION-3 YT Channel */}
             <div className='bg-cover bg-center flex justify-center items-center min-h-[940px]' style={{ backgroundImage: `url(${YTbg})` }} >
                 <div className='mx-auto flex justify-center items-center' >
-
                     <div className="text-text-grey w-56 min-h-[10rem] shadow-lg rounded-md overflow-hidden bg-a p-4" >
-                        <img src={YT} className="rounded-full" alt="" height="250" width="250" />
+                        <img loading='lazy' src={YT} className="rounded-full" alt="" height="250" width="250" />
                         <div className='p-5 flex-col gap-3 flex-col space-y-2 text-white' >
                             {/* product title */}
                             <div>
@@ -94,15 +93,13 @@ const Landing = () => {
                     <div className='bg-a p-16 flex flex-col rounded-lg space-y-8'>
                         <p className='text-white text-4xl' >CHECK OUT MY FREE FOR PROFIT
                             YOUTUBE CHANNEL … </p>
-                        <img src={ytLogo} height="190" width="280" alt="" />
+                        <img loading='lazy' src={ytLogo} height="190" width="280" alt="" />
                     </div>
                 </div>
             </div>
 
             {/* Footer */}
-            <Footer />
         </div>
-
     );
 }
 

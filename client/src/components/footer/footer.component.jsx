@@ -34,7 +34,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <a href="#" className="cursor-pointer">
-                        <img src={logo} alt="" height="90" width="220" />
+                        <img src={logo} className="scale-50" loading="lazy" alt="" height="90" width="220" />
                     </a>
                     <span className='text-white uppercase' >Hottest Drops On the internet</span>
                 </div>
