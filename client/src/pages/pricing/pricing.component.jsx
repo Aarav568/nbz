@@ -39,7 +39,7 @@ const Pricing = () => {
                         <Button color={"p"}>EXPLORE</Button>
                     </div>
                     {/* Featured CARD */}
-                    <div style={{ background: "rgba(255,255,255, 0.1)" }} className="scale-[1.1] flex flex-col space-y-8 rounded-xl border p-8 max-w-[400px] shadow-lg" >
+                    <div className="bg-backdrop scale-[1.1] flex flex-col space-y-8 rounded-xl border p-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >Purchase</h1>
                         <div className="flex flex-col"  >
                             <h2 className="text-5xl text-white text-center">1200₹ <span className="text-lg text-grey" >/ per beat</span></h2>

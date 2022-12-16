@@ -1,7 +1,5 @@
 import exploreHero from '../../assets/exploreHero.png'
 import CardList from '../../components/card-list/card-list.component';
-import Footer from '../../components/footer/footer.component';
-import Navbar from '../../components/navbar/navbar.component';
 import PillButton from '../../components/pill-button/pill-button.component';
 import SearchBar from '../../components/searchbar/searchbar.component';
 

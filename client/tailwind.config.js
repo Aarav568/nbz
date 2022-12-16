@@ -556,7 +556,8 @@ module.exports = {
       "s" : "#fdbf50",
       "a" : "#2a2c41",
       "bg" : "#212B38",
-      "text-grey": "#707070"
+      "text-grey": "#707070",
+      "backdrop": "rgba(255,255,255, 0.1)"
     },
     fontWeight: {
       hairline: 100,
