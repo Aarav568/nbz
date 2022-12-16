@@ -4,16 +4,15 @@ import YTbg from '../../assets/YTbg.png'
 import YT from '../../assets/yt.png'
 import ytLogo from '../../assets/yt-logo.png'
 import CardList from '../../components/card-list/card-list.component';
-import Footer from '../../components/footer/footer.component';
-import Navbar from '../../components/navbar/navbar.component';
 import PillButton from '../../components/pill-button/pill-button.component';
-
+import { useNavigate } from 'react-router'
 const Landing = () => {
+    const navigate = useNavigate()
     return (
         <div className="" >
             {/* HERO */}
             <div className="bg-center bg-cover w-full min-h-[1080px] flex justify-around items-center" style={{ backgroundImage: `url(${banner})` }} >
-                <PillButton color={"a"} >Explore Now</PillButton>
+                <PillButton clickHandler={() => navigate("/explore")} color={"a"} >Explore Now</PillButton>
                 <div >
                     <h1 className='text-8xl text-white uppercase font-Kizard' >Nashak <br /> Beatz</h1>
                     <p className='text-white uppercase' >Hottest Drops on the internet</p>
@@ -22,18 +21,9 @@ const Landing = () => {
 
             {/* SECTION-1 Cards */}
             <div className='mx-auto p-24 flex flex-col space-y-8' >
-                <h2 className='text-white text-lg' >Featured Playlist</h2>
-                <div>
-                    <CardList />
-                </div>
-                <h2 className='text-white text-lg' >Featured Artists</h2>
-                <div >
-                    <CardList artist />
-                </div>
-                <h2 className='text-white text-lg' >Trending Playlists</h2>
-                <div >
-                    <CardList />
-                </div>
+                <CardList heading={"Featured Playlist"} />
+                <CardList artist heading={"Featured Artists"} />
+                <CardList heading={"Trending Playlists"} />
             </div>
 
             {/* SECTION-2 Contact Us */}
