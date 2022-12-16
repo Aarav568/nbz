@@ -6,6 +6,7 @@ import Footer from "./components/footer/footer.component";
 import Navbar from "./components/navbar/navbar.component";
 import CartPage from "./pages/cart/cart.component";
 import Pricing from "./pages/pricing/pricing.component";
+import BeatsPage from "./pages/beats/beats.component";
 
 function App() {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/beats" element={<BeatsPage />} />
       </Routes>
       <Footer />
     </>

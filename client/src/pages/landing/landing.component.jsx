@@ -15,7 +15,7 @@ const Landing = () => {
                 <PillButton clickHandler={() => navigate("/explore")} color={"a"} >Explore Now</PillButton>
                 <div >
                     <h1 className='text-8xl text-white uppercase font-Kizard' >Nashak <br /> Beatz</h1>
-                    <p className='text-white uppercase' >Hottest Drops on the internet</p>
+                    <p className='text-white uppercase' >Hottest Drops</p>
                 </div>
             </div>
 

@@ -17,7 +17,7 @@ const CardList = ({ withoutBtn, artist, heading }) => {
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
         initialSlide: 0,
         prevArrow: <SlickArrowLeft className="hover:scale-150" />,

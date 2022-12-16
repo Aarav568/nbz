@@ -2,7 +2,7 @@ const SearchBar = () => {
     return (
         <div className="flex items-center">
             <div className='flex bg-white rounded-lg' >
-                <input placeholder="Search Artists, Beats, Genre" className="rounded-lg min-w-300 w-[300px] bg-white p-2 focus:border-blue focus:bg-[#D9EDE2] focus:outline-none" type="text" />
+                <input placeholder="Search Artists, Beats, Genre" className="rounded-lg min-w-300 w-[300px] bg-white p-2 focus:border-blue focus:outline-none" type="text" />
                 <button>
                     <svg className='rounded-lg'
                         xmlns="http://www.w3.org/2000/svg"
