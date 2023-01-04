@@ -1,18 +1,13 @@
 import BeatItem from "../beat-item/beat-item.component";
 
-const BeatsList = () => {
+const BeatsList = ({ beats }) => {
     return (
         <div>
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
-            <BeatItem />
+            {
+                beats.map(e =>
+                    <BeatItem name={e.name} key={e._id} />
+                )
+            }
         </div>
     );
 }

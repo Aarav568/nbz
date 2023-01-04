@@ -6,12 +6,14 @@ import cors from 'cors'
 import Playlist from "./models/playlist.js"
 import fetch from 'node-fetch'
 // ROUTE IMPORTS----------------------------------------------------------
-import userRoutes from './routes/user.js'
-import beatRoutes from './routes/beat.js'
-import artistRoutes from './routes/artist.js'
-import playlistRoutes from './routes/playlist.js'
-import genreRoutes from './routes/genre.js'
-import orderRoutes from './routes/order.js'
+import userRoutes from './routes/auth/user.js'
+import beatRoutes from './routes/beats/beat.js'
+import artistRoutes from './routes/artists/artist.js'
+import playlistRoutes from './routes/playlists/playlist.js'
+import genreRoutes from './routes/genres/genre.js'
+import orderRoutes from './routes/orders/order.js'
+import tagRoutes from './routes/tags/tags.js'
+import authRoutes from './routes/auth/user.js'
 
 // CONFIGURATION----------------------------------------------------------
 const app = express()
@@ -28,7 +30,7 @@ app.use(function (req, res, next) {
 app.use(cors())
 const URL = 'mongodb+srv://admin:admin@nashak-beats.oxfxxgk.mongodb.net/?retryWrites=true&w=majority'
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))
-app.use(bodyParser.json({ limit: '30mb' }));
+app.use(bodyParser.json());
 
 // SERVER-----------------------------------------------------------------
 mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
@@ -42,9 +44,11 @@ mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err)
 })
 
 // ROUTES-----------------------------------------------------------------
-app.use('/api/user', userRoutes)
-app.use('/api/beat', beatRoutes)
-app.use('/api/artist', artistRoutes)
-app.use('/api/genre', genreRoutes)
-app.use('/api/order', orderRoutes)
-app.use('/api/playlist', playlistRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/beats', beatRoutes)
+app.use('/api/artists', artistRoutes)
+app.use('/api/genres', genreRoutes)
+app.use('/api/ordes', orderRoutes)
+app.use('/api/playlists', playlistRoutes)
+app.use('/api/tags', tagRoutes)
+app.use('/auth/', authRoutes)

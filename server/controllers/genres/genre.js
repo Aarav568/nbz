@@ -1,4 +1,4 @@
-import Genre from '../models/genre.js'
+import Genre from '../../models/genre.js'
 
 export const getAllGenres = async (req, res) => {
     try {

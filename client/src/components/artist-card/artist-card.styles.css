@@ -1,0 +1,13 @@
+.rippleCard{
+    transition: background 0.8s;
+}
+.rippleCard:hover{
+    background-position: center;
+    background-size: 15000%;
+}
+
+.rippleCard:active{
+    transition: background 3s ease-in;
+    background-color: #ffffff4d;
+    background-size: 100%;
+}

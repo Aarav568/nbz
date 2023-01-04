@@ -8,7 +8,8 @@ const ArtistSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     beats: [{
         type: Schema.Types.ObjectId, ref: 'Beat'
-    }]
+    }],
+    tags: { type: Array, default: []},
 })
 
 export default mongoose.model("Artist", ArtistSchema);

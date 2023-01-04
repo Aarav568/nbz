@@ -1,9 +1,10 @@
 import express from "express";
-import { getAllPlaylists, createPlaylist, deletePlaylist, addBeatToPlaylist } from "../controllers/playlist.js";
+import { getAllPlaylists, createPlaylist, deletePlaylist, addBeatToPlaylist, getPlaylist } from "../../controllers/playlists/playlist.js";
 
 const router = express.Router()
 
 router.get("/", getAllPlaylists)
+router.get("/:id", getPlaylist)
 router.post("/create", createPlaylist)
 router.delete("/:id", deletePlaylist) //pending
 router.post('/:playlistId/addToPlaylist', addBeatToPlaylist)

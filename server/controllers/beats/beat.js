@@ -1,7 +1,7 @@
-import Artist from "../models/artist.js"
-import Beat from "../models/beat.js"
-import Genre from "../models/genre.js"
-import Playlist from "../models/playlist.js"
+import Artist from "../../models/artist.js"
+import Beat from "../../models/beat.js"
+import Genre from "../../models/genre.js"
+import Playlist from "../../models/playlist.js"
 
 export const getAllBeats = async (req, res) => {
     try {

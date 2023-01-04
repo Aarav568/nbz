@@ -1,0 +1,16 @@
+.rippleBeat{
+    transition: background 1s;
+}
+.rippleBeat:hover{
+    background-position: center;
+    background-size: 15000%;
+}
+
+.rippleBeat:active{
+    transition: background 0s ease-in;
+    background-color: #9c9c9c;
+    background-size: 100%;
+}
+.rippleBeat:hover{
+    background-image: radial-gradient(circle, transparent 1%, rgba(255,255,255, 0.1) 1%);
+}

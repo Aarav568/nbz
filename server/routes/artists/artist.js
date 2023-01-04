@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllArtists, createArtist, deleteArtist, getArtist } from "../controllers/artist.js";
+import { getAllArtists, createArtist, deleteArtist, getArtist } from "../../controllers/artists/artist.js";
 
 const router = express.Router()
 

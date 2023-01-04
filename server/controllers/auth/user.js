@@ -1,4 +1,4 @@
-import User from '../models/user.js'
+import User from '../../models/user.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -52,26 +52,5 @@ export const updateUser = async (req, res) => {
         res.status(200).json(updatedUser)
     } catch (err) {
         res.status(404).json({ err: err.message })
-    }
-}
-
-export const followUser = async (req, res) => {
-    try {
-        const userToBeFollowed_Unfollowed = await User.findById(req.params.id)
-        const currentUser = await User.findById(req.userId)
-        const index = currentUser.following.findIndex(e => e.toString() === userToBeFollowed_Unfollowed._id.toString())
-        if (index === -1) {
-            currentUser.following.push(userToBeFollowed_Unfollowed)
-            await currentUser.save()
-            userToBeFollowed_Unfollowed.followers.push(currentUser)
-            await userToBeFollowed_Unfollowed.save()
-        } else {
-            currentUser.following =  currentUser.following.filter(e => e.toString() !== userToBeFollowed_Unfollowed._id.toString() )
-            await currentUser.save()
-            userToBeFollowed_Unfollowed.followers =  userToBeFollowed_Unfollowed.followers.filter(e => e.toString() !== userToBeFollowed_Unfollowed._id.toString() )
-            await userToBeFollowed_Unfollowed.save()
-        }
-    } catch (err) {
-        res.status(404).json({err: err.message})
     }
 }

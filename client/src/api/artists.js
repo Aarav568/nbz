@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://localhost:8000/api/artist/' })
+const API = axios.create({ baseURL: 'http://localhost:8000/api/artists/' })
 
-export const getAllArtists = () => API.get('/')
+export const getArtist = (id) => API.get(`/${id}`)

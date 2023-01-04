@@ -7,6 +7,8 @@ import Navbar from "./components/navbar/navbar.component";
 import CartPage from "./pages/cart/cart.component";
 import Pricing from "./pages/pricing/pricing.component";
 import BeatsPage from "./pages/beats/beats.component";
+import SignUp from "./components/sign-up/sign-up.component";
+import Login from "./components/login/login.component";
 
 function App() {
   const dispatch = useDispatch()
@@ -19,7 +21,13 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/beats" element={<BeatsPage />} />
+        <Route path="/beats">
+          <Route path=":route" >
+            <Route path=":id" element={<BeatsPage />} />
+          </Route>
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       <Footer />
     </>

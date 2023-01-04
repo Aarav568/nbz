@@ -8,13 +8,13 @@ import {
     createBeat,
     deleteBeat,
     getAllBeats
-} from '../controllers/beat.js'
+} from '../../controllers/beats/beat.js'
 
 const router = express.Router()
 
 router.get('/artist/:artistId', getBeatsByArtist) 
 router.get('/playlist/:playlistId', getBeatsByPlaylist)
-router.get('/genre/:genreId', getBeatsByGenre)
+router.get('/genre/:genreId', getBeatsByGenre) //fix beats genre all are same tf
 router.get('/tag/:tag', getBeatsByTags) //find and match tags of beats
 
 router.get('/', getAllBeats)

@@ -1,7 +1,11 @@
-const PlaylistCard = ({ img, title }) => {
+import { useNavigate } from 'react-router';
+
+const PlaylistCard = ({ img, title, id, s }) => {
+    const navigate = useNavigate()
+
     return (
         <div className='mx-auto w-full flex justify-center' >
-            <div className="text-text-grey w-56 min-h-[10rem] shadow-lg rounded-md overflow-hidden " >
+            <button className="text-text-grey w-56 min-h-[10rem] shadow-lg rounded-md overflow-hidden  hover:bg-backdrop rippleCard" onClick={() => s ? {} : navigate(`/beats/playlist/${id}`)} >
                 <img src={img} alt="" height="250" width="250" />
                 {/* badge */}
                 <div className='p-5 flex-col gap-3 flex-col space-y-2 text-white' >
@@ -14,9 +18,9 @@ const PlaylistCard = ({ img, title }) => {
                         <p>by Vnashak</p>
                     </div>
                 </div>
-            </div>
+            </button>
         </div>
-    );
+    )
 }
 
 export default PlaylistCard;

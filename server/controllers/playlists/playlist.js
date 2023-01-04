@@ -1,10 +1,19 @@
-import Playlist from "../models/playlist.js"
-import Beats from "../models/beat.js"
-import Genre from "../models/genre.js"
+import Playlist from "../../models/playlist.js"
+import Beats from "../../models/beat.js"
+import Genre from "../../models/genre.js"
 
 export const getAllPlaylists = async (req, res) => {
     try {
-        const playlists = await Playlist.find({}).populate("beats")
+        const playlists = await Playlist.find({})
+        res.status(200).json(playlists)
+    } catch (err) {
+        res.status(404).json({ message: err.message })
+    }
+}
+
+export const getPlaylist = async (req, res) => {
+    try {
+        const playlists = await Playlist.findById(req.params.id).populate("beats")
         res.status(200).json(playlists)
     } catch (err) {
         res.status(404).json({ message: err.message })

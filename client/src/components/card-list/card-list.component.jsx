@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import LeftArrow from '../../assets/arrow-left.png'
 import RightArrow from '../../assets/arrow-right.png'
 
-const CardList = ({ withoutBtn, artist, heading }) => {
+const CardList = ({ artist, heading, data }) => {
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <img src={LeftArrow} alt="prevArrow" {...props} />
     );
@@ -57,23 +57,21 @@ const CardList = ({ withoutBtn, artist, heading }) => {
                     artist ? (
                         <>
                             <Slider {...settings}>
-                                <ArtistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <ArtistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <ArtistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <ArtistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <ArtistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
+                                {
+                                    data?.map(e => (
+                                        <ArtistCard img={e.img} title={e.name} key={e._id} id={e._id} />
+                                    ))
+                                }
                             </Slider>
                         </>
                     ) : (
                         <>
                             <Slider {...settings}>
-                                <PlaylistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <PlaylistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <PlaylistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <PlaylistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <PlaylistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <PlaylistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
-                                <PlaylistCard img={cardImg} title={"Cherry Chill"} subtitle={"Viscinity of the cherry chill garden"} />
+                                {
+                                    data?.map(e => (
+                                        <PlaylistCard img={e.img} title={e.name} key={e._id} id={e._id}/>
+                                    ))
+                                }
                             </Slider>
                         </>
                     )

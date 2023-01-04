@@ -1,20 +1,20 @@
 import play from '../../assets/play.png'
 import cart from '../../assets/cart.png'
-
-const BeatItem = () => {
+import './beat-item.styles.css'
+const BeatItem = ({ name }) => {
     return (
-        <div className="p-4 text-white flex justify-between odd:bg-backdrop rounded-lg" >
+        <div role="button" className="p-4 text-white flex justify-between odd:bg-backdrop rounded-lg hover:bg-backdropDark rippleBeat" >
             <div className="flex space-x-8 items-center">
                 <div>
-                    Beat Name
+                    {name}
                 </div>
             </div>
             <div className="flex space-x-8 space-x-8 items-center">
-                <div>
-                    <img src={cart} height="50" width="50" alt="" />
+                <div onClick={() => { }} role="button" >
+                    <img src={play} height="50" width="50" className="ripple" alt="" />
                 </div>
-                <div>
-                    <img src={play} height="50" width="50" alt="" />
+                <div onClick={() => { }} role="button" className="ripple">
+                    <img src={cart} height="50" width="50" alt="" />
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ const Pricing = () => {
                     <div className="rounded-xl border flex flex-col space-y-8 p-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >Lease</h1>
                         <div className="flex flex-col text-center"  >
-                            <h2 className="text-5xl text-white">700₹ <span className="text-lg text-grey" >/ per beat</span></h2>
+                            <h2 className="text-5xl text-white">15$ <span className="text-lg text-grey" >/ per beat</span></h2>
                         </div>
                         <p className="text-white" >You can rent a beat for a year,
                             you will be provided with proper
@@ -42,7 +42,7 @@ const Pricing = () => {
                     <div className="bg-backdrop scale-[1.1] flex flex-col space-y-8 rounded-xl border p-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >Purchase</h1>
                         <div className="flex flex-col"  >
-                            <h2 className="text-5xl text-white text-center">1200₹ <span className="text-lg text-grey" >/ per beat</span></h2>
+                            <h2 className="text-5xl text-white text-center">20$ <span className="text-lg text-grey" >/ per beat</span></h2>
                         </div>
                         <p className="text-white" >You can purchase a beat with
                             its complete ownership with
@@ -67,7 +67,7 @@ const Pricing = () => {
                     <div className="rounded-xl border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >STEM</h1>
                         <div className="flex flex-col text-center"  >
-                            <h2 className="text-5xl text-white">1700₹ <span className="text-lg text-grey" >/ per pack</span></h2>
+                            <h2 className="text-5xl text-white">35$ <span className="text-lg text-grey" >/ per pack</span></h2>
                         </div>
                         <p className="text-white" >You can buy a complete beat pack
                             with its pattern to customize or

@@ -1,9 +1,9 @@
-import Artist from '../models/artist.js'
-import Genre from '../models/genre.js'
+import Artist from '../../models/artist.js'
+import Genre from '../../models/genre.js'
 
 export const getAllArtists = async (req, res) => {
     try {
-        const artists = await Artist.find({}).populate("beats")
+        const artists = await Artist.find({}, {beats: 0})
         res.status(200).json(artists)
     } catch (err) {
         res.status(404).json({ message: err.message })
