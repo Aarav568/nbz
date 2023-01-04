@@ -1,5 +1,5 @@
 import './pill-button.styles.css'
-const PillButton = ({color, children, clickHandler }) => {
+const PillButton = ({ color, children, clickHandler }) => {
     const primary = color === "p"
     const invertedPrimary = color === "ip"
     const secondary = color === "s"

@@ -5,7 +5,7 @@ const CartPage = () => {
     return (
         <div>
             <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${cartBG})` }} >
-                <div className='p-48 flex flex-col space-y-4' >
+                <div className='p-48 pb-32 flex flex-col space-y-4' >
                     <h1 className='text-8xl text-white uppercase font-Kizard' >Your Cart</h1>
                 </div>
             </div>
@@ -24,5 +24,4 @@ const CartPage = () => {
         </div>
     );
 }
-
 export default CartPage;

@@ -7,7 +7,6 @@
 }
 
 .rippleBeat:active{
-    transition: background 0s ease-in;
     background-color: #9c9c9c;
     background-size: 100%;
 }
