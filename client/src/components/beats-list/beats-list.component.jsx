@@ -4,8 +4,8 @@ const BeatsList = ({ beats }) => {
     return (
         <div>
             {
-                beats.map(e =>
-                    <BeatItem name={e.name} key={e._id} />
+                beats.map(beat =>
+                    <BeatItem beat={beat} key={beat._id} />
                 )
             }
         </div>

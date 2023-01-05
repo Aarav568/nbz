@@ -1,6 +1,7 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
-
+import { useSelector } from "react-redux";
 const PayPal = () => {
+    const amount = useSelector(state => state.cart.total)
     return (
         <div className='flex flex-col space-y-8' >
             <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" >
@@ -13,7 +14,7 @@ const PayPal = () => {
                                         {
                                             amount: {
                                                 currency_code: "USD",
-                                                value: "5",
+                                                value: amount,
                                             },
                                         },
                                     ],
@@ -21,8 +22,8 @@ const PayPal = () => {
                             }}
                             onApprove={(data, actions) => {
                                 return actions.order.capture().then((details) => {
-                                    const name = details.payer.name.given_name;
-                                    alert(`Transaction completed by ${name}`);
+                                    // const name = details.payer.name.given_name;
+                                    alert(`Transaction Successful - Generating your download`);
                                 });
                             }}
                         />

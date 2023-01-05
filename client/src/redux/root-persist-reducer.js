@@ -4,11 +4,13 @@ import { combineReducers } from 'redux'
 import storage from 'redux-persist/lib/storage'
 import HomePageReducer from './homepage/homepage.reducers'
 import cartReducer from './cart/cart.reducer'
+import modalReducer from './modal/modal.reducer'
 
 const rootReducer = combineReducers({
     user: userReducer,
     homepage: HomePageReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    modal: modalReducer
 })
 
 const persistConfig = {
