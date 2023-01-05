@@ -9,7 +9,8 @@ const Upload = () => {
     }
     return (
         <div className='p-48' >
-            <FileBase64 multiple={false} onDone={doneHandler} />
+            <button onClick={() => {}} >HEYLO</button>
+            {/* <FileBase64 multiple={false} onDone={doneHandler} />
             {
                 item ? (
                     <audio controls="controls" >
@@ -17,7 +18,7 @@ const Upload = () => {
                     </audio>
                 ) : null
             }
-            <h1>HI</h1>
+            <h1>HI</h1> */}
         </div>
     );
 }

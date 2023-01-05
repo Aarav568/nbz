@@ -2,31 +2,26 @@ import './beat-item.styles.css'
 import PillButton from '../pill-button/pill-button.component';
 import { toggleModal } from "../../redux/modal/modal.actions";
 import { useDispatch } from 'react-redux'
-import { useState } from 'react';
-import { getBeatSample } from '../../api/beats';
+import { useEffect, useRef, useState } from 'react';
+import { getSampleBeat } from '../../api/beats';
 
 const BeatItem = ({ beat }) => {
     const dispatch = useDispatch()
-    const [playing, setPlayting] = useState(false)
-    const [audioData, setAudioData] = useState("")
-    const [audio] = useState(new Audio(audioData))
+    const [playing, setPlaying] = useState(false)
+    const [audio] = useState(new Audio("https://firebasestorage.googleapis.com/v0/b/nbzz-91837.appspot.com/o/BEATS%2FControlla%2FSample%2FControlla.mp3?alt=media&token=239dd26f-4020-43fe-8b25-07f919b82eed"))
+    
     return (
         <>
             <div role="button" className="p-4 text-white flex justify-between odd:bg-backdrop rounded-lg hover:bg-backdropDark rippleBeat" >
                 <div className="flex space-x-8 items-center" >
                     <div onClick={() => { }} role="button" className="ripple">
-                        <PillButton color={"p"} clickHandler={() => {
-                            if (!playing) {
-                                getBeatSample(beat._id).then( async (resp) => {
-                                    // await setAudioData(data.data.data)
-                                    console.log(resp.data.data.data)
-                                    audio.play()
-                                })
-
+                        <PillButton color={"p"} clickHandler={async () => {
+                            if(!playing) {
+                                audio.play()
                             } else {
                                 audio.pause()
                             }
-                            setPlayting(!playing)
+                            setPlaying(!playing)
                         }} >
                             {
                                 playing

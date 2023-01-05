@@ -1,12 +1,22 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import { checkout } from "../../api/order";
+
 const PayPal = () => {
+    const cart = useSelector(state => state.cart)
+    const currentUser = useSelector(state => state.user.currentUser)
+    const [orderData, setOrderData] = useState({
+        cart: cart,
+        user: currentUser,
+        transactionId: ""
+    })
     const amount = useSelector(state => state.cart.total)
     return (
         <div className='flex flex-col space-y-8' >
             <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" >
                 <div className='p-48 flex flex-col space-y-4' >
-                    <PayPalScriptProvider options={{ "client-id": "AQ1nSsVBG_I2DpEW4L5e3fHCRRyNMHNPEb3P0uUdiJg6apHJOSKK3NTn-1Z9dGXKZoO9kacLIcCC_flE"}} >
+                    <PayPalScriptProvider options={{ "client-id": "AQ1nSsVBG_I2DpEW4L5e3fHCRRyNMHNPEb3P0uUdiJg6apHJOSKK3NTn-1Z9dGXKZoO9kacLIcCC_flE" }} >
                         <PayPalButtons
                             createOrder={(data, actions) => {
                                 return actions.order.create({
@@ -22,8 +32,10 @@ const PayPal = () => {
                             }}
                             onApprove={(data, actions) => {
                                 return actions.order.capture().then((details) => {
-                                    // const name = details.payer.name.given_name;
-                                    alert(`Transaction Successful - Generating your download`);
+                                    checkout({ ...orderData, transactionId: details.id })
+                                        .then(resp => {
+                                            window.open(resp.data.downloadUrl)?.focus()
+                                        })
                                 });
                             }}
                         />

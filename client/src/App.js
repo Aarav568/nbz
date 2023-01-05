@@ -33,7 +33,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/checkout" element={<PayPal />} />
-          <Route path="/upload" element={<Upload />} />
         </Routes>
       </SmoothScroll>
       <Footer />
