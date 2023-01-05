@@ -502,6 +502,20 @@ const linkBeatsToPlaylist = () => {
     }
 }
 
+const createDistributions = () => {
+    try{
+        const beats = Beat.find({})
+        beats.forEach(beat => {
+            beat.distribution = {
+                
+            }
+        })
+    }
+    catch (err){
+        console.log(err)
+    }
+}
+
 
 mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true }, async (err) => {
     if (!err) {

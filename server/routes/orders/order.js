@@ -3,8 +3,7 @@ import { getAllOrders, createOrder, getOrder } from "../../controllers/orders/or
 
 const router = express.Router()
 
-router.get("/", getAllOrders)
-router.post("/create", createOrder)
-router.post("/:id", getOrder)
+router.get("/:id", getAllOrders)
+router.post("/", createOrder)
 
 export default router

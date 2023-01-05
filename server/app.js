@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 app.use(cors())
 const URL = 'mongodb+srv://admin:admin@nashak-beats.oxfxxgk.mongodb.net/?retryWrites=true&w=majority'
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))
-app.use(bodyParser.json());
+app.use(bodyParser.json({ extended: true, limit: '30mb' }))
 
 // SERVER-----------------------------------------------------------------
 mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
@@ -48,7 +48,7 @@ app.use('/api/users', userRoutes)
 app.use('/api/beats', beatRoutes)
 app.use('/api/artists', artistRoutes)
 app.use('/api/genres', genreRoutes)
-app.use('/api/ordes', orderRoutes)
+app.use('/api/checkout', orderRoutes)
 app.use('/api/playlists', playlistRoutes)
 app.use('/api/tags', tagRoutes)
 app.use('/auth/', authRoutes)

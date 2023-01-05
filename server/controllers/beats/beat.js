@@ -1,7 +1,9 @@
 import Artist from "../../models/artist.js"
 import Beat from "../../models/beat.js"
+import Distribution from "../../models/distribution.js"
 import Genre from "../../models/genre.js"
 import Playlist from "../../models/playlist.js"
+import { generateUrl } from "../../firebase/firebase.js"
 
 export const getAllBeats = async (req, res) => {
     try {
@@ -81,6 +83,54 @@ export const createBeat = async (req, res) => {
         // .json(createdBeat)
     } catch (err) {
         res.status(500).json({ message: err })
+    }
+}
+
+// export const saveSample = async (req, res) => {
+//     const data = req.body.data
+//     try {
+//         const beat = await Beat.findOne({ "name": "Controlla" })
+//         beat.distribution = await Distribution.create(
+//             {
+//                 sample: data,
+//                 ref: `/BEATS/${beat.name.split(" ").join("")}/`,
+//                 beat
+//             }
+//         )
+//         await beat.save()
+//         res.status(200).redirect("/beat")
+//         // .json(createdBeat)
+//     } catch (err) {
+//         res.status(500).json({ message: err })
+//     }
+// }
+
+export const getBeatSample = async (req, res) => {
+    const { id } = req.params
+    try{
+        const beat = await Beat.findById(id).populate("distribution")
+        const url = await generateUrl(beat.distribution.sampleRef)
+        res.status(200).json({audioUrl: url})
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const createDistribution = async (req, res) => {
+    const { id } = req.params
+    try{
+        const beat = await Beat.findById(id)
+        const distribution = await Distribution.create({
+            sampleRef: `/BEATS/${beat.name.split(" ").join("")}/Sample/${beat.name.split(" ").join("")}.mp3`,
+            leaseRef: `/BEATS/${beat.name.split(" ").join("")}/LEASE/${beat.name.split(" ").join("")}.zip`,
+            buyRef : `/BEATS/${beat.name.split(" ").join("")}/BUY/${beat.name.split(" ").join("")}.zip`,
+            stemRef: `/BEATS/${beat.name.split(" ").join("")}/STEM/${beat.name.split(" ").join("")}.zip`
+        })
+        beat.distribution = distribution
+        await beat.save()
+        res.send("YOSH")
+    } catch (err) {
+        console.log(err)
     }
 }
 
