@@ -1,18 +1,41 @@
-import play from '../../assets/play.png'
-import cart from '../../assets/cart.png'
 import './beat-item.styles.css'
 import PillButton from '../pill-button/pill-button.component';
 import { toggleModal } from "../../redux/modal/modal.actions";
 import { useDispatch } from 'react-redux'
+import { useState } from 'react';
+import { getBeatSample } from '../../api/beats';
 
 const BeatItem = ({ beat }) => {
     const dispatch = useDispatch()
+    const [playing, setPlayting] = useState(false)
+    const [audioData, setAudioData] = useState("")
+    const [audio] = useState(new Audio(audioData))
     return (
         <>
             <div role="button" className="p-4 text-white flex justify-between odd:bg-backdrop rounded-lg hover:bg-backdropDark rippleBeat" >
                 <div className="flex space-x-8 items-center" >
                     <div onClick={() => { }} role="button" className="ripple">
-                        <img src={play} height="50" width="50" alt="" />
+                        <PillButton color={"p"} clickHandler={() => {
+                            if (!playing) {
+                                getBeatSample(beat._id).then( async (resp) => {
+                                    // await setAudioData(data.data.data)
+                                    console.log(resp.data.data.data)
+                                    audio.play()
+                                })
+
+                            } else {
+                                audio.pause()
+                            }
+                            setPlayting(!playing)
+                        }} >
+                            {
+                                playing
+                                    ?
+                                    <svg fill="#ffffff" height="25px" width="20px" version="1.1" id="Filled_Icons" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" enableBackground="new 0 0 24 24" xmlSpace="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_iconCarrier"> <g id="Pause--Filled"> <path d="M15,22V2h5v20H15z M9,22V2H4v20H9z" /> </g> </g></svg>
+                                    :
+                                    <svg fill="#ffffff" height="25px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enableBackground="new 0 0 512 512" xmlSpace="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_iconCarrier"> <path d="M464.7,221.5L86.1,7.3C52.5-11.7,25,7.5,25,50v412c0,42.5,27.5,61.7,61.1,42.7l378.6-214.1 C498.2,271.5,498.2,240.5,464.7,221.5z" /> </g></svg>
+                            }
+                        </PillButton>
                     </div>
                     <div>
                         {beat.name}
@@ -32,3 +55,4 @@ const BeatItem = ({ beat }) => {
 }
 
 export default BeatItem;
+

@@ -11,6 +11,7 @@ import SignUp from "./components/sign-up/sign-up.component";
 import Login from "./components/login/login.component";
 import SmoothScroll from "./components/smooth-scroll/smooth-scroll.component";
 import PayPal from "./components/paypal/paypal.component";
+import Upload from "./components/upload/upload.component";
 
 function App() {
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/checkout" element={<PayPal />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </SmoothScroll>
       <Footer />
