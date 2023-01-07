@@ -37,12 +37,23 @@ const CartPage = () => {
                     ))
                 }
             </div>
-            <div className='mx-auto p-16 pb-4 justify-end flex text-white' >
-                <h1 className="text-4xl">Total: {total} <span>$</span></h1>
-            </div>
-            <div className='mx-auto px-16 mb-16 justify-end flex text-white' >
-                <Button color={"p"}  handleClick={() => setModal(!modal) } >Checkout</Button>
-            </div>
+            {
+                items.length == 0 ? (
+                    <div className='flex flex-col p-36 pt-0 space-y-8' >
+                        <h2 className='text-white text-4xl font-bold'>Cart is Empty!</h2>
+                    </div>
+                ) : (
+                    <div>
+                        <div className='mx-auto p-16 pb-4 justify-end flex text-white' >
+                            <h1 className="text-4xl">Total: {total} <span>$</span></h1>
+                        </div>
+                        <div className='mx-auto px-16 mb-16 justify-end flex text-white' >
+                            <Button color={"p"} handleClick={() => setModal(!modal)} >Checkout</Button>
+                        </div>
+                    </div>
+                )
+            }
+
         </div>
     );
 }

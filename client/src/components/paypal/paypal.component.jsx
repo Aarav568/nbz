@@ -2,8 +2,13 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { checkout } from "../../api/order";
+import { useNavigate } from 'react-router'
+import { useDispatch } from "react-redux";
+import { emptyCart } from "../../redux/cart/cart.actions";
 
 const PayPal = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
     const currentUser = useSelector(state => state.user.currentUser)
     const [orderData, setOrderData] = useState({
@@ -34,7 +39,9 @@ const PayPal = () => {
                                 return actions.order.capture().then((details) => {
                                     checkout({ ...orderData, transactionId: details.id })
                                         .then(resp => {
-                                            window.open(resp.data.downloadUrl)?.focus()
+                                            navigate("/orders")
+                                            dispatch(emptyCart())
+                                            console.log(resp.data)
                                         })
                                 });
                             }}

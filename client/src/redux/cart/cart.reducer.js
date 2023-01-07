@@ -2,7 +2,6 @@ import CartTypes from "./cart.types";
 import { useSelector } from "react-redux";
 
 const INITIAL_STATE = {
-    user: null,
     items: [],
     total: 0
 }
@@ -22,28 +21,28 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                     return 0
             }
             action.payload.price = current()
+
+            const alreadyExists = state.items.find(beat =>
+                beat.beat._id === action.payload.beat._id
+            )
+
             return {
                 ...state,
-                items: [...state.items, action.payload],
-                total: state.total + current()
+                items: alreadyExists ? [...state.items] : [...state.items, action.payload],
+                total: alreadyExists ? state.total : state.total + current()
             }
         case CartTypes.EMPTY_CART:
             return {
                 ...state,
-                products: state.products.map(product =>
-                    product.id === action.id
-                        ? { ...product, selected: false, quantity: 1 }
-                        : product,
-                ),
+                items: [],
+                total: 0
             };
-        case CartTypes.EMPTY_CART:
+        case CartTypes.REMOVE_FROM_CART:
+            console.log(action.payload)
             return {
                 ...state,
-                products: state.products.map(product =>
-                    product.selected
-                        ? { ...product, selected: false, quantity: 1 }
-                        : product,
-                ),
+                items: state.items.filter(beat => beat.beat._id !== action.payload.id),
+                total: state.total - action.payload.price
             };
         default:
             return state

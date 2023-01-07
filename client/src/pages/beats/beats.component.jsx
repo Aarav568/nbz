@@ -12,6 +12,7 @@ import cartBG from '../../assets/cartbg.png'
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.actions";
+import { hideModal } from "../../redux/modal/modal.actions";
 
 const BeatsPage = () => {
     const dispatch = useDispatch()
@@ -51,7 +52,10 @@ const BeatsPage = () => {
                                     <option value="STEM">STEM - 35$</option>
                                 </select>
                                 <h2 className="text-lg" >Select the type of license you want to get for the purchase, <br /> for more info go to <span className="text-blue font-bold underline" > <button onClick={() => navigate("/signup")}>Pricing Page</button> </span> </h2>
-                                <PillButton color={"p"} clickHandler={() => dispatch(addToCart({ beat: modalBeat, purchaseType }))} >
+                                <PillButton color={"p"} clickHandler={() => {
+                                    dispatch(addToCart({ beat: modalBeat, purchaseType }))
+                                    dispatch(hideModal())
+                                }} >
                                     Add to Cart
                                     <svg className='inline-block ml-2' width="25px" height="25px" viewBox="0 0 48.00 48.00" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" strokeWidth="0.00048000000000000007"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <polygon points="8.649,10.27 14.857,28.896 9.923,40 20,40 32,40 40,40 40,36 16.078,36 18.3,31 38.441,31 44.775,12 13.441,12 11.441,6 4,6 4,10 8.333,10 "></polygon> <circle cx="20" cy="42" r="2"></circle> <circle cx="32" cy="42" r="2"></circle> </g> </g></svg>
                                 </PillButton>

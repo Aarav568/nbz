@@ -14,6 +14,12 @@ const modalReducer = (state = INITIAL_STATE, action) => {
                 beat: action.payload,
                 price: 0
             }
+        case ModalTypes.HIDE_MODAL:
+            return {
+                ...state,
+                hidden: true,
+                beat: {}
+            }
         default:
             return state
     }
