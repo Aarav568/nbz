@@ -2,12 +2,16 @@ import pricingBG from '../../assets/pricingbg.png'
 import check from '../../assets/check.png'
 import cross from '../../assets/cross.png'
 import Button from '../../components/button/button.component';
+import BackButton from '../../components/backbutton/back-button.component';
 
 const Pricing = () => {
     return (
         <div className='flex flex-col space-y-8' >
             <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" style={{ backgroundImage: `url(${pricingBG})` }} >
-                <div className='p-48 flex flex-col space-y-4' >
+                <div className='p-48 pb-32 flex space-x-12 items-center' >
+                    <div >
+                        <BackButton />
+                    </div>
                     <h1 className='text-8xl text-white uppercase font-Kizard' >Unbeatable Prices</h1>
                 </div>
             </div>

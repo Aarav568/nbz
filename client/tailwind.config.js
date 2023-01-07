@@ -575,6 +575,9 @@ module.exports = {
       black: 900,
     },
     extend: {
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops) 1%)',
       },

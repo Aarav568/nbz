@@ -25,31 +25,23 @@ function App() {
   return (
     <>
       <Navbar />
-      <TransitionGroup>
-        <CSSTransition
-          timeout={300}
-          classNames="page"
-          key={location.pathname}
-        >
-          <SmoothScroll>
-            <Routes location={location} >
-              <Route path="/" element={<LandingLazy />} />
-              <Route path="/explore" element={<ExploreLazy />} />
-              <Route path="/cart" element={<CartPageLazy />} />
-              <Route path="/pricing" element={<PricingLazy />} />
-              <Route path="/beats">
-                <Route path=":route" >
-                  <Route path=":id" element={<BeatsPageLazy />} />
-                </Route>
-              </Route>
-              <Route path="/login" element={<LoginLazy />} />
-              <Route path="/signup" element={<SignUpLazy />} />
-              <Route path="/checkout" element={<PayPalLazy />} />
-              <Route path="/orders" element={<OrdersPageLazy />} />
-            </Routes>
-          </SmoothScroll>
-        </CSSTransition>
-      </TransitionGroup>
+      <SmoothScroll>
+        <Routes location={location} >
+          <Route path="/" element={<LandingLazy />} />
+          <Route path="/explore" element={<ExploreLazy />} />
+          <Route path="/cart" element={<CartPageLazy />} />
+          <Route path="/pricing" element={<PricingLazy />} />
+          <Route path="/beats">
+            <Route path=":route" >
+              <Route path=":id" element={<BeatsPageLazy />} />
+            </Route>
+          </Route>
+          <Route path="/login" element={<LoginLazy />} />
+          <Route path="/signup" element={<SignUpLazy />} />
+          <Route path="/checkout" element={<PayPalLazy />} />
+          <Route path="/orders" element={<OrdersPageLazy />} />
+        </Routes>
+      </SmoothScroll>
       <Footer />
     </>
   );

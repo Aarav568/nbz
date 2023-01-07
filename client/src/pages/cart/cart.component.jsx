@@ -4,6 +4,7 @@ import CartItem from '../../components/cart-item/cart-item.component';
 import { useSelector } from 'react-redux'
 import { useState } from 'react';
 import PayPal from '../../components/paypal/paypal.component';
+import BackButton from '../../components/backbutton/back-button.component';
 
 const CartPage = () => {
     const items = useSelector(state => state.cart.items)
@@ -26,7 +27,10 @@ const CartPage = () => {
                 ) : null
             }
             <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${cartBG})` }} >
-                <div className='p-48 pb-32 flex flex-col space-y-4' >
+                <div className='p-48 pb-32 flex space-x-12 items-center' >
+                    <div >
+                        <BackButton />
+                    </div>
                     <h1 className='text-8xl text-white uppercase font-Kizard' >Your Cart</h1>
                 </div>
             </div>

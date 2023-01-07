@@ -2,21 +2,27 @@ import banner from '../../assets/banner.jpg'
 import contactUs from '../../assets/contactUsBg.png'
 import YTbg from '../../assets/YTbg.png'
 import YT from '../../assets/yt.png'
-import ytLogo from '../../assets/yt-logo.png'
 import CardList from '../../components/card-list/card-list.component';
 import PillButton from '../../components/pill-button/pill-button.component';
 import { useNavigate } from 'react-router'
 import { useEffect, useState } from 'react'
 import { taggedArtist, taggedPlaylist } from '../../api/tag'
+import CardSkeleton from '../../components/skeletons/card-skeleton/card-skeleton.component'
+import Slider from "react-slick";
+import { slickConfig } from '../../slick.config';
+
 
 const Landing = () => {
     const [featuredPlaylists, setFeaturedPlaylists] = useState([])
-    const [trending, setTrending] = useState([])
     const [featuredArtists, setFeaturedArtists] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         taggedArtist("featured").then(resp => setFeaturedArtists(resp.data))
-        taggedPlaylist("featured").then(resp => setFeaturedPlaylists(resp.data))
+        taggedPlaylist("featured").then(resp => {
+            setFeaturedPlaylists(resp.data)
+            setLoading(!loading)
+        })
     }, [])
 
     const navigate = useNavigate()
@@ -32,9 +38,29 @@ const Landing = () => {
             </div>
 
             {/* SECTION-1 Cards */}
-            <div className='mx-auto p-24 flex flex-col space-y-8' >
-                <CardList data={featuredPlaylists} heading={"Featured Playlist"} />
-                <CardList data={featuredArtists} artist heading={"Featured Artists"} />
+            <div className='mx-auto p-24 flex flex-col space-y-16' >
+                {
+                    loading ? (
+                        <>
+                            {
+                                [...Array(2)].map((e, i) => (
+                                    <Slider {...slickConfig} key={e} >
+                                        {
+                                            [...Array(6)].map((e, i) => (
+                                                <CardSkeleton key={i + 100} />
+                                            ))
+                                        }
+                                    </Slider>
+                                ))
+                            }
+                        </>
+                    ) : (
+                        <>
+                            <CardList data={featuredPlaylists} heading={"Featured Playlist"} />
+                            <CardList data={featuredArtists} artist heading={"Featured Artists"} />
+                        </>
+                    )
+                }
                 {/* <CardList heading={"Trending Playlists"} /> */}
             </div>
 
@@ -96,7 +122,7 @@ const Landing = () => {
             </div>
 
             {/* Footer */}
-        </div>
+        </div >
     );
 }
 

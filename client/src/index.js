@@ -9,10 +9,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Suspense } from 'react';
+import FullLoader from './components/full-loader/full-loader.component';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <Suspense fallback={<h1>LOADING...................</h1>} >
+    <Suspense fallback={<FullLoader />} >
       <PersistGate loading={<h1>LOADING......</h1>} persistor={persistor}>
         <BrowserRouter>
           <App />

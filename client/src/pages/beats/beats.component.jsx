@@ -13,8 +13,11 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.actions";
 import { hideModal } from "../../redux/modal/modal.actions";
-
+import BeatsSkeleton from "../../components/skeletons/beats-skeleton/beats-skeleton.component";
+import CardSkeleton from "../../components/skeletons/card-skeleton/card-skeleton.component";
+import BackButton from "../../components/backbutton/back-button.component";
 const BeatsPage = () => {
+    // const history = useHistory()
     const dispatch = useDispatch()
     const modalHidden = useSelector(state => state.modal.hidden)
     const modalBeat = useSelector(state => state.modal.beat)
@@ -24,18 +27,20 @@ const BeatsPage = () => {
     const [artist, setArtist] = useState({})
     const [playlist, setPlaylist] = useState({})
     const [purchaseType, setPurchaseType] = useState("LEASE")
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        getBeats(route, id).then(resp => setBeats(resp.data))
+        getBeats(route, id).then(resp => {
+            setBeats(resp.data)
+            setLoading(!loading)
+        })
         if (route === "artist")
             getArtist(id).then(resp => setArtist(resp.data))
         else
             getPlaylist(id).then(resp => setPlaylist(resp.data))
     }, [])
-
     return (
         <div>
-            {/* MODAL */}
             {
                 modalHidden ? null : (
                     <div className="h-full w-full flex justify-center items-center bg-backdropDark fixed" style={{ zIndex: 2 }} >
@@ -68,7 +73,8 @@ const BeatsPage = () => {
             {/* PAGE */}
             <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${cartBG})` }} >
                 <div className='p-48  pb-32 flex flex-col space-y-8' >
-                    <div className='flex justify-center space-x-8' >
+                    <div className='flex justify-center items-center space-x-8' >
+                        <BackButton />
                         <SearchBar />
                         <div>
                             <PillButton color={"p"} >Search</PillButton>
@@ -77,10 +83,14 @@ const BeatsPage = () => {
                     <div className='mx-auto flex flex-col space-y-8' >
                         <div className="flex space-x-8" >
                             {
-                                route === "artist" ? (
-                                    <ArtistCard img={artist.img} title={artist.name} s />
+                                loading ? (
+                                    <CardSkeleton />
                                 ) : (
-                                    <PlaylistCard img={playlist.img} title={playlist.name} s />
+                                    route === "artist" ? (
+                                        <ArtistCard img={artist.img} title={artist.name} s />
+                                    ) : (
+                                        <PlaylistCard img={playlist.img} title={playlist.name} s />
+                                    )
                                 )
                             }
                         </div>
@@ -89,7 +99,12 @@ const BeatsPage = () => {
             </div>
             <div className='flex flex-col p-36 pt-12 space-y-8' >
                 <h2 className='text-white text-4xl font-bold'>{artist.name || playlist.name}</h2>
-                <BeatsList beats={beats} />
+                {
+                    loading ? (
+                        <BeatsSkeleton count={8} />
+                    ) :
+                        <BeatsList beats={beats} />
+                }
             </div>
 
         </div>
