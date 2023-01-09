@@ -1,11 +1,9 @@
+import images from "../../utils/image-links";
+
 import Button from "../button/button.component";
-import Navbar from "../navbar/navbar.component";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import img from '../../assets/signup.jpg'
-// import { setCurrentUser } from "../../redux/actions/user.actions";
-// import { signUp } from "../../api/user";
 import { loginUser } from "../../api/user";
 import { setCurrentUser } from "../../redux/user/user.actions";
 
@@ -37,7 +35,7 @@ const Login = () => {
                 <div className="mx-auto"  >
                     <div className="flex w-full bg-bg items-center justify-center">
                         <div className="hidden sm:block">
-                            <img className="object-cover shadow-lg rounded mb-20" src={img} height={"500"} width="512" alt="" />
+                            <img className="object-cover shadow-lg rounded mb-20" src={images.authBanner} height={"500"} width="512" alt="" />
                         </div>
                         <div className="flex flex-col justify-center ml-[-30px] mb-20" data-aos="fade-left"  >
                             <form action="" className="bg-p max-w-[400px] w-full mx-auto p-8 px-8 rounded-lg" >

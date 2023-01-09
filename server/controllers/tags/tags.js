@@ -3,7 +3,6 @@ import Playlist from "../../models/playlist.js";
 
 export const getArtistByTags = async (req, res) => {
     try {
-        // const tags = req.body.tags.split(",")
         const artist = await Artist.find({ tags: { "$in": [req.params.tag] } }).populate('beats')
         res.status(200).json(artist)
 

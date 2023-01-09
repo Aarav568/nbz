@@ -14,6 +14,7 @@ import genreRoutes from './routes/genres/genre.js'
 import orderRoutes from './routes/orders/order.js'
 import tagRoutes from './routes/tags/tags.js'
 import authRoutes from './routes/auth/user.js'
+import auth from './middleware/auth.js'
 
 // CONFIGURATION----------------------------------------------------------
 const app = express()
@@ -48,7 +49,9 @@ app.use('/api/users', userRoutes)
 app.use('/api/beats', beatRoutes)
 app.use('/api/artists', artistRoutes)
 app.use('/api/genres', genreRoutes)
-app.use('/api/orders', orderRoutes)
 app.use('/api/playlists', playlistRoutes)
 app.use('/api/tags', tagRoutes)
-app.use('/auth/', authRoutes)
+app.use('/auth', authRoutes)
+
+//Authenticated Routes
+app.use('/api/orders', auth, orderRoutes)

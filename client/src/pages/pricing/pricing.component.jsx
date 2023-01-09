@@ -1,13 +1,12 @@
-import pricingBG from '../../assets/pricingbg.png'
-import check from '../../assets/check.png'
-import cross from '../../assets/cross.png'
+import images from '../../utils/image-links';
+//COMPONENT IMPORTS 
 import Button from '../../components/button/button.component';
 import BackButton from '../../components/backbutton/back-button.component';
 
 const Pricing = () => {
     return (
         <div className='flex flex-col space-y-8' >
-            <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" style={{ backgroundImage: `url(${pricingBG})` }} >
+            <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" style={{ backgroundImage: `url(${images.pricingBG})` }} >
                 <div className='p-48 pb-32 flex space-x-12 items-center' >
                     <div >
                         <BackButton />
@@ -28,15 +27,15 @@ const Pricing = () => {
                             license and certificate of lease.</p>
                         <div className='flex flex-col space-y-4 mt-8 text-white'>
                             <div className='flex space-x-4' >
-                                <img src={check} height="24" width={"24"} alt="" />
+                                <img src={images.check} height="24" width={"24"} alt="" />
                                 <p>Something</p>
                             </div>
                             <div className='flex space-x-4' >
-                                <img src={cross} height="24" width={"24"} alt="" />
+                                <img src={images.cross} height="24" width={"24"} alt="" />
                                 <p>Nothing</p>
                             </div>
                             <div className='flex space-x-4' >
-                                <img src={check} height="24" width={"24"} alt="" />
+                                <img src={images.check} height="24" width={"24"} alt="" />
                                 <p>Anything</p>
                             </div>
                         </div>
@@ -53,15 +52,15 @@ const Pricing = () => {
                             legitimate copyrights</p>
                         <div className='flex flex-col space-y-4 mt-8 text-white'>
                             <div className='flex space-x-4' >
-                                <img src={check} height="24" width={"24"} alt="" />
+                                <img src={images.check} height="24" width={"24"} alt="" />
                                 <p>Something</p>
                             </div>
                             <div className='flex space-x-4' >
-                                <img src={cross} height="24" width={"24"} alt="" />
+                                <img src={images.cross} height="24" width={"24"} alt="" />
                                 <p>Nothing</p>
                             </div>
                             <div className='flex space-x-4' >
-                                <img src={check} height="24" width={"24"} alt="" />
+                                <img src={images.check} height="24" width={"24"} alt="" />
                                 <p>Anything</p>
                             </div>
                         </div>
@@ -78,15 +77,15 @@ const Pricing = () => {
                             tweak the beats to suit your needs</p>
                         <div className='flex flex-col space-y-4 mt-8 text-white'>
                             <div className='flex space-x-4' >
-                                <img src={check} height="24" width={"24"} alt="" />
+                                <img src={images.check} height="24" width={"24"} alt="" />
                                 <p>Something</p>
                             </div>
                             <div className='flex space-x-4' >
-                                <img src={cross} height="24" width={"24"} alt="" />
+                                <img src={images.cross} height="24" width={"24"} alt="" />
                                 <p>Nothing</p>
                             </div>
                             <div className='flex space-x-4' >
-                                <img src={check} height="24" width={"24"} alt="" />
+                                <img src={images.check} height="24" width={"24"} alt="" />
                                 <p>Anything</p>
                             </div>
                         </div>

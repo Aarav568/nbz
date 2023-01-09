@@ -1,13 +1,19 @@
-import exploreHero from '../../assets/exploreHero.png'
+import images from '../../utils/image-links';
+
+//COMPONENT IMPORTS 
 import CardList from '../../components/card-list/card-list.component';
 import PillButton from '../../components/pill-button/pill-button.component';
 import SearchBar from '../../components/searchbar/searchbar.component';
-import { useEffect, useState } from 'react'
-import { taggedArtist, taggedPlaylist } from '../../api/tag'
 import Slider from "react-slick";
 import CardSkeleton from '../../components/skeletons/card-skeleton/card-skeleton.component';
-import { slickConfig } from '../../slick.config';
 import BackButton from '../../components/backbutton/back-button.component';
+
+//MODULE IMPORTS
+import { useEffect, useState } from 'react'
+
+//APIs & Functions
+import { taggedArtist, taggedPlaylist } from '../../api/tag'
+import { slickConfig } from '../../utils/slick.config';
 
 const Explore = () => {
 
@@ -26,7 +32,7 @@ const Explore = () => {
     return (
         <>
             <div className='flex flex-col space-y-8' >
-                <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" style={{ backgroundImage: `url(${exploreHero})` }} >
+                <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" style={{ backgroundImage: `url(${images.exploreBG})` }} >
                     <div className='lex p-16 justify-center items-start' >
                         <BackButton />
                     </div>

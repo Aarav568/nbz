@@ -1,7 +1,7 @@
 import ArtistCard from '../artist-card/artist-card.component';
 import PlaylistCard from '../playlist-card/playlist-card.component';
 import Slider from "react-slick";
-import { slickConfig } from '../../slick.config';
+import { slickConfig } from '../../utils/slick.config';
 
 const CardList = ({ artist, heading, data, loading }) => {
     return (

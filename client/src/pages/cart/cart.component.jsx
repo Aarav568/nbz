@@ -1,10 +1,15 @@
-import cartBG from '../../assets/cartbg.png'
+import images from "../../utils/image-links";
+
+//COMPONENT IMPORTS 
 import Button from '../../components/button/button.component';
 import CartItem from '../../components/cart-item/cart-item.component';
-import { useSelector } from 'react-redux'
-import { useState } from 'react';
 import PayPal from '../../components/paypal/paypal.component';
 import BackButton from '../../components/backbutton/back-button.component';
+
+//MODULE IMPORTS
+import { useState } from 'react';
+import { useSelector } from 'react-redux'
+
 
 const CartPage = () => {
     const items = useSelector(state => state.cart.items)
@@ -26,7 +31,7 @@ const CartPage = () => {
                     </div>
                 ) : null
             }
-            <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${cartBG})` }} >
+            <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${images.cartBG})` }} >
                 <div className='p-48 pb-32 flex space-x-12 items-center' >
                     <div >
                         <BackButton />

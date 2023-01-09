@@ -1,9 +1,14 @@
-import cartBG from '../../assets/cartbg.png'
+import images from '../../utils/image-links';
+//COMPONENT IMPORTS 
+import BackButton from '../../components/backbutton/back-button.component';
+
+//MODULE IMPORTS
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+
+//APIs & Functions
 import { getAllOrders } from "../../api/order";
-import OrdersList from "../../components/orders-list/orders-list.component";
-import BackButton from '../../components/backbutton/back-button.component';
+
 
 const OrdersPage = () => {
     const [orders, setOrders] = useState([])
@@ -13,7 +18,7 @@ const OrdersPage = () => {
     }, [])
     return (
         <div>
-            <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${cartBG})` }} >
+            <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${images.cartBG})` }} >
                 <div className='p-48 pb-32 flex space-x-12 items-center' >
                     <div >
                         <BackButton />

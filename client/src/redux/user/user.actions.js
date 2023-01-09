@@ -13,10 +13,12 @@ export const getCurrentUser = () => async (dispatch) => {
     }
 }
 
-export const setCurrentUser = (user) => ({
-    type: UserTypes.SET_CURRENT_USER,
-    payload: user
-})
+export const setCurrentUser = (user) => (dispatch) => {
+    dispatch({
+        type: UserTypes.SET_CURRENT_USER,
+        payload: user
+    })
+}
 
 export const updateCurrentUser = (user) => ({
     type: UserTypes.UPDATE_CURRENT_USER,

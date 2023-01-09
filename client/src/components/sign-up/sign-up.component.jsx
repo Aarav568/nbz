@@ -1,9 +1,10 @@
+import images from "../../utils/image-links";
+
 import Button from "../button/button.component";
-import Navbar from "../navbar/navbar.component";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import img from '../../assets/signup.jpg'
+
 // import { setCurrentUser } from "../../redux/actions/user.actions";
 // import { signUp } from "../../api/user";
 
@@ -12,7 +13,6 @@ const SignUp = () => {
     const dispatch = useDispatch()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [username, setUsername] = useState("")
     const [name, setName] = useState("")
 
     const handleSubmit = async (e) => {
@@ -37,7 +37,7 @@ const SignUp = () => {
                 <div className="mx-auto"  >
                     <div className="flex w-full bg-bg items-center justify-center">
                         <div className="hidden sm:block">
-                            <img className="object-cover shadow-lg rounded mb-20" src={img} height={"500"} width="512" alt="" />
+                            <img className="object-cover shadow-lg rounded mb-20" src={images.authBanner} height={"500"} width="512" alt="" />
                         </div>
                         <div className="flex flex-col ml-[-30px] mb-20" data-aos="fade-left"  >
                             <form action="" className="bg-p max-w-[400px] w-full p-16 rounded-lg" >

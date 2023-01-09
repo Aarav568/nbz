@@ -1,4 +1,3 @@
-import play from '../../assets/play.png'
 import PillButton from '../pill-button/pill-button.component';
 
 const OrderItem = ({ item }) => {

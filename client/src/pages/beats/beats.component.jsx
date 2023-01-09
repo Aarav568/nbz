@@ -1,23 +1,31 @@
+import images from "../../utils/image-links";
+
+//COMPONENT IMPORTS 
 import BeatsList from "../../components/beats-list/beats-list.component";
 import PillButton from "../../components/pill-button/pill-button.component";
 import SearchBar from "../../components/searchbar/searchbar.component";
 import ArtistCard from "../../components/artist-card/artist-card.component";
-import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
-import { getBeats } from "../../api/beats";
-import { getArtist } from "../../api/artists";
-import { getPlaylist } from "../../api/playlist";
 import PlaylistCard from "../../components/playlist-card/playlist-card.component";
-import cartBG from '../../assets/cartbg.png'
-import { useSelector } from 'react-redux';
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/cart/cart.actions";
-import { hideModal } from "../../redux/modal/modal.actions";
 import BeatsSkeleton from "../../components/skeletons/beats-skeleton/beats-skeleton.component";
 import CardSkeleton from "../../components/skeletons/card-skeleton/card-skeleton.component";
 import BackButton from "../../components/backbutton/back-button.component";
+
+//MODULE IMPORTS
+import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+
+
+//APIS & FUNCTIONS
+import { getBeats } from "../../api/beats";
+import { getArtist } from "../../api/artists";
+import { getPlaylist } from "../../api/playlist";
+import { addToCart } from "../../redux/cart/cart.actions";
+import { hideModal } from "../../redux/modal/modal.actions";
+
+
 const BeatsPage = () => {
-    // const history = useHistory()
     const dispatch = useDispatch()
     const modalHidden = useSelector(state => state.modal.hidden)
     const modalBeat = useSelector(state => state.modal.beat)
@@ -71,7 +79,7 @@ const BeatsPage = () => {
             }
 
             {/* PAGE */}
-            <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${cartBG})` }} >
+            <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${images.cartBG})` }} >
                 <div className='p-48  pb-32 flex flex-col space-y-8' >
                     <div className='flex justify-center items-center space-x-8' >
                         <BackButton />

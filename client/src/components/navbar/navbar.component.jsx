@@ -1,8 +1,10 @@
-import logo from '../../assets/logo.png'
+import images from '../../utils/image-links';
+
 import { useLocation, useNavigate } from 'react-router'
 import PillButton from '../pill-button/pill-button.component';
 import SearchBar from '../searchbar/searchbar.component';
 import { useSelector } from 'react-redux';
+
 const Navbar = () => {
     const currentUser = useSelector(state => state.user.currentUser)
     const navigate = useNavigate()
@@ -23,15 +25,14 @@ const Navbar = () => {
                         {/* logo */}
                         <div>
                             <button onClick={() => navigate("/")} className="cursor-pointer p-0 m-0">
-                                <img src={logo} alt="" height="40" width="60" />
+                                <img src={images.logo} alt="" height="40" width="60" />
                             </button>
                         </div>
 
                         {/* secondary */}
                         <div className="flex space-x-4 font-Raleway" >
-                            <button onClick={() => navigate("/explore")}>Discover</button>
-                            <button role="a" href="/#contact" >Contact Us</button>
-                            <button onClick={() => navigate("/pricing")}>Pricing</button>
+                            <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/explore")}>Discover</button>
+                            <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/pricing")}>Pricing</button>
                             {
                                 currentUser ? (
                                     <PillButton color={"a"}  clickHandler={() => navigate("/cart")} >
@@ -59,7 +60,7 @@ const Navbar = () => {
                         {/* logo */}
                         <div>
                             <button onClick={() => navigate("/")} className="cursor-pointer p-0 m-0">
-                                <img src={logo} alt="" height="40" width="60" />
+                                <img src={images.logo} alt="" height="40" width="60" />
                             </button>
                         </div>
 
