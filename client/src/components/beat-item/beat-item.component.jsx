@@ -2,8 +2,7 @@ import './beat-item.styles.css'
 import PillButton from '../pill-button/pill-button.component';
 import { toggleModal } from "../../redux/modal/modal.actions";
 import { useDispatch } from 'react-redux'
-import { useEffect, useRef, useState } from 'react';
-import { getSampleBeat } from '../../api/beats';
+import { useState } from 'react';
 
 const BeatItem = ({ beat }) => {
     const dispatch = useDispatch()

@@ -30,16 +30,17 @@ const Landing = () => {
     return (
         <div className="" >
             {/* HERO */}
-            <div className="bg-center bg-cover w-full min-h-[1080px] flex justify-around items-center" style={{ backgroundImage: `url(${images.banner})` }} >
-                <PillButton clickHandler={() => navigate("/explore")} color={"a"} >Explore Now</PillButton>
-                <div >
-                    <h1 className='text-8xl text-white uppercase font-Kizard' >Nashak <br /> Beatz</h1>
-                    <p className='text-white uppercase' >Hottest Drops</p>
+            <div className="bg-center bg-cover w-full min-h-[1080px] flex flex-col lg:flex-row justify-around items-center" style={{ backgroundImage: `url(${images.banner})` }} >
+                <div className='bg-backdrop lg:bg-transparent p-8 text-bg' >
+                    <h1 className='text-8xl uppercase font-Kizard' >Nashak <br /> Beatz</h1>
+                    <p className='uppercase' >Hottest Drops</p>
+                </div>
+                <div className='scale-150' >
+                    <PillButton clickHandler={() => navigate("/explore")} color={"a"} >Explore Now</PillButton>
                 </div>
             </div>
-
-            {/* SECTION-1 Cards */}
-            <div className='mx-auto p-24 flex flex-col space-y-16' >
+                        {/* SECTION-1 Cards */}
+                        <div className='mx-auto lg:p-24 pt-4 flex flex-col space-y-16' >
                 {
                     loading ? (
                         <>
@@ -66,7 +67,7 @@ const Landing = () => {
             </div>
 
             {/* SECTION-2 Contact Us */}
-            <div id="contact" className='bg-center bg-cover min-h-[930px] flex items-center justify-around' style={{ backgroundImage: `url(${images.contactBG})` }} >
+            <div id="contact" className='bg-center bg-cover min-h-[930px] pt-4 flex flex-col lg:flex-row items-center justify-around' style={{ backgroundImage: `url(${images.contactBG})` }} >
                 <div className='flex flex-col space-y-8 bg-backdrop p-8 rounded ' >
                     <div>
                         <h1 className='text-6xl text-white uppercase font-Kizard' >Need More ... </h1>
@@ -93,7 +94,7 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-[2px] h-96 bg-white' >
+                <div className='w-[2px] h-96 bg-white hidden lg:block' >
                 </div>
                 <div>
                     <div className="text-2xl p-8 rounded flex flex-col space-y-8 justify-center mb-20 text-white bg-backdrop" >
@@ -112,7 +113,7 @@ const Landing = () => {
 
             {/* SECTION-3 YT Channel */}
             <div className='bg-cover bg-center flex justify-center items-center min-h-[940px]' style={{ backgroundImage: `url(${images.ytBG})` }} >
-                <div className='mx-auto flex p-8 justify-center items-center bg-backdropDark' >
+                <div className='mx-auto flex lg:flex-row flex-col p-8 justify-center items-center bg-backdropDark' >
                     <div className="w-56 p-8 min-h-[10rem] rounded-md overflow-hidden p-2 flex flex-col justify-center" >
                         <img loading='lazy' src={images.ytChannel} className="rounded-full" alt="" height="250" width="250" />
                         <div className='flex flex-col justify-center items-center text-white ' >
