@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://localhost:8000/api/tags/' })
+const API = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}/api/tags/` })
 
 //HEADER AUTHORIZATION
 API.interceptors.request.use((req) => {

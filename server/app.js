@@ -5,6 +5,8 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import Playlist from "./models/playlist.js"
 import fetch from 'node-fetch'
+import dotenv from 'dotenv'
+
 // ROUTE IMPORTS----------------------------------------------------------
 import userRoutes from './routes/auth/user.js'
 import beatRoutes from './routes/beats/beat.js'
@@ -18,6 +20,7 @@ import auth from './middleware/auth.js'
 
 // CONFIGURATION----------------------------------------------------------
 const app = express()
+dotenv.config()
 app.set("view engine", "ejs")
 // allow cross-origin requests
 app.use(function (req, res, next) {
@@ -29,12 +32,11 @@ app.use(function (req, res, next) {
 
 
 app.use(cors())
-const URL = 'mongodb+srv://admin:admin@nashak-beats.oxfxxgk.mongodb.net/?retryWrites=true&w=majority'
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))
 app.use(bodyParser.json({ extended: true, limit: '30mb' }))
 
 // SERVER-----------------------------------------------------------------
-mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     if (!err) {
         app.listen(process.env.PORT || "8000", () => {
             console.log("database connected & server started")

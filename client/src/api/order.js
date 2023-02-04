@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://localhost:8000/api/orders/' })
+const API = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}/api/orders/` })
 //HEADER AUTHORIZATION
 API.interceptors.request.use((req) => {
     const isUserStored = Boolean(localStorage.getItem('persist:root'))
