@@ -17,7 +17,7 @@ const Navbar = () => {
                 <div className='p-4' >
                     {/* //container */}
                     <div className="lg:min-w-6xl xl:max-w-7xl w-full mx-auto ">
-                        <div className="flex justify-around items-center">
+                        <div className="flex lg:justify-around justify-between items-center">
                             <div className="hidden lg:block"  >
                                 <SearchBar />
                             </div>
@@ -26,13 +26,11 @@ const Navbar = () => {
                                     <img src={images.logo} alt="" height="40" width="60" />
                                 </button>
                             </div>
-
-                            <div className=" lg:hidden hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200" role={"button"}  >
-                                <svg width={50} height={50} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" /><g id="SVGRepo_iconCarrier"> <path stroke="#535358" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h22M5 16h22M5 24h22" /> </g></svg>
-                            </div>
-                            <div className="lg:flex space-x-4 font-Raleway hidden" >
-                                <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/explore")}>Discover</button>
-                                <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/pricing")}>Pricing</button>
+                            <div className="flex space-x-4 font-Raleway" >
+                                <div className='lg:flex hidden' >
+                                    <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/explore")}>Discover</button>
+                                    <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/pricing")}>Pricing</button>
+                                </div>
                                 {
                                     currentUser ? (
                                         <PillButton color={"a"} clickHandler={() => navigate("/cart")} >
@@ -45,7 +43,7 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         )
     } else {
         return (
@@ -66,9 +64,11 @@ const Navbar = () => {
                         </div>
 
                         {/* secondary */}
-                        <div className="flex space-x-4 font-Raleway text-white" >
-                            <button onClick={() => navigate("/explore")}>Discover</button>
-                            <button onClick={() => navigate("/pricing")}>Pricing</button>
+                        <div className="flex space-x-4 font-Raleway" >
+                            <div className='lg:flex hidden' >
+                                <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/explore")}>Discover</button>
+                                <button className='hover:bg-backdropDark hover:text-white ease-out p-2 rounded duration-200' onClick={() => navigate("/pricing")}>Pricing</button>
+                            </div>
                             {
                                 currentUser ? (
                                     <PillButton color={"a"} clickHandler={() => navigate("/cart")} >

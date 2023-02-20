@@ -5,7 +5,7 @@ const Footer = () => {
     const navigate = useNavigate()
     return (
         <div style={{ minHeight: "300px" }} className="w-full py-20 bg-p" >
-            <div className="mx-auto flex lg:flex-row flex-col justify-around items-center ">
+            <div className="mx-auto flex justify-evenly lg:flex-row flex-col items-center ">
                 <div className='text-white text-sm' >
                     <span className='text-lg uppercase font-bold font-Raleway' >Quick Links</span>
                     <div className="flex flex-col space-y-2 " >
@@ -26,16 +26,14 @@ const Footer = () => {
                         </button>
                     </div>
                 </div>
-                <div className="mx-auto flex justify-around items-center ">
-                    <div className="flex flex-col items-center" >
-                        <div role={"button"} onClick={() => navigate("/")} className="cursor-pointer">
-                            <img src={images.logo} className="scale-50" loading="lazy" alt="" height="90" width="250" />
-                        </div>
-                        <span className='text-white uppercase' >Hottest Drops</span>
+                <div className="flex flex-col items-center" >
+                    <div role={"button"} onClick={() => navigate("/")} className="cursor-pointer">
+                        <img src={images.logo} className="scale-50" loading="lazy" alt="" height="90" width="250" />
                     </div>
-                    <div>
-                        <img src={social} alt="" width="250" height="250" />
-                    </div>
+                    <span className='text-white uppercase' >Hottest Drops</span>
+                </div>
+                <div>
+                    <img src={social} alt="" width="250" height="250" />
                 </div>
             </div>
         </div>

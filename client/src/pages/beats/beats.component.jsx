@@ -80,9 +80,9 @@ const BeatsPage = () => {
 
             {/* PAGE */}
             <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${images.cartBG})` }} >
-                <div className='p-48  pb-32 flex flex-col space-y-8' >
-                    <div className='flex justify-center items-center space-x-8' >
-                        <BackButton />
+                <div className='px-4 py-36 flex flex-col space-y-8' >
+                    <div className='flex justify-center lg:flex-row flex-col space-y-8 items-center space-x-8' >
+                        {/* <BackButton /> */}
                         <SearchBar />
                         <div>
                             <PillButton color={"p"} >Search</PillButton>
@@ -105,7 +105,7 @@ const BeatsPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-col p-36 pt-12 space-y-8' >
+            <div className='flex flex-col lg:p-36 px-2 py-12 space-y-8' >
                 <h2 className='text-white text-4xl font-bold'>{artist.name || playlist.name}</h2>
                 {
                     loading ? (

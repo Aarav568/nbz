@@ -33,11 +33,11 @@ const Explore = () => {
         <>
             <div className='flex flex-col space-y-8' >
                 <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" style={{ backgroundImage: `url(${images.exploreBG})` }} >
-                    <div className='lex p-16 justify-center items-start' >
+                    {/* <div className='lex p-16 justify-center items-start' >
                         <BackButton />
-                    </div>
-                    <div className='p-48 flex flex-col space-y-4' >
-                        <h1 className='text-8xl text-white uppercase font-Kizard' >We got what you need</h1>
+                    </div> */}
+                    <div className='px-4 py-36 flex flex-col space-y-4' >
+                        <h1 className='lg:text-8xl text-6xl text-white uppercase font-Kizard' >We got what you need</h1>
                         <SearchBar />
                         <div>
                             <PillButton color={"p"}>Search</PillButton>
@@ -45,7 +45,7 @@ const Explore = () => {
                     </div>
                 </div>
             </div>
-            <div className='mx-auto p-24 flex flex-col space-y-8' >
+            <div className='mx-auto p-8 flex flex-col space-y-8' >
                 {
                     loading ? (
                         <>

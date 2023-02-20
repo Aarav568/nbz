@@ -19,11 +19,11 @@ const OrdersPage = () => {
     return (
         <div>
             <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${images.cartBG})` }} >
-                <div className='p-48 pb-32 flex space-x-12 items-center' >
-                    <div >
+                <div className='px-4 py-48 flex space-x-12 items-center' >
+                    {/* <div >
                         <BackButton />
-                    </div>
-                    <h1 className='text-8xl text-white uppercase font-Kizard' >Your Orders</h1>
+                    </div> */}
+                    <h1 className='lg:text-8xl text-6xl text-white uppercase font-Kizard' >Your Orders</h1>
                 </div>
             </div>
             <div className='mx-auto p-16 flex-col flex text-white' >

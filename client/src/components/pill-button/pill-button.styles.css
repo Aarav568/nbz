@@ -3,7 +3,7 @@
 }
 .ripple:hover{
     background-position: center;
-    scale: 1.07;
+    scale: 1.02;
     background-size: 15000%;
 }
 

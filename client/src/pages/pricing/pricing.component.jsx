@@ -7,15 +7,15 @@ const Pricing = () => {
     return (
         <div className='flex flex-col space-y-8' >
             <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" style={{ backgroundImage: `url(${images.pricingBG})` }} >
-                <div className='p-48 pb-32 flex space-x-12 items-center' >
-                    <div >
+                <div className='px-4 py-36 flex space-x-12 items-center' >
+                    {/* <div >
                         <BackButton />
-                    </div>
-                    <h1 className='text-8xl text-white uppercase font-Kizard' >Unbeatable Prices</h1>
+                    </div> */}
+                    <h1 className='lg:text-8xl text-6xl text-white uppercase font-Kizard' >Unbeatable Prices</h1>
                 </div>
             </div>
             <div className='mx-auto p-8 flex flex-col space-y-8' >
-                <div className='flex mb-16 space-x-12' >
+                <div className='flex lg:flex-row flex-col space-y-12 mb-16 lg:space-x-12' >
                     {/* CARD 1 */}
                     <div className="rounded-xl border flex flex-col space-y-8 p-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >Lease</h1>
