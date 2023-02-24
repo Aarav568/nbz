@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 
 //APIS & FUNCTIONS
 import { getBeats } from "../../api/beats";
-import { getArtist } from "../../api/artists";
+import { getArtistById } from "../../api/artists";
 import { getPlaylist } from "../../api/playlist";
 import { addToCart } from "../../redux/cart/cart.actions";
 import { hideModal } from "../../redux/modal/modal.actions";
@@ -43,7 +43,7 @@ const BeatsPage = () => {
             setLoading(!loading)
         })
         if (route === "artist")
-            getArtist(id).then(resp => setArtist(resp.data))
+            getArtistById(id).then(resp => setArtist(resp.data))
         else
             getPlaylist(id).then(resp => setPlaylist(resp.data))
     }, [])

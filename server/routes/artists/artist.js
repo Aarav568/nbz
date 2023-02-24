@@ -3,8 +3,8 @@ import { getAllArtists, createArtist, deleteArtist, getArtist } from "../../cont
 
 const router = express.Router()
 
-router.get("/", getAllArtists)
-router.get("/:id", getArtist)
+router.get("/:limit", getAllArtists)
+router.get("/id/:id", getArtist)
 router.post("/create", createArtist)
 router.delete("/delete/:id", deleteArtist)
 

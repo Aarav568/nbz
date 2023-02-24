@@ -2,8 +2,9 @@ import Artist from '../../models/artist.js'
 import Genre from '../../models/genre.js'
 
 export const getAllArtists = async (req, res) => {
+    const limit = req.params.limit
     try {
-        const artists = await Artist.find({}, {beats: 0})
+        const artists =  limit ? await Artist.find({}, {beats: 0}).limit(limit).exec() : await Artist.find({}, {beats: 0})
         res.status(200).json(artists)
     } catch (err) {
         res.status(404).json({ message: err.message })

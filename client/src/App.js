@@ -8,6 +8,11 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SmoothScroll from "./components/smooth-scroll/smooth-scroll.component";
 import Navbar from "./components/navbar/navbar.component";
 import Footer from "./components/footer/footer.component";
+import Dashboard from "./pages/dashboard/dashboard.component";
+import GenreForm from "./components/dashboard/genre/genre-form.component";
+import ArtistForm from "./components/dashboard/artist/artist-form.component";
+import BeatForm from "./components/dashboard/beat/beat-form.component";
+import PlaylistForm from "./components/dashboard/playlist/playlist-form.component";
 
 //LAZY ROUTES
 const LandingLazy = lazy(() => import("./pages/landing/landing.component"))
@@ -40,6 +45,14 @@ function App() {
           <Route path="/signup" element={<SignUpLazy />} />
           <Route path="/checkout" element={<PayPalLazy />} />
           <Route path="/orders" element={<OrdersPageLazy />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="create">
+            <Route path="genre" element={<GenreForm />} />
+            <Route path="artist" element={<ArtistForm />} />
+            <Route path="beat" element={<BeatForm />} />
+            <Route path="playlist" element={<PlaylistForm />} />
+          </Route>
+
         </Routes>
       </SmoothScroll>
       <Footer />

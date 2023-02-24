@@ -31,6 +31,7 @@ const CartPage = () => {
                     </div>
                 ) : null
             }
+            
             <div className="bg-center bg-cover w-full flex justify-around items-center" style={{ backgroundImage: `url(${images.cartBG})` }} >
                 <div className='px-4 py-48 flex space-x-12 items-center' >
                     {/* <div >
