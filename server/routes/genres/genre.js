@@ -3,7 +3,7 @@ import { getAllGenres, createGenre, deleteGenre } from "../../controllers/genres
 
 const router = express.Router()
 
-router.get("/:limit", getAllGenres)
+router.get("/q/:limit", getAllGenres)
 router.post("/create", createGenre)
 router.delete("/delete/:id", deleteGenre)
 

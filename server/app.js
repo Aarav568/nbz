@@ -3,8 +3,6 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import Playlist from "./models/playlist.js"
-import fetch from 'node-fetch'
 import dotenv from 'dotenv'
 
 // ROUTE IMPORTS----------------------------------------------------------
@@ -29,7 +27,6 @@ app.use(function (req, res, next) {
         "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))

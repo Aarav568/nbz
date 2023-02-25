@@ -8,8 +8,9 @@ import {
     createBeat,
     deleteBeat,
     getAllBeats,
-    getBeatSample
 } from '../../controllers/beats/beat.js'
+
+import { upload } from '../../utils/multer.js'
 
 const router = express.Router()
 
@@ -20,10 +21,8 @@ router.get('/tag/:tag', getBeatsByTags) //find and match tags of beats
 
 router.get('/', getAllBeats)
 router.get('/:beatId', getBeat)
-router.post('/create', createBeat)
-// router.post('/sample/save', saveSample)
-router.get('/sample/:id', getBeatSample)
-// router.get('/sample/:id', createDistribution)
+
+router.post('/create', upload.fields([{name: "wav"}, {name: "mp3"}, {name: "stem"}, {name: "sample"}]) ,createBeat)
 
 router.delete('/:id', deleteBeat) //pending
 

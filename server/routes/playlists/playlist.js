@@ -3,7 +3,7 @@ import { getAllPlaylists, createPlaylist, deletePlaylist, addBeatToPlaylist, get
 
 const router = express.Router()
 
-router.get("/", getAllPlaylists)
+router.get("/q/:limit", getAllPlaylists)
 router.get("/:id", getPlaylist)
 router.post("/create", createPlaylist)
 router.delete("/:id", deletePlaylist) //pending

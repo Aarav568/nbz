@@ -1,4 +1,4 @@
-import { generateUrl } from "../../firebase/firebase.js"
+import { generateUrl } from "../../utils/firebase.js"
 import Beat from "../../models/beat.js"
 import Order from "../../models/order.js"
 

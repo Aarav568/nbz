@@ -13,6 +13,7 @@ import GenreForm from "./components/dashboard/genre/genre-form.component";
 import ArtistForm from "./components/dashboard/artist/artist-form.component";
 import BeatForm from "./components/dashboard/beat/beat-form.component";
 import PlaylistForm from "./components/dashboard/playlist/playlist-form.component";
+import SetFeatured from "./components/dashboard/set-featured/set-featured.component";
 
 //LAZY ROUTES
 const LandingLazy = lazy(() => import("./pages/landing/landing.component"))
@@ -51,6 +52,7 @@ function App() {
             <Route path="artist" element={<ArtistForm />} />
             <Route path="beat" element={<BeatForm />} />
             <Route path="playlist" element={<PlaylistForm />} />
+            <Route path="featured" element={<SetFeatured />} />
           </Route>
 
         </Routes>

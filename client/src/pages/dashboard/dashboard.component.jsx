@@ -20,6 +20,10 @@ const Dashboard = () => {
             title: "Create Playlist",
             link: "/create/playlist"
         },
+        {
+            title: "Set Featured",
+            link: "/create/featured"
+        },
     ]
     return (
         <div>

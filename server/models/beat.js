@@ -11,6 +11,7 @@ const BeatSchema = new mongoose.Schema({
     },
     tags: { type: Array, default: [] },
     distribution: { type: Schema.Types.ObjectId, ref: "Distribution" },
+    sample: String,
     createdAt: { type: Date, default: Date.now }
 })
 

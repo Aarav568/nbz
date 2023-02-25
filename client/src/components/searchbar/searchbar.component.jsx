@@ -3,7 +3,7 @@ const SearchBar = ({ ph }) => {
         <div className="flex items-center">
             <div className='flex bg-white rounded-lg' >
                 <input placeholder={ph ? `${ph}` : "Search Artists, Beats, Genre"} className="rounded-lg min-w-300 w-[300px] bg-white p-2 focus:border-blue focus:outline-none" type="text" />
-                <button>
+                <button onClick={e => e.preventDefault()} >
                     <svg className='rounded-lg'
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -1,23 +1,31 @@
 import { useState } from "react";
 import { getGenres } from "../../../api/genres";
-import { getArtists } from "../../../api/artists";
+import { createArtist, getArtists } from "../../../api/artists";
 import images from "../../../utils/image-links";
 import Button from "../../button/button.component";
 import SearchBar from "../../searchbar/searchbar.component";
 import Tile from "../../tiles/tiles.component";
+import FileBase64 from 'react-file-base64';
 
 const ArtistForm = () => {
-    const handleSubmit = () => { }
-    const [artistName, setArtistName] = useState("")
-    const [img, setImg] = useState("")
-    const [artistGenre, setArtistGenres] = useState("")
     const [genres, setGenres] = useState([])
     const [artists, setArtists] = useState([])
-
+    const [formData, setFormData] = useState({
+        name: "",
+        img: "",
+    })
+    const [genreId, setGenreId] = useState("")
     useState(() => {
         getGenres(5).then(resp => setGenres(resp.data))
         getArtists(5).then(resp => setArtists(resp.data))
     }, [])
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log({... formData, genreId})
+        // createArtist(formData).then(resp => console.log(resp))
+    }
+
 
     return (
         <div>
@@ -43,11 +51,13 @@ const ArtistForm = () => {
                     <div className="max-w-[400px]">
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Artist Name</label>
-                            <input onChange={(e) => setArtistName(e.target.value)} value={artistName} placeholder="Name" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <input required onChange={(e) => setFormData({ ...formData, name: e.target.value })} value={formData.name} placeholder="Name" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
                         </div>
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Artist Image</label>
-                            <input type="file" onChange={(e) => setArtistName(e.target.value)} value={artistName} placeholder="Genre" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <FileBase64
+                                multiple={false}
+                                onDone={({ base64 }) => setFormData({ ...formData, img: base64 })} />
                         </div>
                     </div>
                     <div className="py-2" >
@@ -55,11 +65,11 @@ const ArtistForm = () => {
                         <div className="flex flex-col text-gray:400 space-y-8 pt-4">
                             <SearchBar ph="Search Genre" />
                             <div className="flex flex-col space-y-8 lg:flex-row" >
-                                <Tile title={"gebnre"} s={true} onClick={() => console.log("CLICKED")} />
-                                <Tile title={"gebnre"} />
-                                <Tile title={"gebnre"} />
-                                <Tile title={"gebnre"} />
-                                <Tile title={"gebnre"} />
+                                {
+                                    genres.map(e => (
+                                        <Tile title={e.genre} key={e._id} s handler={setGenreId} data={e._id} />
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>

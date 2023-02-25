@@ -7,7 +7,7 @@ import { useState } from 'react';
 const BeatItem = ({ beat }) => {
     const dispatch = useDispatch()
     const [playing, setPlaying] = useState(false)
-    const [audio] = useState(new Audio("https://firebasestorage.googleapis.com/v0/b/nbzz-91837.appspot.com/o/BEATS%2FControlla%2FSample%2FControlla.mp3?alt=media&token=239dd26f-4020-43fe-8b25-07f919b82eed"))
+    const [audio] = useState(new Audio(beat.sample))
     
     return (
         <>

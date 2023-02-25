@@ -39,21 +39,30 @@ const Landing = () => {
                     <PillButton clickHandler={() => navigate("/explore")} color={"a"} >Explore Now</PillButton>
                 </div>
             </div>
-                        {/* SECTION-1 Cards */}
-                        <div className='mx-auto lg:p-24 pt-4 flex flex-col space-y-16' >
+            {/* SECTION-1 Cards */}
+            <div className='mx-auto lg:p-24 pt-4 flex flex-col space-y-16' >
                 {
                     loading ? (
                         <>
                             {
-                                [...Array(2)].map((e, i) => (
-                                    <Slider {...slickConfig} key={e} >
-                                        {
-                                            [...Array(6)].map((e, i) => (
-                                                <CardSkeleton key={i + 100} />
-                                            ))
-                                        }
+                                <>
+                                    <Slider {...slickConfig} >
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
                                     </Slider>
-                                ))
+                                    <Slider {...{ ...slickConfig, speed: 800 }} >
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                        <CardSkeleton />
+                                    </Slider>
+                                </>
                             }
                         </>
                     ) : (

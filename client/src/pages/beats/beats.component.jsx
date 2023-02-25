@@ -53,6 +53,9 @@ const BeatsPage = () => {
                 modalHidden ? null : (
                     <div className="h-full w-full flex justify-center items-center bg-backdropDark fixed" style={{ zIndex: 2 }} >
                         <div className="bg-offWhite rounded p-16 w-3/4 flex flex-col space-y-8"  >
+                            <div role={"button"} onClick={() => dispatch(hideModal())} className="flex self-end" >
+                                <svg viewBox="0 0 1024 1024" height={25} width={25} xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" /><g id="SVGRepo_iconCarrier"><path fill="#000000" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" /></g></svg>
+                            </div>
                             <div>
                                 <p>Beat</p>
                                 <h2 className='text-4xl font-bold'>{modalBeat.name}</h2>

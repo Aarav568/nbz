@@ -1,10 +1,11 @@
 import Artist from '../../models/artist.js'
 import Genre from '../../models/genre.js'
+import { imagekit } from '../../utils/imagekit.js'
 
 export const getAllArtists = async (req, res) => {
     const limit = req.params.limit
     try {
-        const artists =  limit ? await Artist.find({}, {beats: 0}).limit(limit).exec() : await Artist.find({}, {beats: 0})
+        const artists = limit ? await Artist.find({}, { beats: 0 }).limit(limit).exec() : await Artist.find({}, { beats: 0 })
         res.status(200).json(artists)
     } catch (err) {
         res.status(404).json({ message: err.message })
@@ -26,11 +27,18 @@ export const createArtist = async (req, res) => {
     try {
         const existingArtist = await Artist.findOne({ name })
         if (existingArtist) return res.status(404).json({ message: "Artist already exists!" })
-
         const genre = await Genre.findById(genreId)
-        const createdArtist = await Artist.create({ name, genre, img })
-        res.status(200).redirect("/artist")
-        // .json(createdArtist)
+        const image = await imagekit.upload({
+            file: img,
+            folder: "/nbz/artists/",
+            fileName: `${name}`,
+            transformation: [{
+                height: 300,
+                width: 300,
+            }]
+        })
+        const createdArtist = await Artist.create({ name, genre, img: image.url + "?tr=h-300%2Cw-300" })
+        res.status(200).json(createdArtist)
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
