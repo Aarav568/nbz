@@ -1,0 +1,4 @@
+export const NotificationTypes = {
+    SET_NOTIFICATION: "SET_NOTIFICATION",
+    TOGGLE_NOTIFICATION: "TOGGLE_NOTIFICATION" 
+}

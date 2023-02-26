@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { loginUser } from "../../api/user";
 import { setCurrentUser } from "../../redux/user/user.actions";
+import Notification from "../notification/notification.component";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -30,14 +31,16 @@ const Login = () => {
 
     return (
         <>
-            <div className='flex flex-col p-32 space-y-8' >
+            <Notification />
+
+            <div className='flex flex-col pt-36 space-y-8' >
                 <div className="mx-auto"  >
                     <div className="flex w-full bg-bg items-center justify-center">
                         <div className="hidden sm:block">
                             <img className="object-cover shadow-lg rounded mb-20" src={images.authBanner} height={"500"} width="512" alt="" />
                         </div>
                         <div className="flex flex-col justify-center ml-[-30px] mb-20" data-aos="fade-left"  >
-                            <form className="bg-p max-w-[400px] w-full mx-auto p-8 px-8 rounded-lg" >
+                            <form className="bg-p max-w-[400px] w-full mx-auto p-16 rounded-lg" >
                                 <h2 className="text-4xl dark:text-white font-bold text-center font-Raleway" >Login</h2>
                                 <div>
                                     <label className="flex flex-col text-gray:400 py-2">Email</label>

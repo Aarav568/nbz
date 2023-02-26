@@ -14,6 +14,8 @@ import ArtistForm from "./components/dashboard/artist/artist-form.component";
 import BeatForm from "./components/dashboard/beat/beat-form.component";
 import PlaylistForm from "./components/dashboard/playlist/playlist-form.component";
 import SetFeatured from "./components/dashboard/set-featured/set-featured.component";
+import Notification from "./components/notification/notification.component";
+import FullLoader from "./components/full-loader/full-loader.component";
 
 //LAZY ROUTES
 const LandingLazy = lazy(() => import("./pages/landing/landing.component"))
@@ -54,7 +56,6 @@ function App() {
             <Route path="playlist" element={<PlaylistForm />} />
             <Route path="featured" element={<SetFeatured />} />
           </Route>
-
         </Routes>
       </SmoothScroll>
       <Footer />

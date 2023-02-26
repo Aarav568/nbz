@@ -4,11 +4,13 @@ import { combineReducers } from 'redux'
 import storage from 'redux-persist/lib/storage'
 import cartReducer from './cart/cart.reducer'
 import modalReducer from './modal/modal.reducer'
+import notificationReducer from './notification/notification.reducer'
 
 const rootReducer = combineReducers({
     user: userReducer,
     cart: cartReducer,
-    modal: modalReducer
+    modal: modalReducer,
+    notification: notificationReducer
 })
 
 const persistConfig = {

@@ -5,6 +5,8 @@ import PillButton from '../pill-button/pill-button.component';
 import SearchBar from '../searchbar/searchbar.component';
 import { useSelector } from 'react-redux';
 
+import PopMenu from '../pop-menu/pop-menu.component';
+
 const Navbar = () => {
     const currentUser = useSelector(state => state.user.currentUser)
     const navigate = useNavigate()
@@ -33,9 +35,12 @@ const Navbar = () => {
                                 </div>
                                 {
                                     currentUser ? (
-                                        <PillButton color={"a"} clickHandler={() => navigate("/cart")} >
-                                            <svg width="25px" height="25px" viewBox="0 0 48.00 48.00" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" strokeWidth="0.00048000000000000007"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <polygon points="8.649,10.27 14.857,28.896 9.923,40 20,40 32,40 40,40 40,36 16.078,36 18.3,31 38.441,31 44.775,12 13.441,12 11.441,6 4,6 4,10 8.333,10 "></polygon> <circle cx="20" cy="42" r="2"></circle> <circle cx="32" cy="42" r="2"></circle> </g> </g></svg>
-                                        </PillButton>
+                                        <>
+                                            <PopMenu />
+                                            <PillButton color={"a"} clickHandler={() => navigate("/cart")} >
+                                                <svg width="25px" height="25px" viewBox="0 0 48.00 48.00" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" strokeWidth="0.00048000000000000007"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <polygon points="8.649,10.27 14.857,28.896 9.923,40 20,40 32,40 40,40 40,36 16.078,36 18.3,31 38.441,31 44.775,12 13.441,12 11.441,6 4,6 4,10 8.333,10 "></polygon> <circle cx="20" cy="42" r="2"></circle> <circle cx="32" cy="42" r="2"></circle> </g> </g></svg>
+                                            </PillButton>
+                                        </>
                                     ) :
                                         <PillButton color={"p"} clickHandler={() => navigate("/signup")} >Register</PillButton>
                                 }
@@ -71,9 +76,12 @@ const Navbar = () => {
                             </div>
                             {
                                 currentUser ? (
-                                    <PillButton color={"a"} clickHandler={() => navigate("/cart")} >
-                                        <svg width="25px" height="25px" viewBox="0 0 48.00 48.00" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" strokeWidth="0.00048000000000000007"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <polygon points="8.649,10.27 14.857,28.896 9.923,40 20,40 32,40 40,40 40,36 16.078,36 18.3,31 38.441,31 44.775,12 13.441,12 11.441,6 4,6 4,10 8.333,10 "></polygon> <circle cx="20" cy="42" r="2"></circle> <circle cx="32" cy="42" r="2"></circle> </g> </g></svg>
-                                    </PillButton>
+                                    <>
+                                        <PopMenu />
+                                        <PillButton color={"a"} clickHandler={() => navigate("/cart")} >
+                                            <svg width="25px" height="25px" viewBox="0 0 48.00 48.00" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" strokeWidth="0.00048000000000000007"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <polygon points="8.649,10.27 14.857,28.896 9.923,40 20,40 32,40 40,40 40,36 16.078,36 18.3,31 38.441,31 44.775,12 13.441,12 11.441,6 4,6 4,10 8.333,10 "></polygon> <circle cx="20" cy="42" r="2"></circle> <circle cx="32" cy="42" r="2"></circle> </g> </g></svg>
+                                        </PillButton>
+                                    </>
                                 ) :
                                     <PillButton color={"a"} clickHandler={() => navigate("/signup")} >Register</PillButton>
                             }

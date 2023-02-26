@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createGenre, getGenres } from "../../../api/genres";
+import { searchGenre } from "../../../api/search";
 import images from "../../../utils/image-links";
 import Button from "../../button/button.component";
 import SearchBar from "../../searchbar/searchbar.component";
@@ -10,6 +11,7 @@ const GenreForm = () => {
 
     useEffect(() => {
         getGenres(5).then(resp => setGenres(resp.data))
+        searchGenre("boombap").then(resp => setGenres(resp.data))
     }, [])
 
     const handleSubmit = (e) => {

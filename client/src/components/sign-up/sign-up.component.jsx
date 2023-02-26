@@ -4,6 +4,7 @@ import Button from "../button/button.component";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import Notification from "../notification/notification.component";
 
 // import { setCurrentUser } from "../../redux/actions/user.actions";
 // import { signUp } from "../../api/user";
@@ -32,8 +33,8 @@ const SignUp = () => {
 
     return (
         <>
+            <Notification />
             <div className='flex flex-col pt-36 space-y-8' >
-
                 <div className="mx-auto"  >
                     <div className="flex w-full bg-bg items-center justify-center">
                         <div className="hidden sm:block">

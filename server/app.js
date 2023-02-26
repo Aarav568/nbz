@@ -13,6 +13,7 @@ import playlistRoutes from './routes/playlists/playlist.js'
 import genreRoutes from './routes/genres/genre.js'
 import orderRoutes from './routes/orders/order.js'
 import tagRoutes from './routes/tags/tags.js'
+import searchRoutes from './routes/search/search.js'
 import authRoutes from './routes/auth/user.js'
 import auth from './middleware/auth.js'
 
@@ -50,6 +51,7 @@ app.use('/api/artists', artistRoutes)
 app.use('/api/genres', genreRoutes)
 app.use('/api/playlists', playlistRoutes)
 app.use('/api/tags', tagRoutes)
+app.use('/api/search', searchRoutes)
 app.use('/auth', authRoutes)
 
 //Authenticated Routes
