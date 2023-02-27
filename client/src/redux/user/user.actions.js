@@ -24,3 +24,7 @@ export const updateCurrentUser = (user) => ({
     type: UserTypes.UPDATE_CURRENT_USER,
     payload: user
 })
+
+export const logoutUser = () => ({
+    type: UserTypes.LOGOUT_USER
+})

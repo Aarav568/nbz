@@ -8,7 +8,8 @@ const UserSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     orders: [{
         type: Schema.Types.ObjectId, ref: 'Order'
-    }]
+    }],
+    admin: { type: Boolean }
 })
 
 export default mongoose.model("User", UserSchema);

@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Notification from "../notification/notification.component";
 
-// import { setCurrentUser } from "../../redux/actions/user.actions";
-// import { signUp } from "../../api/user";
+import { setCurrentUser } from "../../redux/user/user.actions";
+import { signUpUser } from "../../api/user";
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -18,14 +18,13 @@ const SignUp = () => {
 
     const handleSubmit = async (e) => {
         try {
-            // e.preventDefault()
-            // const user = signUp({
-            //     email, password, username, name
-            // })
-            // const response = await user
-            // console.log(response)
-            // // dispatch(setCurrentUser(response.data))
-            // navigate('/')
+            e.preventDefault()
+            const user = signUpUser({
+                email, password, name
+            })
+            const response = await user
+            dispatch(setCurrentUser(response.data))
+            navigate('/')
         } catch (err) {
             console.log(err.message)
         }

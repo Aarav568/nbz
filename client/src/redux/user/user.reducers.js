@@ -18,6 +18,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentUser: action.payload
             }
+        case UserTypes.LOGOUT_USER:
+            localStorage.clear()
+            return {
+                ...state,
+                currentUser: null,
+                token: null
+            }
         default:
             return state
     }
