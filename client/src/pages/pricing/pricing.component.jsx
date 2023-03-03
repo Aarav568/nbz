@@ -17,14 +17,14 @@ const Pricing = () => {
             <div className='mx-auto p-8 flex flex-col space-y-8' >
                 <div className='flex lg:flex-row flex-col space-y-12 mb-16 lg:space-x-12' >
                     {/* CARD 1 */}
-                    <div className="rounded-xl border flex flex-col space-y-8 p-8 max-w-[400px] shadow-lg" >
-                        <h1 className="text-4xl bold font-Kizard text-white" >Lease</h1>
+                    <div className="rounded-xl bg-backdrop border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
+                        <h1 className="text-4xl bold font-Kizard text-white" >STEM</h1>
                         <div className="flex flex-col text-center"  >
-                            <h2 className="text-5xl text-white">15$ <span className="text-lg text-grey" >/ per beat</span></h2>
+                            <h2 className="text-5xl text-white">35$ <span className="text-lg text-grey" >/ per pack</span></h2>
                         </div>
-                        <p className="text-white" >You can rent a beat for a year,
-                            you will be provided with proper
-                            license and certificate of lease.</p>
+                        <p className="text-white" >You can buy a complete beat pack
+                            with its pattern to customize or
+                            tweak the beats to suit your needs</p>
                         <div className='flex flex-col space-y-4 mt-8 text-white'>
                             <div className='flex space-x-4' >
                                 <img src={images.check} height="24" width={"24"} alt="" />
@@ -41,15 +41,15 @@ const Pricing = () => {
                         </div>
                         <Button color={"p"}>EXPLORE</Button>
                     </div>
-                    {/* Featured CARD */}
-                    <div className="bg-backdrop scale-[1.1] flex flex-col space-y-8 rounded-xl border p-8 max-w-[400px] shadow-lg" >
-                        <h1 className="text-4xl bold font-Kizard text-white" >Purchase</h1>
-                        <div className="flex flex-col"  >
-                            <h2 className="text-5xl text-white text-center">20$ <span className="text-lg text-grey" >/ per beat</span></h2>
+                    {/* CARD 3 */}
+                    <div className="rounded-xl border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
+                        <h1 className="text-4xl bold font-Kizard text-white" >STEM</h1>
+                        <div className="flex flex-col text-center"  >
+                            <h2 className="text-5xl text-white">35$ <span className="text-lg text-grey" >/ per pack</span></h2>
                         </div>
-                        <p className="text-white" >You can purchase a beat with
-                            its complete ownership with
-                            legitimate copyrights</p>
+                        <p className="text-white" >You can buy a complete beat pack
+                            with its pattern to customize or
+                            tweak the beats to suit your needs</p>
                         <div className='flex flex-col space-y-4 mt-8 text-white'>
                             <div className='flex space-x-4' >
                                 <img src={images.check} height="24" width={"24"} alt="" />
@@ -66,7 +66,57 @@ const Pricing = () => {
                         </div>
                         <Button color={"p"}>EXPLORE</Button>
                     </div>
-                    {/* CARD 2 */}
+                    {/* CARD 4 */}
+                    <div className="rounded-xl border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
+                        <h1 className="text-4xl bold font-Kizard text-white" >STEM</h1>
+                        <div className="flex flex-col text-center"  >
+                            <h2 className="text-5xl text-white">35$ <span className="text-lg text-grey" >/ per pack</span></h2>
+                        </div>
+                        <p className="text-white" >You can buy a complete beat pack
+                            with its pattern to customize or
+                            tweak the beats to suit your needs</p>
+                        <div className='flex flex-col space-y-4 mt-8 text-white'>
+                            <div className='flex space-x-4' >
+                                <img src={images.check} height="24" width={"24"} alt="" />
+                                <p>Something</p>
+                            </div>
+                            <div className='flex space-x-4' >
+                                <img src={images.cross} height="24" width={"24"} alt="" />
+                                <p>Nothing</p>
+                            </div>
+                            <div className='flex space-x-4' >
+                                <img src={images.check} height="24" width={"24"} alt="" />
+                                <p>Anything</p>
+                            </div>
+                        </div>
+                        <Button color={"p"}>EXPLORE</Button>
+                    </div>
+                    {/* CARD 5 */}
+                    <div className="rounded-xl border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
+                        <h1 className="text-4xl bold font-Kizard text-white" >STEM</h1>
+                        <div className="flex flex-col text-center"  >
+                            <h2 className="text-5xl text-white">35$ <span className="text-lg text-grey" >/ per pack</span></h2>
+                        </div>
+                        <p className="text-white" >You can buy a complete beat pack
+                            with its pattern to customize or
+                            tweak the beats to suit your needs</p>
+                        <div className='flex flex-col space-y-4 mt-8 text-white'>
+                            <div className='flex space-x-4' >
+                                <img src={images.check} height="24" width={"24"} alt="" />
+                                <p>Something</p>
+                            </div>
+                            <div className='flex space-x-4' >
+                                <img src={images.cross} height="24" width={"24"} alt="" />
+                                <p>Nothing</p>
+                            </div>
+                            <div className='flex space-x-4' >
+                                <img src={images.check} height="24" width={"24"} alt="" />
+                                <p>Anything</p>
+                            </div>
+                        </div>
+                        <Button color={"p"}>EXPLORE</Button>
+                    </div>
+                    {/* CARD 5 */}
                     <div className="rounded-xl border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >STEM</h1>
                         <div className="flex flex-col text-center"  >

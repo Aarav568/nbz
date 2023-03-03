@@ -15,6 +15,7 @@ import orderRoutes from './routes/orders/order.js'
 import tagRoutes from './routes/tags/tags.js'
 import searchRoutes from './routes/search/search.js'
 import authRoutes from './routes/auth/user.js'
+import contactRoutes from './routes/contact-me/contact.js'
 import auth from './middleware/auth.js'
 
 // CONFIGURATION----------------------------------------------------------
@@ -53,6 +54,6 @@ app.use('/api/playlists', playlistRoutes)
 app.use('/api/tags', tagRoutes)
 app.use('/api/search', searchRoutes)
 app.use('/auth', authRoutes)
-
+app.use("/contact", contactRoutes)
 //Authenticated Routes
 app.use('/api/orders', auth, orderRoutes)

@@ -1,9 +1,11 @@
 .ripple{
     transition: background 0.8s;
+    transition: scale 0.5s;
+
 }
 .ripple:hover{
     background-position: center;
-    scale: 1.07;
+    scale: 1.05;
     background-size: 15000%;
 }
 

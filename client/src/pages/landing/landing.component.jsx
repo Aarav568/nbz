@@ -11,12 +11,20 @@ import CardList from '../../components/card-list/card-list.component';
 import PillButton from '../../components/pill-button/pill-button.component';
 import CardSkeleton from '../../components/skeletons/card-skeleton/card-skeleton.component'
 import Slider from "react-slick";
+import { sendQuery } from '../../api/contact';
+import ContactForm from '../../components/contact-form/contact-form.component';
 
 
 const Landing = () => {
     const [featuredPlaylists, setFeaturedPlaylists] = useState([])
     const [featuredArtists, setFeaturedArtists] = useState([])
     const [loading, setLoading] = useState(true)
+    const [contactData, setContactData] = useState({
+        name: "",
+        from: "",
+        message: ""
+    })
+
 
     useEffect(() => {
         taggedArtist("featured").then(resp => setFeaturedArtists(resp.data))
@@ -77,32 +85,7 @@ const Landing = () => {
 
             {/* SECTION-2 Contact Us */}
             <div id="contact" className='bg-center bg-cover min-h-[930px] pt-4 flex flex-col lg:flex-row items-center justify-around' style={{ backgroundImage: `url(${images.contactBG})` }} >
-                <div className='flex flex-col space-y-8 bg-backdrop p-8 rounded ' >
-                    <div>
-                        <h1 className='text-6xl text-white uppercase font-Kizard' >Need More ... </h1>
-                        <p className='text-white uppercase' >Get yourself custom beats</p>
-                    </div>
-                    <div>
-                        <h1 className='text-4xl text-white uppercase font-Kizard' >Write to Us</h1>
-                        <div className="flex flex-col justify-center" >
-                            <form className="w-full mx-auto rounded-lg" >
-                                <div>
-                                    <input onChange={(e) => { }} placeholder="Enter Your Name" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" type="text" />
-                                </div>
-                                <div>
-                                    <input onChange={(e) => { }} placeholder="Enter Email Address" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" type="email" />
-                                </div>
-                                <div>
-                                    <input onChange={(e) => { }} min="10" max="10" placeholder="Enter Phone Number (optional)" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" type="text" />
-                                </div>
-                                <div>
-                                    <textarea rows={4} placeholder='Write Your Message ...' className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
-                                </div>
-                                <PillButton color="p">Send</PillButton>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <ContactForm />
                 <div className='w-[2px] h-96 bg-white hidden lg:block' >
                 </div>
                 <div>

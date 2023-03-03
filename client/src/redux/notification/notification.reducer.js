@@ -1,4 +1,4 @@
-import { NotificationTypes } from "./notification.types";
+import { NotificationTypes } from "./notification.types"
 const INITIAL_STATE = {
     hidden: true,
     notification: ""
@@ -13,7 +13,7 @@ const notificationReducer = (state = INITIAL_STATE, action) => {
                 hidden: false
             }
         }
-        case NotificationTypes.TOGGLE_NOTIFICATION:
+        case NotificationTypes.CLEAR_NOTIFICATION:
             return {
                 ...state,
                 notification: "",
