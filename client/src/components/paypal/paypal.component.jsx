@@ -16,6 +16,17 @@ const PayPal = () => {
         user: currentUser,
         transactionId: ""
     })
+
+    const handleApprove = (data, actions) => {
+        return actions.order.capture().then((details) => {
+            checkout({ ...orderData, transactionId: details.id })
+                .then(resp => {
+                    navigate("/orders")
+                    dispatch(emptyCart())
+                    console.log(resp.data)
+                })
+        });
+    }
     const amount = useSelector(state => state.cart.total)
     return (
         <div className='flex flex-col space-y-8' >
@@ -36,16 +47,7 @@ const PayPal = () => {
                                     ],
                                 });
                             }}
-                            onApprove={(data, actions) => {
-                                return actions.order.capture().then((details) => {
-                                    checkout({ ...orderData, transactionId: details.id })
-                                        .then(resp => {
-                                            navigate("/orders")
-                                            dispatch(emptyCart())
-                                            console.log(resp.data)
-                                        })
-                                });
-                            }}
+                            onApprove={handleApprove}
                         />
                     </PayPalScriptProvider>
                 </div>

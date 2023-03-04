@@ -14,19 +14,21 @@ export const getAllOrders = async (req, res) => {
 }
 
 export const createOrder = async (req, res) => {
-    const { cart, user, transactionId } = req.body
-    try {
-        const beat = await Beat.findById(cart.items[0].beat._id).populate("distribution")
-        const downloadRef = beat.distribution[cart.items[0].purchaseType]
-        const downloadUrl = await generateUrl(downloadRef)
-        const order = await Order.create({
-            user,
-            data: { cart, downloadUrl},
-            transactionId
-        })
-        console.log(order)
-        res.status(200)
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
+    // const { cart, user, transactionId } = req.body
+    // try {
+    //     const beat = await Beat.findById(cart.items[0].beat._id).populate("distribution")
+    //     const downloadRef = beat.distribution[cart.items[0].purchaseType]
+    //     const downloadUrl = await generateUrl(downloadRef)
+    //     const order = await Order.create({
+    //         user,
+    //         data: { cart, downloadUrl},
+    //         transactionId
+    //     })
+    //     console.log(order)
+    //     res.status(200)
+    // } catch (err) {
+    //     res.status(500).json({ message: err.message })
+    // }
+    
+    //REWRITE THIS FUNCTION
 }
