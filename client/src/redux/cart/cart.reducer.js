@@ -1,5 +1,7 @@
 import CartTypes from "./cart.types";
+import { PurchasePrice } from "./purchase.types";
 import { useSelector } from "react-redux";
+import { PurchaseTypes } from "./purchase.types";
 
 const INITIAL_STATE = {
     items: [],
@@ -11,14 +13,16 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case CartTypes.ADD_TO_CART:
             const current = (purchaseType = action.payload.purchaseType) => {
-                if (purchaseType === "LEASE")
-                    return 15
-                else if (purchaseType === "BUY")
-                    return 20
-                else if (purchaseType === "STEM")
-                    return 35
-                else
-                    return 0
+                if (purchaseType === PurchaseTypes.MP3LEASE)
+                    return Number(PurchasePrice.MP3LEASE)
+                else if (purchaseType === PurchaseTypes.WAVLEASE)
+                    return Number(PurchasePrice.WAVLEASE)
+                else if (purchaseType === PurchaseTypes.MP3BUY)
+                    return Number(PurchasePrice.MP3BUY)
+                else if (purchaseType === PurchaseTypes.WAVBUY)
+                    return Number(PurchasePrice.WAVBUY)
+                else if (purchaseType === PurchaseTypes.STEM)
+                    return Number(PurchasePrice.STEM)
             }
             action.payload.price = current()
 

@@ -24,14 +24,11 @@ export const generateUrl = async (docRef) => {
   return getDownloadURL(sampleRef).then(url => url)
 }
 
-export const firebaseUpload = (files, beatName, beatId) => {
+export const firebaseUpload = async (files, beatName, beatId) => {
   const mp3 = files['mp3'][0]
   const wav = files['wav'][0]
   const stem = files['stem'][0]
   const sample = files['sample'][0]
-  console.log(mp3)
-  console.log(mp3.mimetype)
-
   const mp3Ref = ref(storage, `BEATS/${beatName.trim()}/${mp3.fieldname}/`)
   const wavRef = ref(storage, `BEATS/${beatName.trim()}/${wav.fieldname}/`)
   const stemRef = ref(storage, `BEATS/${beatName.trim()}/${stem.fieldname}/`)
@@ -43,7 +40,7 @@ export const firebaseUpload = (files, beatName, beatId) => {
       Promise.all(uploadRefs)
         .then(async (downloadLinks) => {
           const beat = await Beat.findById(beatId)
-          const dist = await Distribution.create({
+          await Distribution.create({
             mp3: downloadLinks[0],
             wav: downloadLinks[1],
             stem: downloadLinks[2],
@@ -52,16 +49,9 @@ export const firebaseUpload = (files, beatName, beatId) => {
           })
           beat.sample = downloadLinks[3]
           await beat.save()
-          console.log(beat)
         })
     })
     .catch(err => {
-      console.log(err)
-      Beat.findByIdAndDelete(beatId)
+      console.log(err.message)
     })
-
-
-  // const uploadedFile = await uploadBytes(mp3Ref, file.buffer)
-  // console.log(uploadedFile)
-
 }

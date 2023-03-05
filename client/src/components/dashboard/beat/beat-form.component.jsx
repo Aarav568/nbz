@@ -6,45 +6,51 @@ import Tile from "../../tiles/tiles.component";
 import { getGenres } from "../../../api/genres";
 import { createArtist, getArtists } from "../../../api/artists";
 import { createBeat } from "../../../api/beats";
+import TileSelectable from "../../tile-selectable/tile-selectable.component";
+import { useFormik } from "formik"
+import beatsSchema from "../../../utils/validation_schemas/beats.schema";
+import FormAlert from "../../form-alert/form-alert.component";
 
 const BeatForm = () => {
     const [genres, setGenres] = useState([])
     const [artists, setArtists] = useState([])
-    const [genreId, setGenreId] = useState("")
-    const [artistId, setArtistId] = useState("")
+    const [formAlert, setFormAlert] = useState(null)
 
-    const [mp3, setMp3] = useState(null)
-    const [wav, setWav] = useState(null)
-    const [stem, setStem] = useState(null)
-    const [sample, setSample] = useState(null)
-
-    const [formData, setFormData] = useState({
-        name: "",
-        artistId: "",
-        genreId: "",
-    })
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const onSubmit = (values, actions) => {
+        const {mp3, wav, stem, sample, genreId, artistId, name} = values
         const form = new FormData()
+        form.append("name", name)
         form.append("mp3", mp3)
         form.append("wav", wav)
         form.append("stem", stem)
         form.append("sample", sample)
-        form.append("name", formData.name)
-        form.append("artistId", artistId)
         form.append("genreId", genreId)
-        createBeat(form).then(resp => console.log(resp))
+        form.append("artistId", artistId)
+        createBeat(form).then(resp => setFormAlert(`${resp.data.name} is created!`))
+        actions.resetForm()
     }
 
-    const handleFileChange = (e) => {
-        setFormData({ ...formData, files: [...formData.files, e.target.files[0]] })
-    }
+    const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue } = useFormik({
+        initialValues: {
+            name: "",
+            genreId: "",
+            artistId: "",
+            mp3: "",
+            stem: "",
+            wav: "",
+            sample: ""
+        },
+        validationSchema: beatsSchema,
+        onSubmit
+    })
+
+    // const handleFileChange = (e) => {
+    //     setFormData({ ...formData, files: [...formData.files, e.target.files[0]] })
+    // }
 
     useState(() => {
-        getGenres(2).then(resp => setGenres(resp.data))
-        getArtists(2).then(resp => setArtists(resp.data))
+        getGenres(5).then(resp => setGenres(resp.data))
+        getArtists(5).then(resp => setArtists(resp.data))
     }, [])
 
     return (
@@ -65,26 +71,70 @@ const BeatForm = () => {
                 </div>
                 <h2 className="text-white text-4xl">Create Beat</h2>
                 <form encType="multipart/form-data" onSubmit={handleSubmit} className="bg-p w-full mx-auto p-8 px-8 rounded-lg" >
+                    <FormAlert alert={formAlert} />
                     <div className="max-w-[400px]">
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat Name</label>
-                            <input onChange={(e) => setFormData({ ...formData, name: e.target.value })} value={formData.name} placeholder="Name" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <input
+                                autoComplete="off"
+                                style={errors.name && touched.name ? { border: "1px solid red" } : {}}
+                                onChange={handleChange}
+                                value={values.name}
+                                onBlur={handleBlur}
+                                placeholder="Beat Name"
+                                name="name"
+                                className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
+                                type="text"
+                            />
+                            {errors.name && touched.name ? <p className="text-red-300 " >{errors.name}</p> : null}
                         </div>
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat MP3</label>
-                            <input type="file" onChange={e => setMp3(e.target.files[0])} className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <input
+                                style={errors.mp3 && touched.mp3 ? { border: "1px solid red" } : {}}
+                                onChange={(e) => setFieldValue("mp3", e.currentTarget.files[0])}
+                                onBlur={handleBlur}
+                                name="mp3"
+                                className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
+                                type="file"
+                            />
+                            {errors.mp3 && touched.mp3 ? <p className="text-red-300 " >{errors.mp3}</p> : null}
                         </div>
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat WAV</label>
-                            <input type="file" onChange={e => setWav(e.target.files[0])} placeholder="Genre" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <input
+                                style={errors.wav && touched.wav ? { border: "1px solid red" } : {}}
+                                onChange={(e) => setFieldValue("wav", e.currentTarget.files[0])}
+                                onBlur={handleBlur}
+                                name="wav"
+                                className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
+                                type="file"
+                            />
+                            {errors.wav && touched.wav ? <p className="text-red-300 " >{errors.wav}</p> : null}
                         </div>
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat STEM</label>
-                            <input type="file" onChange={e => setStem(e.target.files[0])} placeholder="Genre" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <input
+                                style={errors.stem && touched.stem ? { border: "1px solid red" } : {}}
+                                onChange={(e) => setFieldValue("stem", e.currentTarget.files[0])}
+                                onBlur={handleBlur}
+                                name="stem"
+                                className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
+                                type="file"
+                            />
+                            {errors.stem && touched.stem ? <p className="text-red-300 " >{errors.stem}</p> : null}
                         </div>
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat Sample</label>
-                            <input type="file" onChange={e => setSample(e.target.files[0])} placeholder="Genre" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <input
+                                style={errors.sample && touched.sample ? { border: "1px solid red" } : {}}
+                                onChange={(e) => setFieldValue("sample", e.currentTarget.files[0])}
+                                onBlur={handleBlur}
+                                name="sample"
+                                className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
+                                type="file"
+                            />
+                            {errors.sample && touched.sample ? <p className="text-red-300 " >{errors.sample}</p> : null}
                         </div>
                     </div>
                     <div className="py-2" >
@@ -94,7 +144,7 @@ const BeatForm = () => {
                             <div className="flex flex-col space-y-8 lg:flex-row" >
                                 {
                                     genres.map(e => (
-                                        <Tile title={e.genre} key={e._id} s handler={setGenreId} data={e._id} />
+                                        <TileSelectable title={e.genre} key={e._id} s handler={setFieldValue} selector="genreId" data={e._id} />
                                     ))
                                 }
                             </div>
@@ -107,7 +157,7 @@ const BeatForm = () => {
                             <div className="flex flex-col space-y-8 lg:flex-row" >
                                 {
                                     artists.map(e => (
-                                        <Tile title={e.name} key={e._id} s handler={setArtistId} data={e._id} />
+                                        <TileSelectable title={e.name} key={e._id} s handler={setFieldValue} selector="artistId" data={e._id} />
                                     ))
                                 }
                             </div>

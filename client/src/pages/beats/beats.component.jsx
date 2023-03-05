@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 
-
 //APIS & FUNCTIONS
 import { getBeats } from "../../api/beats";
 import { getArtistById } from "../../api/artists";
@@ -25,7 +24,8 @@ import { addToCart } from "../../redux/cart/cart.actions";
 import { hideModal } from "../../redux/modal/modal.actions";
 import { setNotification, clearNotification } from "../../redux/notification/notification.actions";
 import Notification from "../../components/notification/notification.component";
-
+import { PurchaseTypes } from "../../redux/cart/purchase.types";
+import { PurchasePrice } from "../../redux/cart/purchase.types";
 
 const BeatsPage = () => {
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const BeatsPage = () => {
     const [beats, setBeats] = useState([])
     const [artist, setArtist] = useState({})
     const [playlist, setPlaylist] = useState({})
-    const [purchaseType, setPurchaseType] = useState("LEASE")
+    const [purchaseType, setPurchaseType] = useState(PurchaseTypes.MP3LEASE)
     const [loading, setLoading] = useState(true)
     const notification = useSelector(state => state.notification.notification)
 
@@ -50,8 +50,8 @@ const BeatsPage = () => {
             getArtistById(id).then(resp => setArtist(resp.data))
         else
             getPlaylist(id).then(resp => setPlaylist(resp.data))
-        
-            return () => {
+
+        return () => {
             if (notification)
                 dispatch(clearNotification())
         }
@@ -73,13 +73,15 @@ const BeatsPage = () => {
                             <div className="flex flex-col space-y-6" >
                                 <h2 className="text-lg" >Purchase Type</h2>
                                 <select name="purchaseType" className="bg-white border text-black p-2 rounded" onChange={e => setPurchaseType(e.target.value)} >
-                                    <option value="LEASE">LEASE - 15$</option>
-                                    <option value="BUY">BUY - 20$</option>
-                                    <option value="STEM">STEM - 35$</option>
+                                    <option value={PurchaseTypes.MP3LEASE} >MP3 LEASE - {PurchasePrice.MP3LEASE}$</option>
+                                    <option value={PurchaseTypes.WAVLEASE}>WAV LEASE - {PurchasePrice.WAVLEASE}$</option>
+                                    <option value={PurchaseTypes.MP3BUY}>MP3 BUY - {PurchasePrice.MP3BUY}$</option>
+                                    <option value={PurchaseTypes.WAVBUY}>WAV BUY - {PurchasePrice.WAVBUY}$</option>
+                                    <option value={PurchaseTypes.STEM}>STEM - {PurchasePrice.STEM}$</option>
                                 </select>
                                 <h2 className="text-lg" >Select the type of license you want to get for the purchase, <br /> for more info go to <span className="text-blue font-bold underline" > <button onClick={() => navigate("/signup")}>Pricing Page</button> </span> </h2>
                                 <PillButton color={"p"} clickHandler={() => {
-                                    if(!currentUser)
+                                    if (!currentUser)
                                         navigate("/login")
                                     dispatch(addToCart({ beat: modalBeat, purchaseType }))
                                     dispatch(hideModal())

@@ -61,6 +61,7 @@ export const getBeatsByTags = async (req, res) => {
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
+
 }
 
 export const createBeat = async (req, res) => {
@@ -73,16 +74,16 @@ export const createBeat = async (req, res) => {
 
         const artist = await Artist.findById(artistId)
         const genre = await Genre.findById(genreId)
-        const newBeat = {
+        const createdBeat = await Beat.create({
             artist, genre, name
-        }
-        const createdBeat = await Beat.create(newBeat)
+        })
         artist.beats.push(createdBeat)
         await artist.save()
-        firebaseUpload(req.files, name, createdBeat._id)
+        await firebaseUpload(req.files, name, createdBeat._id)
         res.status(200).json(createdBeat)
     } catch (err) {
-        res.status(500).json({ message: err })
+        console.log(err)
+        res.status(500).json({ message: err.message })
     }
 }
 
@@ -96,7 +97,3 @@ export const deleteBeat = async (req, res) => {
         res.status(404).json({ error: err.message })
     }
 }
-
-//GET TRENDING TAGS
-//SORT POSTS BY MOST LIKED SLICE TO 10 POSTS
-//EXTRACT TAGS AND RENDER

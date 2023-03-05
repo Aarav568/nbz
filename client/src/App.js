@@ -12,7 +12,7 @@ import GenreForm from "./components/dashboard/genre/genre-form.component";
 import ArtistForm from "./components/dashboard/artist/artist-form.component";
 import BeatForm from "./components/dashboard/beat/beat-form.component";
 import PlaylistForm from "./components/dashboard/playlist/playlist-form.component";
-import SetFeatured from "./components/dashboard/set-featured/set-featured.component";
+import FeaturedForm from "./components/dashboard/featured/featured-form.component";
 import ProtectedRoutes from "./utils/protectedRoutes";
 import AdminRoutes from "./utils/AdminRoutes";
 
@@ -53,7 +53,7 @@ function App() {
               <Route path="artist" element={<ArtistForm />} />
               <Route path="beat" element={<BeatForm />} />
               <Route path="playlist" element={<PlaylistForm />} />
-              <Route path="featured" element={<SetFeatured />} />
+              <Route path="featured" element={<FeaturedForm />} />
             </Route>
           </Route>
           //Auth Routes

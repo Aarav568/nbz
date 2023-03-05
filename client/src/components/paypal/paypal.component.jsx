@@ -11,23 +11,25 @@ const PayPal = () => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
     const currentUser = useSelector(state => state.user.currentUser)
-    const [orderData, setOrderData] = useState({
-        cart: cart,
-        user: currentUser,
-        transactionId: ""
-    })
+    // const [orderData, setOrderData] = useState({
+    //     cart: cart,
+    //     user: currentUser,
+    //     transactionId: ""
+    // })
 
     const handleApprove = (data, actions) => {
         return actions.order.capture().then((details) => {
-            checkout({ ...orderData, transactionId: details.id })
-                .then(resp => {
-                    navigate("/orders")
-                    dispatch(emptyCart())
-                    console.log(resp.data)
-                })
+            // checkout({ ...orderData, transactionId: details.id })
+            //     .then(resp => {
+            //         navigate("/orders")
+            //         dispatch(emptyCart())
+            //         console.log(resp.data)
+            //     })
+            console.log(details)
         });
     }
     const amount = useSelector(state => state.cart.total)
+
     return (
         <div className='flex flex-col space-y-8' >
             <div className="bg-center bg-cover w-full min-h-[550px] flex justify-around items-center" >

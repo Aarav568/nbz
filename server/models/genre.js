@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 const {Schema, model} = mongoose
 
 const GenreSchema = new Schema({
-    genre: String
+    genre: {type: String, required: true}
 })
 
 export default model("Genre", GenreSchema)

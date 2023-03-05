@@ -11,12 +11,12 @@ export const getAllGenres = async (req, res) => {
 }
 
 export const createGenre = async (req, res) => {
-    const { genre } = req.body
+    const { name } = req.body
     try {
-        const existingGenre = await Genre.findOne({ genre })
+        const existingGenre = await Genre.findOne({ genre: name })
         if (existingGenre) return res.status(404).json({ message: "Genre already exists!" })
 
-        const createdGenre = await Genre.create({ genre })
+        const createdGenre = await Genre.create({genre: name})
         res.status(200).json(createdGenre)
     } catch (err) {
         res.status(404).json({ message: err.message })

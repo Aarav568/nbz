@@ -5,19 +5,35 @@ import images from "../../../utils/image-links";
 import Button from "../../button/button.component";
 import SearchBar from "../../searchbar/searchbar.component";
 import Tile from "../../tiles/tiles.component";
+import genreSchema from "../../../utils/validation_schemas/genre.schema";
+import { useFormik } from "formik"
+import Notification from "../../notification/notification.component";
+import { setNotification } from "../../../redux/notification/notification.actions";
+import { useDispatch } from 'react-redux'
+import FormAlert from "../../form-alert/form-alert.component";
+
 const GenreForm = () => {
     const [genreName, setGenreName] = useState("")
     const [genres, setGenres] = useState([])
-
+    const [formAlert, setFormAlert] = useState(null)
+    const dispatch = useDispatch()
     useEffect(() => {
         getGenres(5).then(resp => setGenres(resp.data))
-        searchGenre("boombap").then(resp => setGenres(resp.data))
-    }, [])
+        // searchGenre("boombap").then(resp => setGenres(resp.data))
+    }, [formAlert])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        createGenre(genreName)
+    const onSubmit = (values, actions) => {
+        createGenre(values.name).then(resp => setFormAlert(`${resp.data.genre} is created!`))
+        actions.resetForm()
     }
+
+    const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
+        initialValues: {
+            name: "",
+        },
+        validationSchema: genreSchema,
+        onSubmit
+    })
 
     return (
         <div>
@@ -40,9 +56,21 @@ const GenreForm = () => {
                 </div>
                 <h2 className="text-white text-4xl">Create Genre</h2>
                 <form onSubmit={handleSubmit} className="bg-p max-w-[400px] w-full mx-auto p-8 px-8 rounded-lg" >
+                    <FormAlert alert={formAlert} />
                     <div>
                         <label className="flex flex-col text-gray:400 py-2">Genre Name</label>
-                        <input onChange={(e) => setGenreName(e.target.value)} value={genreName} placeholder="Genre" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                        <input
+                            autoComplete="off"
+                            style={errors.name && touched.name ? { border: "1px solid red" } : {}}
+                            onChange={handleChange}
+                            value={values.name}
+                            onBlur={handleBlur}
+                            placeholder="Genre Name"
+                            name="name"
+                            className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
+                            type="text"
+                        />
+                        {errors.name && touched.name ? <p className="text-red-300 " >{errors.name}</p> : null}
                     </div>
                     <div className="mt-4" >
                         <Button color="a" handleClick={(e) => handleSubmit(e)} >Submit</Button>

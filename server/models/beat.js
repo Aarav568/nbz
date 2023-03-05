@@ -4,13 +4,14 @@ const { Schema } = mongoose
 const BeatSchema = new mongoose.Schema({
     name: { type: String, required: true },
     artist: {
-        type: Schema.Types.ObjectId, ref: 'Artist'
+        type: Schema.Types.ObjectId, ref: 'Artist',
+        required: true
     },
     genre: {
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: Schema.Types.ObjectId, ref: 'User', required: true
     },
     tags: { type: Array, default: [] },
-    distribution: { type: Schema.Types.ObjectId, ref: "Distribution" },
+    distribution: { type: Schema.Types.ObjectId, ref: "Distribution"},
     sample: String,
     createdAt: { type: Date, default: Date.now }
 })

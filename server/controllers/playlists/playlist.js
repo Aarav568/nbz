@@ -66,6 +66,18 @@ export const addBeatToPlaylist = async (req, res) => {
     }
 }
 
+export const setAsFeatured = async (req, res) => {
+    const { id } = req.body
+    try {
+        const playlist = await Playlist.findById(id)
+        playlist.tags.push("featured")
+        const featuredPlaylist = await playlist.save()
+        res.status(200).json(featuredPlaylist)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
 export const deletePlaylist = async (req, res) => {
     return
 }

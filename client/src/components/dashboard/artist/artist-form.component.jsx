@@ -6,25 +6,36 @@ import Button from "../../button/button.component";
 import SearchBar from "../../searchbar/searchbar.component";
 import Tile from "../../tiles/tiles.component";
 import FileBase64 from 'react-file-base64';
+import TileSelectable from "../../tile-selectable/tile-selectable.component";
+import { useFormik } from "formik"
+import artistsSchema from "../../../utils/validation_schemas/artists.schema";
+import FormAlert from "../../form-alert/form-alert.component";
 
 const ArtistForm = () => {
     const [genres, setGenres] = useState([])
     const [artists, setArtists] = useState([])
-    const [formData, setFormData] = useState({
-        name: "",
-        img: "",
-    })
-    const [genreId, setGenreId] = useState("")
+    // const [genreId, setGenreId] = useState("")
+    const [formAlert, setFormAlert] = useState(null)
+    
     useState(() => {
         getGenres(5).then(resp => setGenres(resp.data))
         getArtists(5).then(resp => setArtists(resp.data))
-    }, [])
+    }, [formAlert])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log({... formData, genreId})
+    const onSubmit = (values, actions) => {
+        createArtist({ values }).then(resp => setFormAlert(`${resp.data.name} created`))
+        actions.resetForm()
         // createArtist(formData).then(resp => console.log(resp))
     }
+    const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue } = useFormik({
+        initialValues: {
+            name: "",
+            img: "",
+            genreId: ""
+        },
+        validationSchema: artistsSchema,
+        onSubmit
+    })
 
 
     return (
@@ -48,16 +59,30 @@ const ArtistForm = () => {
                 </div>
                 <h2 className="text-white text-4xl">Create Artist</h2>
                 <form onSubmit={handleSubmit} className="bg-p w-full mx-auto p-8 px-8 rounded-lg" >
+                    <FormAlert alert={formAlert} />
                     <div className="max-w-[400px]">
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Artist Name</label>
-                            <input required onChange={(e) => setFormData({ ...formData, name: e.target.value })} value={formData.name} placeholder="Name" className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white" />
+                            <input
+                                autoComplete="off"
+                                style={errors.name && touched.name ? { border: "1px solid red" } : {}}
+                                onChange={handleChange}
+                                value={values.name}
+                                onBlur={handleBlur}
+                                placeholder="Genre Name"
+                                name="name"
+                                className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
+                                type="text"
+                            />
+                            {errors.name && touched.name ? <p className="text-red-300 " >{errors.name}</p> : null}
                         </div>
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Artist Image</label>
                             <FileBase64
                                 multiple={false}
-                                onDone={({ base64 }) => setFormData({ ...formData, img: base64 })} />
+                                onDone={({ base64 }) => setFieldValue("img", base64)} />
+                            {errors.img ? <p className="text-red-300 " >Select Image</p> : null}
+
                         </div>
                     </div>
                     <div className="py-2" >
@@ -67,7 +92,7 @@ const ArtistForm = () => {
                             <div className="flex flex-col space-y-8 lg:flex-row" >
                                 {
                                     genres.map(e => (
-                                        <Tile title={e.genre} key={e._id} s handler={setGenreId} data={e._id} />
+                                        <TileSelectable title={e.genre} key={e._id} s handler={setFieldValue} selector="genreId" data={e._id} />
                                     ))
                                 }
                             </div>

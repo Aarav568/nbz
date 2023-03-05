@@ -40,7 +40,31 @@ export const createArtist = async (req, res) => {
         const createdArtist = await Artist.create({ name, genre, img: image.url + "?tr=h-300%2Cw-300" })
         res.status(200).json(createdArtist)
     } catch (err) {
-        res.status(404).json({ message: err.message })
+        res.status(500).json({ message: err.message })
+    }
+}
+
+export const setAsFeatured = async (req, res) => {
+    const { id } = req.body
+    try {
+        const artist = await Artist.findById(id)
+        artist.tags.push("featured")
+        const featuredArtist = await artist.save()
+        res.status(200).json(featuredArtist)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
+export const removeAsFeatured = async (req, res) => {
+    const { id } = req.body
+    try {
+        const artist = await Artist.findById(id)
+        artist.tags.pop()
+        const featuredArtist = await artist.save()
+        res.status(200).json(featuredArtist)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
     }
 }
 
