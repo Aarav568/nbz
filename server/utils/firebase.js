@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import Beat from "../models/beat.js";
@@ -34,7 +33,7 @@ export const firebaseUpload = async (files, beatName, beatId) => {
   const stemRef = ref(storage, `BEATS/${beatName.trim()}/${stem.fieldname}/`)
   const sampleRef = ref(storage, `BEATS/${beatName.trim()}/${sample.fieldname}/`)
 
-  Promise.all([uploadBytes(mp3Ref, mp3.buffer, { contentType: mp3.mimetype }), uploadBytes(wavRef, wav.buffer, { contentType: wav.mimetype }), uploadBytes(stemRef, stem.buffer, { contentType: stem.mimetype }), uploadBytes(sampleRef, sample.buffer, { contentType: sample.mimetype })])
+  Promise.all([uploadBytes(mp3Ref, mp3.buffer, { contentType: mp3.mimetype }), uploadBytes(wavRef, wav.buffer, { contentType: wav.mimetype }), uploadBytes(stemRef, stem.buffer, { contentType: 'application/zip' }), uploadBytes(sampleRef, sample.buffer, { contentType: sample.mimetype })])
     .then(snapshots => {
       const uploadRefs = snapshots.map(({ ref }) => getDownloadURL(ref))
       Promise.all(uploadRefs)

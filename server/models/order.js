@@ -2,10 +2,9 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const OrderSchema = new mongoose.Schema({
-    transactionId: { type: String, required: true },
-    data: { type: Object},
+    payment: {type: Object, required: true},
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    createdAt: { type: Date, default: Date.now }
+    order_items: {type: Array, required: true},
 })
 
 export default mongoose.model("Order", OrderSchema)

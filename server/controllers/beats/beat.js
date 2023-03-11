@@ -80,7 +80,7 @@ export const createBeat = async (req, res) => {
         artist.beats.push(createdBeat)
         await artist.save()
         await firebaseUpload(req.files, name, createdBeat._id)
-        res.status(200).json(createdBeat)
+        res.status(200).json({name: createdBeat.name})
     } catch (err) {
         console.log(err)
         res.status(500).json({ message: err.message })

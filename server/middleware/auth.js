@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
         }
         next()
     } catch (error) {
-        res.status(404).json({error: error.message})
+        res.status(404).json({error: `Auth Middleware Error: ${error.message}`})
     }
 }
 export default auth
