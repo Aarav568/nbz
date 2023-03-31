@@ -1,0 +1,31 @@
+version: "3"
+services: 
+  nbz-client:
+    image: nbz-client
+    restart: unless-stopped
+    stdin_open: true
+    ports: 
+      - "80:80"
+      - "443:443"
+    networks: 
+      - nbz
+    volumes: 
+      - caddy-data:/data
+      - caddy-config:/config
+  nbz-server:
+    image: nbz-server
+    env_file: ./server/.env
+    restart: unless-stopped
+    stdin_open: true
+    ports: 
+      - "8000:8000"
+    networks: 
+      - nbz
+networks:
+  nbz: 
+    driver: bridge
+volumes: 
+  caddy-data:
+    driver: local
+  caddy-config:
+    driver: local

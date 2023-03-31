@@ -1,0 +1,9 @@
+mysite.com:443 {
+    tls: myemail@gmail.com
+    root * /srv
+    route {
+        reverse_proxy /api* nbz-server:8000
+        try_files {path} {path}/ /index.html
+        file_server
+    }
+}
