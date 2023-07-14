@@ -10,6 +10,7 @@ import TileSelectable from "../../tile-selectable/tile-selectable.component";
 import { useFormik } from "formik"
 import beatsSchema from "../../../utils/validation_schemas/beats.schema";
 import FormAlert from "../../form-alert/form-alert.component";
+import FileBase64 from 'react-file-base64';
 
 const BeatForm = () => {
     const [genres, setGenres] = useState([])
@@ -17,28 +18,28 @@ const BeatForm = () => {
     const [formAlert, setFormAlert] = useState(null)
 
     const onSubmit = (values, actions) => {
-        const {mp3, wav, stem, sample, genreId, artistId, name} = values
+        const {mp3, wav, sample, genreId, artistId, name, stem} = values
         const form = new FormData()
         form.append("name", name)
         form.append("mp3", mp3)
         form.append("wav", wav)
-        form.append("stem", stem)
         form.append("sample", sample)
+        form.append("stem", stem)
         form.append("genreId", genreId)
         form.append("artistId", artistId)
         createBeat(form).then(resp => setFormAlert(`${resp.data.name} is created!`))
         actions.resetForm()
     }
-
     const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue } = useFormik({
         initialValues: {
             name: "",
             genreId: "",
             artistId: "",
             mp3: "",
-            stem: "",
             wav: "",
-            sample: ""
+            stem: "",
+            sample: "",
+            img: ""
         },
         validationSchema: beatsSchema,
         onSubmit
@@ -89,6 +90,14 @@ const BeatForm = () => {
                             {errors.name && touched.name ? <p className="text-red-300 " >{errors.name}</p> : null}
                         </div>
                         <div>
+                            <label className="flex flex-col text-gray:400 py-2">Beat Image</label>
+                            <FileBase64
+                                multiple={false}
+                                onDone={({ base64 }) => setFieldValue("img", base64)} />
+                            {errors.img ? <p className="text-red-300 " >Select Image</p> : null}
+
+                        </div>
+                        <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat MP3</label>
                             <input
                                 style={errors.mp3 && touched.mp3 ? { border: "1px solid red" } : {}}
@@ -122,7 +131,7 @@ const BeatForm = () => {
                                 className="rounded-lg w-full bg-white mt-2 p-2 focus:border-blue focus:bg-bg focus:outline-none focus:text-white"
                                 type="file"
                             />
-                            {errors.stem && touched.stem ? <p className="text-red-300 " >{errors.stem}</p> : null}
+                            {errors.stem && touched.stem ? <p className="text-red-300 " >{errors.wav}</p> : null}
                         </div>
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat Sample</label>

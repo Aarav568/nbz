@@ -25,7 +25,7 @@ const Navbar = () => {
                             </div>
                             <div>
                                 <button onClick={() => navigate("/")} className="cursor-pointer p-0 m-0">
-                                    <img src={images.logo} alt="" height="40" width="60" />
+                                    <img src={images.logo} alt="" className='rounded-full' height="40" width="60" />
                                 </button>
                             </div>
                             <div className="flex space-x-4 font-Raleway" >
@@ -71,7 +71,7 @@ const Navbar = () => {
                         {/* logo */}
                         <div>
                             <button onClick={() => navigate("/")} className="cursor-pointer p-0 m-0">
-                                <img src={images.logo} alt="" height="40" width="60" />
+                                <img src={images.logo} alt="" className='rounded-full' height="40" width="60" />
                             </button>
                         </div>
                         {/* secondary */}

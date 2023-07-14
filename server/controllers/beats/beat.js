@@ -67,15 +67,25 @@ export const getBeatsByTags = async (req, res) => {
 export const createBeat = async (req, res) => {
     // var tags = req.body.tags
     // tags = tags.split(" ")
-    const { name, artistId, genreId } = req.body
+    
+    const { name, artistId, genreId, img } = req.body
     try {
         const existingBeat = await Beat.findOne({ name })
         if (existingBeat) return res.status(404).json({ message: "Beat already exists!" })
 
         const artist = await Artist.findById(artistId)
         const genre = await Genre.findById(genreId)
+        const image = await imagekit.upload({
+            file: img,
+            folder: "/nbz/beats/",
+            fileName: `${name}`,
+            transformation: [{
+                height: 300,
+                width: 300,
+            }]
+        })
         const createdBeat = await Beat.create({
-            artist, genre, name
+            artist, genre, name, img: image.url + "?tr=h-300%2Cw-300"
         })
         artist.beats.push(createdBeat)
         await artist.save()

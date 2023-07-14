@@ -7,8 +7,6 @@ import SearchBar from "../../searchbar/searchbar.component";
 import Tile from "../../tiles/tiles.component";
 import genreSchema from "../../../utils/validation_schemas/genre.schema";
 import { useFormik } from "formik"
-import Notification from "../../notification/notification.component";
-import { setNotification } from "../../../redux/notification/notification.actions";
 import { useDispatch } from 'react-redux'
 import FormAlert from "../../form-alert/form-alert.component";
 
@@ -49,7 +47,7 @@ const GenreForm = () => {
                     <div className="flex flex-col space-y-8 lg:flex-row">
                         {
                             genres.map(e => (
-                                <Tile title={e.genre} key={e._id} s />
+                                <Tile staticTile title={e.genre} key={e._id} s />
                             ))
                         }
                     </div>

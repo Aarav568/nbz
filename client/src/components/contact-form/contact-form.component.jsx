@@ -22,6 +22,7 @@ const ContactForm = () => {
             <div>
                 <h1 className='text-6xl text-white uppercase font-Kizard' >Need More ... </h1>
                 <p className='text-white uppercase' >Get yourself custom beats</p>
+                <p className='text-white uppercase' >Tell us what you need and we will get back to you</p>
             </div>
             <div>
                 <h1 className='text-4xl text-white uppercase font-Kizard' >Write to Us</h1>

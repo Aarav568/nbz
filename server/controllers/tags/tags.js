@@ -1,5 +1,6 @@
 import Artist from "../../models/artist.js";
 import Playlist from "../../models/playlist.js";
+import Beat from "../../models/beat.js";
 
 export const getArtistByTags = async (req, res) => {
     try {
@@ -22,6 +23,16 @@ export const getPlaylistByTags = async (req, res) => {
 export const createTag = async (req, res) => {
     try {
         res.status(200).json()
+
+    } catch (err) {
+        res.status(404).json({ error: err.message })
+    }
+}
+
+export const getBeatByTags = async (req, res) => {
+    try {
+        const beat = await Beat.find({ tags: { "$in": [req.params.tag] } })
+        res.status(200).json(beat)
 
     } catch (err) {
         res.status(404).json({ error: err.message })

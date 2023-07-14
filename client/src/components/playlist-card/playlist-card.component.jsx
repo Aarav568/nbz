@@ -15,7 +15,7 @@ const PlaylistCard = ({ img, title, id, s }) => {
                         <h2 className='font-semibold mb-2 text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap'>
                             {title}
                         </h2>
-                        <p>by Vnashak</p>
+                        <p>by Kulture</p>
                     </div>
                 </div>
             </button>

@@ -6,7 +6,7 @@ import { logoutUser } from "../../redux/user/user.actions";
 
 const PopMenu = () => {
     const [hiddenMenu, setHiddenMenu] = useState(true)
-    const name = useSelector(state => state.user.currentUser.name)
+    const { name, admin } = useSelector(state => state.user.currentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const handleClick = () => {
@@ -26,7 +26,12 @@ const PopMenu = () => {
                 hiddenMenu ? null : (
                     <div className="absolute" >
                         <div className="mt-2 p-2 bg-white rounded-lg" >
-                            <button onClick={() => navigate("/orders")} className="w-full block rounded-lg px-4 py-2 text-text hover:bg-backdropDark hover:text-white" >My Orders</button>
+                            {
+                                admin ?
+                                    null
+                                    :
+                                    <button onClick={() => navigate("/orders")} className="w-full block rounded-lg px-4 py-2 text-text hover:bg-backdropDark hover:text-white" >My Orders</button>
+                            }
                             <button onClick={handleLogout} className="w-full block rounded-lg px-4 py-2 text-text hover:bg-backdropDark hover:text-white" >Logout</button>
                         </div>
                     </div>

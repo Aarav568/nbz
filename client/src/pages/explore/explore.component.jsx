@@ -12,19 +12,19 @@ import BackButton from '../../components/backbutton/back-button.component';
 import { useEffect, useState } from 'react'
 
 //APIs & Functions
-import { taggedArtist, taggedPlaylist } from '../../api/tag'
+import { taggedBeats, taggedPlaylist } from '../../api/tag'
 import { slickConfig } from '../../utils/slick.config';
 
 const Explore = () => {
 
-    const [featuredPlaylists, setFeaturedPlaylists] = useState([])
-    const [featuredArtists, setFeaturedArtists] = useState([])
+    const [beats, setBeats] = useState([])
+    const [featuredGenres, setFeaturedGenres] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        taggedArtist("featured").then(resp => setFeaturedArtists(resp.data))
+        taggedBeats("featured").then(resp => setFeaturedGenres(resp.data))
         taggedPlaylist("featured").then(resp => {
-            setFeaturedPlaylists(resp.data)
+            setBeats(resp.data)
             setLoading(!loading)
         })
     }, [])
@@ -63,9 +63,8 @@ const Explore = () => {
                         </>
                     ) : (
                         <>
-                            <CardList artist heading={"Featured Artists"} data={featuredArtists} />
-                            <CardList heading={"Featured Playlist"} data={featuredPlaylists} />
-                            <CardList artist heading={"Featured Artists"} data={featuredArtists} />
+                            <CardList artist heading={"Top Genres"} data={featuredGenres} />
+                            <CardList heading={"Beats"} data={beats} />
                         </>
                     )
                 }

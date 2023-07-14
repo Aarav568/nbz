@@ -17,10 +17,6 @@ const Dashboard = () => {
             link: "/create/beat"
         },
         {
-            title: "Create Playlist",
-            link: "/create/playlist"
-        },
-        {
             title: "Set Featured",
             link: "/create/featured"
         },

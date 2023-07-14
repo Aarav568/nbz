@@ -15,6 +15,7 @@ import PlaylistForm from "./components/dashboard/playlist/playlist-form.componen
 import FeaturedForm from "./components/dashboard/featured/featured-form.component";
 import ProtectedRoutes from "./utils/protectedRoutes";
 import AdminRoutes from "./utils/AdminRoutes";
+import PrivacyPolicy from "./components/privacy-policy/privacy-policy.component";
 
 //LAZY ROUTES
 const LandingLazy = lazy(() => import("./pages/landing/landing.component"))
@@ -62,7 +63,7 @@ function App() {
             <Route path="/checkout" element={<PayPalLazy />} />
             <Route path="/orders" element={<OrdersPageLazy />} />
           </Route>
-
+          <Route path="/policy" element={<PrivacyPolicy />} />
         </Routes>
       </SmoothScroll>
       <Footer />

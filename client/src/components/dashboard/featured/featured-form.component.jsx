@@ -7,36 +7,38 @@ import SearchBar from "../../searchbar/searchbar.component";
 import Tile from "../../tiles/tiles.component";
 import genreSchema from "../../../utils/validation_schemas/genre.schema";
 import { useFormik } from "formik"
-import { taggedArtist, taggedPlaylist } from "../../../api/tag";
+import { taggedBeats } from "../../../api/tag";
 import CardList from '../../../components/card-list/card-list.component';
 import ArtistCard from "../../artist-card/artist-card.component";
 import { getArtists } from "../../../api/artists";
-import { createPlaylist, getAllPlaylists } from "../../../api/playlist";
 import PillButton from "../../../components/pill-button/pill-button.component";
 import { setArtistFeatured } from "../../../api/artists";
 import { removeArtistFeatured } from "../../../api/artists";
+import { getAllBeats } from "../../../api/beats";
+import { getAllGenres } from "../../../api/genres";
 
 const FeaturedForm = () => {
-    const [featuredPlaylists, setFeaturedPlaylists] = useState([])
+    const [featuredBeat, setFeaturedBeat] = useState([])
     const [featuredArtists, setFeaturedArtists] = useState([])
     const [artists, setArtists] = useState([])
-    const [playlists, setPlaylists] = useState([])
+    const [beats, setBeats] = useState([])
     const [loading, setLoading] = useState(true)
     const [modalHidden, setModalHidden] = useState(true)
     const [modalData, setModalData] = useState(true)
     const [formAlert, setFormAlert] = useState(null)
 
     useEffect(() => {
-        getArtists(5).then(resp => setArtists(resp.data))
-        getAllPlaylists(5).then(resp => setPlaylists(resp.data))
-        taggedArtist("featured").then(resp => {
+        getAllGenres(5).then(resp => setArtists(resp.data))
+        getAllBeats(5).then(resp => setBeats(resp.data))
+
+        taggedBeats("featured").then(resp => {
             setFeaturedArtists(resp.data)
             setLoading(false)
         })
-        taggedPlaylist("featured").then(resp => {
-            setFeaturedPlaylists(resp.data)
-            setLoading(false)
-        })
+        // taggedPlaylist("featured").then(resp => {
+        //     setFeaturedPlaylists(resp.data)
+        //     setLoading(false)
+        // })
     }, [])
 
     return (

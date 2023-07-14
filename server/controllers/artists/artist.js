@@ -23,21 +23,12 @@ export const getArtist = async (req, res) => {
 }
 
 export const createArtist = async (req, res) => {
-    const { name, genreId, img } = req.body
+    const { name, genreId } = req.body.values
     try {
         const existingArtist = await Artist.findOne({ name })
         if (existingArtist) return res.status(404).json({ message: "Artist already exists!" })
         const genre = await Genre.findById(genreId)
-        const image = await imagekit.upload({
-            file: img,
-            folder: "/nbz/artists/",
-            fileName: `${name}`,
-            transformation: [{
-                height: 300,
-                width: 300,
-            }]
-        })
-        const createdArtist = await Artist.create({ name, genre, img: image.url + "?tr=h-300%2Cw-300" })
+        const createdArtist = await Artist.create({ name, genre })
         res.status(200).json(createdArtist)
     } catch (err) {
         res.status(500).json({ message: err.message })

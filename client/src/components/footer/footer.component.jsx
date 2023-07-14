@@ -5,7 +5,7 @@ const Footer = () => {
     const navigate = useNavigate()
     return (
         <div style={{ minHeight: "300px" }} className="w-full py-20 bg-p" >
-            <div className="mx-auto flex justify-evenly lg:flex-row flex-col items-center ">
+            <div className="mx-auto flex justify-evenly lg:flex-row flex-col items-center space-y-8 ">
                 <div className='text-white text-sm' >
                     <span className='text-lg uppercase font-bold font-Raleway' >Quick Links</span>
                     <div className="flex flex-col space-y-2 " >
@@ -28,12 +28,15 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col items-center" >
                     <div role={"button"} onClick={() => navigate("/")} className="cursor-pointer">
-                        <img src={images.logo} className="scale-50" loading="lazy" alt="" height="90" width="250" />
+                        <img src={images.logo} className="scale-50 rounded-full" loading="lazy" alt="" height="90" width="250" />
                     </div>
                     <span className='text-white uppercase' >Hottest Drops</span>
                 </div>
                 <div>
-                    <img src={social} alt="" width="250" height="250" />
+                    <a href="https://www.instagram.com/prod_by_kulture/" target='_blank' className='flex gap-3 text-white font-bold items-center' > 
+                        <img className='cursor-pointer' src={social} height={50} width={50} alt="" />
+                        <p>Instagram</p>
+                    </a>
                 </div>
             </div>
         </div>
