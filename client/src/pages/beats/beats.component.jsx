@@ -4,7 +4,7 @@ import images from "../../utils/image-links";
 import BeatsList from "../../components/beats-list/beats-list.component";
 import PillButton from "../../components/pill-button/pill-button.component";
 import SearchBar from "../../components/searchbar/searchbar.component";
-import ArtistCard from "../../components/artist-card/artist-card.component";
+import GenreCard from "../../components/genre-card/genre-card.component";
 import PlaylistCard from "../../components/playlist-card/playlist-card.component";
 import BeatsSkeleton from "../../components/skeletons/beats-skeleton/beats-skeleton.component";
 import CardSkeleton from "../../components/skeletons/card-skeleton/card-skeleton.component";
@@ -45,11 +45,12 @@ const BeatsPage = () => {
         getBeats(route, id).then(resp => {
             setBeats(resp.data)
             setLoading(!loading)
+            console.log(resp.data)
         })
-        if (route === "artist")
-            getArtistById(id).then(resp => setArtist(resp.data))
-        else
-            getPlaylist(id).then(resp => setPlaylist(resp.data))
+        // if (route === "artist")
+        //     getArtistById(id).then(resp => setArtist(resp.data))
+        // else
+        //     getPlaylist(id).then(resp => setPlaylist(resp.data))
 
         return () => {
             if (notification)
@@ -114,7 +115,7 @@ const BeatsPage = () => {
                                     <CardSkeleton />
                                 ) : (
                                     route === "artist" ? (
-                                        <ArtistCard img={artist.img} title={artist.name} s />
+                                        <GenreCard img={artist.img} title={artist.name} s />
                                     ) : (
                                         <PlaylistCard img={playlist.img} title={playlist.name} s />
                                     )

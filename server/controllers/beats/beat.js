@@ -5,6 +5,7 @@ import Genre from "../../models/genre.js"
 import Playlist from "../../models/playlist.js"
 import { generateUrl } from "../../utils/firebase.js"
 import { firebaseUpload } from "../../utils/firebase.js"
+import { imagekit } from "../../utils/imagekit.js"
 
 export const getAllBeats = async (req, res) => {
     try {
@@ -67,7 +68,7 @@ export const getBeatsByTags = async (req, res) => {
 export const createBeat = async (req, res) => {
     // var tags = req.body.tags
     // tags = tags.split(" ")
-    
+
     const { name, artistId, genreId, img } = req.body
     try {
         const existingBeat = await Beat.findOne({ name })
@@ -90,7 +91,7 @@ export const createBeat = async (req, res) => {
         artist.beats.push(createdBeat)
         await artist.save()
         await firebaseUpload(req.files, name, createdBeat._id)
-        res.status(200).json({name: createdBeat.name})
+        res.status(200).json({ name: createdBeat.name })
     } catch (err) {
         console.log(err)
         res.status(500).json({ message: err.message })

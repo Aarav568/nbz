@@ -3,10 +3,10 @@ import images from '../../utils/image-links';
 //COMPONENT IMPORTS 
 import CardList from '../../components/card-list/card-list.component';
 import PillButton from '../../components/pill-button/pill-button.component';
-import SearchBar from '../../components/searchbar/searchbar.component';
+// import SearchBar from '../../components/searchbar/searchbar.component';
 import Slider from "react-slick";
 import CardSkeleton from '../../components/skeletons/card-skeleton/card-skeleton.component';
-import BackButton from '../../components/backbutton/back-button.component';
+// import BackButton from '../../components/backbutton/back-button.component';
 
 //MODULE IMPORTS
 import { useEffect, useState } from 'react'
@@ -14,19 +14,19 @@ import { useEffect, useState } from 'react'
 //APIs & Functions
 import { taggedBeats, taggedPlaylist } from '../../api/tag'
 import { slickConfig } from '../../utils/slick.config';
+import { getAllBeats } from '../../api/beats';
 
 const Explore = () => {
 
     const [beats, setBeats] = useState([])
-    const [featuredGenres, setFeaturedGenres] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        taggedBeats("featured").then(resp => setFeaturedGenres(resp.data))
-        taggedPlaylist("featured").then(resp => {
+        getAllBeats().then(resp => {
             setBeats(resp.data)
             setLoading(!loading)
-        })
+        }
+        )
     }, [])
 
     return (
@@ -38,10 +38,10 @@ const Explore = () => {
                     </div> */}
                     <div className='px-4 py-36 flex flex-col space-y-4' >
                         <h1 className='lg:text-8xl text-6xl text-white uppercase font-Kizard' >We got what you need</h1>
-                        <SearchBar />
-                        <div>
+                        {/* <SearchBar /> */}
+                        {/* <div>
                             <PillButton color={"p"}>Search</PillButton>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -63,8 +63,7 @@ const Explore = () => {
                         </>
                     ) : (
                         <>
-                            <CardList artist heading={"Top Genres"} data={featuredGenres} />
-                            <CardList heading={"Beats"} data={beats} />
+                            <CardList heading={"All Beats"} data={beats} />
                         </>
                     )
                 }

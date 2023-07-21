@@ -1,6 +1,17 @@
 import Artist from "../../models/artist.js";
 import Playlist from "../../models/playlist.js";
 import Beat from "../../models/beat.js";
+import Genre from "../../models/genre.js";
+
+export const getGenreByTags = async (req, res) => {
+    console.log(req.params.tag)
+    try {
+        const genre = await Genre.find({ tags: { "$in": [req.params.tag] } })
+        res.status(200).json(genre)
+    } catch (err) {
+        res.status(404).json({ error: err.message })
+    }
+}
 
 export const getArtistByTags = async (req, res) => {
     try {

@@ -8,7 +8,7 @@ const beatsSchema = yup.object().shape({
     genreId: yup.string().required("Required"),
     mp3: yup.mixed().required("Required"),
     wav: yup.mixed().required("Required"),
-    stem: yup.mixed().required("Required"),
+    // stem: yup.mixed().required("Required"),
     sample: yup.mixed().required("Required"),
     img: yup.string().min(2, "Please Select an Image").required("Required"),
 })

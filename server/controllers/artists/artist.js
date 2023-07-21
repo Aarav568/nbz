@@ -24,6 +24,7 @@ export const getArtist = async (req, res) => {
 
 export const createArtist = async (req, res) => {
     const { name, genreId } = req.body.values
+    console.log(req.body.values)
     try {
         const existingArtist = await Artist.findOne({ name })
         if (existingArtist) return res.status(404).json({ message: "Artist already exists!" })

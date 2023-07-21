@@ -3,7 +3,7 @@ import images from '../../utils/image-links'
 //Module Imports
 import { useNavigate } from 'react-router'
 import { useEffect, useState } from 'react'
-import { taggedBeats, taggedPlaylist } from '../../api/tag.js'
+import { taggedBeats, taggedGenres, taggedPlaylist } from '../../api/tag.js'
 import { slickConfig } from '../../utils/slick.config';
 
 //Component Imports
@@ -16,7 +16,7 @@ import ContactForm from '../../components/contact-form/contact-form.component';
 
 
 const Landing = () => {
-    const [trendingPlaylist, setTrendingPlaylist] = useState([])
+    const [trendingGenres, settrendingGenres] = useState([])
     const [featuredBeats, setFeaturedBeats] = useState([])
     const [trendingBeats, setTrendingBeats] = useState([])
     const [loading, setLoading] = useState(true)
@@ -28,10 +28,16 @@ const Landing = () => {
 
     useEffect(() => {
         //get featured beats
-        taggedBeats("featured").then(resp => setFeaturedBeats(resp.data))
-        taggedBeats("trending").then(resp => setTrendingBeats(resp.data))
-        taggedPlaylist("featured").then(resp => {
-            setTrendingPlaylist(resp.data)
+        taggedBeats("featured").then(resp => {
+            setFeaturedBeats(resp.data)
+            setLoading(!loading)
+        })
+        taggedBeats("trending").then(resp => {
+            setTrendingBeats(resp.data)
+            setLoading(!loading)
+        })
+        taggedGenres("featured").then(resp => {
+            settrendingGenres(resp.data)
             setLoading(!loading)
         })
     }, [])
@@ -77,13 +83,16 @@ const Landing = () => {
                         </>
                     ) : (
                         <>
-                            <CardList data={featuredBeats} artist heading={"Featured Beats"} />
-                            <CardList data={trendingPlaylist} heading={"Trending Playlist"} />
-                            <CardList data={trendingBeats} artist heading={"Trending Beats"} />
+                            <CardList data={featuredBeats} heading={"Featured Beats"} />
+                            <CardList data={trendingGenres} genre heading={"Genres"} />
+                            <CardList data={trendingBeats} heading={"Trending Beats"} />
                         </>
                     )
                 }
                 {/* <CardList heading={"Trending Playlists"} /> */}
+                <div className='p-2 flex justify-center scale-125' >
+                    <PillButton clickHandler={() => navigate("/explore")} color={"p"} >View All Beats</PillButton>
+                </div>
             </div>
 
             {/* SECTION-2 Contact Us */}

@@ -2,7 +2,7 @@ import images from '../../utils/image-links';
 
 import { useLocation, useNavigate } from 'react-router'
 import PillButton from '../pill-button/pill-button.component';
-import SearchBar from '../searchbar/searchbar.component';
+// import SearchBar from '../searchbar/searchbar.component';
 import { useSelector } from 'react-redux';
 
 import PopMenu from '../pop-menu/pop-menu.component';
@@ -20,9 +20,9 @@ const Navbar = () => {
                     {/* //container */}
                     <div className="lg:min-w-6xl xl:max-w-7xl w-full mx-auto ">
                         <div className="flex lg:justify-around justify-between items-center">
-                            <div className="hidden lg:block"  >
-                                <SearchBar />
-                            </div>
+                            {/* <div className="hidden lg:block"  >
+                                 <SearchBar /> 
+                            </div> */}
                             <div>
                                 <button onClick={() => navigate("/")} className="cursor-pointer p-0 m-0">
                                     <img src={images.logo} alt="" className='rounded-full' height="40" width="60" />
@@ -63,11 +63,11 @@ const Navbar = () => {
                 {/* //container */}
                 <div className="min-w-6xl xl:max-w-7xl mx-auto ">
                     <div className="flex justify-around items-center">
-                        {
+                        {/* {
                             landing ?
                                 <SearchBar /> :
                                 null
-                        }
+                        } */}
                         {/* logo */}
                         <div>
                             <button onClick={() => navigate("/")} className="cursor-pointer p-0 m-0">

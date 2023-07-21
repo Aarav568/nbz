@@ -5,10 +5,10 @@ const PlaylistCard = ({ img, title, id, s }) => {
 
     return (
         <div className='mx-auto w-full flex justify-center' >
-            <button className="text-text-grey w-56 min-h-[10rem] shadow-lg rounded-md overflow-hidden  hover:bg-backdrop rippleCard" onClick={() => s ? {} : navigate(`/beats/playlist/${id}`)} >
+            <button className="text-text-grey w-56 min-h-[10rem] shadow-lg rounded-md overflow-hidden  hover:bg-backdrop rippleCard" onClick={() => s ? {} : navigate(`/beats/${id}`)} >
                 <img src={img} alt="" height="250" width="250" />
                 {/* badge */}
-                <div className='p-5 flex-col gap-3 flex-col space-y-2 text-white' >
+                <div className='p-5 gap-3 flex-col space-y-2 text-white' >
                     <span className='px-3 py-1 rounded-full text-xs bg-p'>two weeks ago</span>
                     {/* product title */}
                     <div>

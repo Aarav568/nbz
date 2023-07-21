@@ -1,7 +1,5 @@
 import React from 'react';
 import images from '../../utils/image-links';
-import SearchBar from '../../components/searchbar/searchbar.component';
-import PillButton from '../../components/pill-button/pill-button.component';
 const PrivacyPolicy = () => {
   return (
     <>

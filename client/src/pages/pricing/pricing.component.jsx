@@ -20,7 +20,7 @@ const Pricing = () => {
                     <div className="rounded-xl bg-backdrop border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >Wav Lease</h1>
                         <div className="flex flex-col text-center"  >
-                            <h2 className="text-5xl text-white">29$ <span className="text-lg text-grey" >/ per pack</span></h2>
+                            <h2 className="text-5xl text-white">35$ <span className="text-lg text-grey" >/ per pack</span></h2>
                         </div>
                         <p className="text-white" >You can buy a complete beat pack
                             with its pattern to customize or
@@ -67,7 +67,7 @@ const Pricing = () => {
                         <Button color={"p"}>EXPLORE</Button>
                     </div>
                     {/* CARD 3 */}
-                    <div className="rounded-xl border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
+                    {/* <div className="rounded-xl border p-8 flex flex-col space-y-8 max-w-[400px] shadow-lg" >
                         <h1 className="text-4xl bold font-Kizard text-white" >stem</h1>
                         <div className="flex flex-col text-center"  >
                             <h2 className="text-5xl text-white">49$ <span className="text-lg text-grey" >/ per pack</span></h2>
@@ -90,7 +90,7 @@ const Pricing = () => {
                             </div>
                         </div>
                         <Button color={"p"}>EXPLORE</Button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

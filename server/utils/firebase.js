@@ -26,14 +26,14 @@ export const generateUrl = async (docRef) => {
 export const firebaseUpload = async (files, beatName, beatId) => {
   const mp3 = files['mp3'][0]
   const wav = files['wav'][0]
-  const stem = files['stem'][0]
+  // const stem = files['stem'][0]
   const sample = files['sample'][0]
   const mp3Ref = ref(storage, `BEATS/${beatName.trim()}/${mp3.fieldname}/`)
   const wavRef = ref(storage, `BEATS/${beatName.trim()}/${wav.fieldname}/`)
-  const stemRef = ref(storage, `BEATS/${beatName.trim()}/${stem.fieldname}/`)
+  // const stemRef = ref(storage, `BEATS/${beatName.trim()}/${stem.fieldname}/`)
   const sampleRef = ref(storage, `BEATS/${beatName.trim()}/${sample.fieldname}/`)
-
-  Promise.all([uploadBytes(mp3Ref, mp3.buffer, { contentType: mp3.mimetype }), uploadBytes(wavRef, wav.buffer, { contentType: wav.mimetype }), uploadBytes(stemRef, stem.buffer, { contentType: 'application/zip' }), uploadBytes(sampleRef, sample.buffer, { contentType: sample.mimetype })])
+  // , uploadBytes(stemRef, stem.buffer, { contentType: 'application/zip' })
+  Promise.all([uploadBytes(mp3Ref, mp3.buffer, { contentType: mp3.mimetype }), uploadBytes(wavRef, wav.buffer, { contentType: wav.mimetype }), uploadBytes(sampleRef, sample.buffer, { contentType: sample.mimetype })])
     .then(snapshots => {
       const uploadRefs = snapshots.map(({ ref }) => getDownloadURL(ref))
       Promise.all(uploadRefs)
@@ -42,11 +42,11 @@ export const firebaseUpload = async (files, beatName, beatId) => {
           await Distribution.create({
             mp3: downloadLinks[0],
             wav: downloadLinks[1],
-            stem: downloadLinks[2],
-            sample: downloadLinks[3],
+            // stem: downloadLinks[2],
+            sample: downloadLinks[2],
             beat: beat
           })
-          beat.sample = downloadLinks[3]
+          beat.sample = downloadLinks[2]
           await beat.save()
         })
     })

@@ -9,7 +9,6 @@ import genreSchema from "../../../utils/validation_schemas/genre.schema";
 import { useFormik } from "formik"
 import { taggedBeats } from "../../../api/tag";
 import CardList from '../../../components/card-list/card-list.component';
-import ArtistCard from "../../artist-card/artist-card.component";
 import { getArtists } from "../../../api/artists";
 import PillButton from "../../../components/pill-button/pill-button.component";
 import { setArtistFeatured } from "../../../api/artists";

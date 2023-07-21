@@ -16,3 +16,4 @@ API.interceptors.request.use((req) => {
 
 export const taggedBeats = (tag) => API.get(`/beat/${tag}`)
 export const taggedPlaylist = (tag) => API.get(`/playlist/${tag}`)
+export const taggedGenres = (tag) => API.get(`/genre/${tag}`)

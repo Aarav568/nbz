@@ -15,11 +15,11 @@ RUN npm build
 
 ### Stage 2
 ### copy to caddy
-FROM caddy: 2.6.4-alpine
+# FROM caddy: 2.6.4-alpine
 
-ARG CADDYFILE 
-COPY ${CADDYFILE} /etc/caddy/Caddyfile
+# ARG CADDYFILE 
+# COPY ${CADDYFILE} /etc/caddy/Caddyfile
 
-COPY --from=builder /usr/src/app/build/ /srv
-EXPOSE 80
-EXPOSE 443
+# COPY --from=builder /usr/src/app/build/ /srv
+# EXPOSE 80
+# EXPOSE 443

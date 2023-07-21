@@ -18,13 +18,14 @@ const BeatForm = () => {
     const [formAlert, setFormAlert] = useState(null)
 
     const onSubmit = (values, actions) => {
-        const {mp3, wav, sample, genreId, artistId, name, stem} = values
+        const {mp3, wav, sample, genreId, artistId, name, img} = values
         const form = new FormData()
         form.append("name", name)
         form.append("mp3", mp3)
         form.append("wav", wav)
         form.append("sample", sample)
-        form.append("stem", stem)
+        form.append("img", img)
+        // form.append("stem", stem)
         form.append("genreId", genreId)
         form.append("artistId", artistId)
         createBeat(form).then(resp => setFormAlert(`${resp.data.name} is created!`))
@@ -37,7 +38,7 @@ const BeatForm = () => {
             artistId: "",
             mp3: "",
             wav: "",
-            stem: "",
+            // stem: "",
             sample: "",
             img: ""
         },
@@ -121,7 +122,7 @@ const BeatForm = () => {
                             />
                             {errors.wav && touched.wav ? <p className="text-red-300 " >{errors.wav}</p> : null}
                         </div>
-                        <div>
+                        {/* <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat STEM</label>
                             <input
                                 style={errors.stem && touched.stem ? { border: "1px solid red" } : {}}
@@ -132,7 +133,7 @@ const BeatForm = () => {
                                 type="file"
                             />
                             {errors.stem && touched.stem ? <p className="text-red-300 " >{errors.wav}</p> : null}
-                        </div>
+                        </div> */}
                         <div>
                             <label className="flex flex-col text-gray:400 py-2">Beat Sample</label>
                             <input

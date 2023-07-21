@@ -15,7 +15,6 @@ import PlaylistForm from "./components/dashboard/playlist/playlist-form.componen
 import FeaturedForm from "./components/dashboard/featured/featured-form.component";
 import ProtectedRoutes from "./utils/protectedRoutes";
 import AdminRoutes from "./utils/AdminRoutes";
-import PrivacyPolicy from "./components/privacy-policy/privacy-policy.component";
 
 //LAZY ROUTES
 const LandingLazy = lazy(() => import("./pages/landing/landing.component"))
@@ -27,6 +26,9 @@ const SignUpLazy = lazy(() => import("./components/sign-up/sign-up.component"))
 const LoginLazy = lazy(() => import("./components/login/login.component"))
 const PayPalLazy = lazy(() => import("./components/paypal/paypal.component"))
 const OrdersPageLazy = lazy(() => import("./pages/orders/orders.component"))
+const PrivacyPolicyLazy = lazy(() => import("./components/privacy-policy/privacy-policy.component"))
+const LicenseLazy = lazy(() => import("./components/licence/licence.component.jsx"))
+const MP3LicenseLazy = lazy(() => import("./components/mp3-license/mp3-license.component.jsx"))
 
 function App() {
   const location = useLocation()
@@ -42,9 +44,7 @@ function App() {
           <Route path="/login" element={<LoginLazy />} />
           <Route path="/signup" element={<SignUpLazy />} />
           <Route path="/beats">
-            <Route path=":route" >
-              <Route path=":id" element={<BeatsPageLazy />} />
-            </Route>
+            <Route path=":id" element={<BeatsPageLazy />} />
           </Route>
           //Admin Routes
           <Route element={<AdminRoutes />} >
@@ -63,7 +63,11 @@ function App() {
             <Route path="/checkout" element={<PayPalLazy />} />
             <Route path="/orders" element={<OrdersPageLazy />} />
           </Route>
-          <Route path="/policy" element={<PrivacyPolicy />} />
+          <Route path="/policy"  >
+            <Route path="privacy" element={<PrivacyPolicyLazy />} />
+            <Route path="license" element={<LicenseLazy />} />
+            <Route path="mp3-license" element={<MP3LicenseLazy />} />
+          </Route>
         </Routes>
       </SmoothScroll>
       <Footer />
