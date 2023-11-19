@@ -5,5 +5,5 @@ const API = axios.create({ baseURL: `${process.env.REACT_APP_BASE_URL}/api/artis
 export const getArtists = (limit) => API.get(`/q/${limit}`)
 export const getArtistById = (id) => API.get(`/id/${id}`)
 export const createArtist = (data) => API.post(`/create`, data)
-export const setArtistFeatured = (id) => API.post("/featured", { id })
-export const removeArtistFeatured = (id) => API.post("/featured/remove", { id })
+// export const setArtistFeatured = (id) => API.post("/featured", { id })
+// export const removeArtistFeatured = (id) => API.post("/featured/remove", { id })

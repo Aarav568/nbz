@@ -98,6 +98,32 @@ export const createBeat = async (req, res) => {
     }
 }
 
+export const setAsFeatured = async (req, res) => {
+    const { id } = req.body
+    try {
+        const beat = await Beat.findById(id)
+        beat.tags.push("featured")
+        const featuredBeat = await beat.save()
+        res.status(200).json(featuredBeat)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
+export const removeAsFeatured = async (req, res) => {
+    const { id } = req.body
+    try {
+        const beat = await Beat.findById(id)
+        beat.tags.pop()
+        const featuredbeat = await beat.save()
+        res.status(200).json(featuredbeat)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
+
+
 export const deleteBeat = async (req, res) => {
     try {
         // const user = await User.findById(req.userId)

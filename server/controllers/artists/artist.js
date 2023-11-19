@@ -1,6 +1,5 @@
 import Artist from '../../models/artist.js'
 import Genre from '../../models/genre.js'
-import { imagekit } from '../../utils/imagekit.js'
 
 export const getAllArtists = async (req, res) => {
     const limit = req.params.limit
@@ -36,30 +35,6 @@ export const createArtist = async (req, res) => {
     }
 }
 
-export const setAsFeatured = async (req, res) => {
-    const { id } = req.body
-    try {
-        const artist = await Artist.findById(id)
-        artist.tags.push("featured")
-        const featuredArtist = await artist.save()
-        res.status(200).json(featuredArtist)
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
-}
-
-export const removeAsFeatured = async (req, res) => {
-    const { id } = req.body
-    try {
-        const artist = await Artist.findById(id)
-        artist.tags.pop()
-        const featuredArtist = await artist.save()
-        res.status(200).json(featuredArtist)
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
-}
-
 export const deleteArtist = async (req, res) => {
     try {
         const removedArtist = await Artist.findByIdAndDelete(req.params.id)
@@ -68,3 +43,28 @@ export const deleteArtist = async (req, res) => {
         res.status(404).json({ message: err.message })
     }
 } 
+
+// export const setAsFeatured = async (req, res) => {
+//     const { id } = req.body
+//     try {
+//         const artist = await Artist.findById(id)
+//         artist.tags.push("featured")
+//         const featuredArtist = await artist.save()
+//         res.status(200).json(featuredArtist)
+//     } catch (err) {
+//         res.status(500).json({ message: err.message })
+//     }
+// }
+
+// export const removeAsFeatured = async (req, res) => {
+//     const { id } = req.body
+//     try {
+//         const artist = await Artist.findById(id)
+//         artist.tags.pop()
+//         const featuredArtist = await artist.save()
+//         res.status(200).json(featuredArtist)
+//     } catch (err) {
+//         res.status(500).json({ message: err.message })
+//     }
+// }
+

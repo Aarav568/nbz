@@ -1,0 +1,25 @@
+version: "3"
+services: 
+  nbz-client:
+    image: nbz-client
+    stdin_open: true
+    ports: 
+      - "3000:3000"
+    networks: 
+      - nbz
+    volumes:
+      - ./client/:/usr/src/app
+      - /usr/src/app/node_modules
+  nbz-server:
+    image: nbz-server
+    env_file: ./server/.env
+    ports: 
+      - "8000:8000"
+    networks:
+      - nbz
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+networks:
+  nbz:
+    driver: bridge

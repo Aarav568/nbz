@@ -8,6 +8,8 @@ import {
     createBeat,
     deleteBeat,
     getAllBeats,
+    setAsFeatured,
+    removeAsFeatured
 } from '../../controllers/beats/beat.js'
 
 import { upload } from '../../utils/multer.js'
@@ -25,5 +27,8 @@ router.get('/:beatId', getBeat)
 router.post('/create', upload.fields([{name: "wav"}, {name: "mp3"}, {name: "stem"}, {name: "sample"}]) ,createBeat)
 
 router.delete('/:id', deleteBeat) //pending
+
+router.post("/featured", setAsFeatured)
+router.post("/featured/remove", removeAsFeatured)
 
 export default router

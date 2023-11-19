@@ -1,24 +1,12 @@
 import { useEffect, useState } from "react";
-import { createGenre, getGenres } from "../../../api/genres";
-import { searchGenre } from "../../../api/search";
 import images from "../../../utils/image-links";
-import Button from "../../button/button.component";
 import SearchBar from "../../searchbar/searchbar.component";
-import Tile from "../../tiles/tiles.component";
-import genreSchema from "../../../utils/validation_schemas/genre.schema";
-import { useFormik } from "formik"
 import { taggedBeats } from "../../../api/tag";
-import CardList from '../../../components/card-list/card-list.component';
-import { getArtists } from "../../../api/artists";
 import PillButton from "../../../components/pill-button/pill-button.component";
-import { setArtistFeatured } from "../../../api/artists";
-import { removeArtistFeatured } from "../../../api/artists";
 import { getAllBeats } from "../../../api/beats";
-import { getAllGenres } from "../../../api/genres";
-
+import { setBeatFeatured, removeBeatFeatured } from "../../../api/beats";
 const FeaturedForm = () => {
     const [featuredBeat, setFeaturedBeat] = useState([])
-    const [featuredArtists, setFeaturedArtists] = useState([])
     const [artists, setArtists] = useState([])
     const [beats, setBeats] = useState([])
     const [loading, setLoading] = useState(true)
@@ -27,11 +15,12 @@ const FeaturedForm = () => {
     const [formAlert, setFormAlert] = useState(null)
 
     useEffect(() => {
-        getAllGenres(5).then(resp => setArtists(resp.data))
+        // getAllGenres(5).then(resp => setArtists(resp.data))
         getAllBeats(5).then(resp => setBeats(resp.data))
 
+
         taggedBeats("featured").then(resp => {
-            setFeaturedArtists(resp.data)
+            setFeaturedBeat(resp.data)
             setLoading(false)
         })
         // taggedPlaylist("featured").then(resp => {
@@ -56,10 +45,10 @@ const FeaturedForm = () => {
                             <div className="flex flex-col space-y-6" >
                                 {
                                     modalData.tags[0] === "featured" ?
-                                        <PillButton color={"a"} clickHandler={() => { removeArtistFeatured(modalData._id) }} >
+                                        <PillButton color={"a"} clickHandler={() => { removeBeatFeatured(modalData._id) }} >
                                             Remove Featured
                                         </PillButton> :
-                                        <PillButton color={"p"} clickHandler={() => setArtistFeatured(modalData._id)} >
+                                        <PillButton color={"p"} clickHandler={() => setBeatFeatured(modalData._id)} >
                                             Set Featured
                                         </PillButton>
                                 }
@@ -82,12 +71,12 @@ const FeaturedForm = () => {
                         <SearchBar />
                         <div className="flex flex-col lg:flex-row space-x-8" >
                             {
-                                featuredArtists.map(e => (
-                                    <div key={e._id}  >
+                                featuredBeat.map(e => (
+                                    <div key={e._id} onClick={() => setModalData(e)} >
                                         <div className='mx-auto w-full flex justify-center' >
                                             <button className="text-text-grey w-56 min-h-[10rem] shadow-lg rounded-md overflow-hidden  hover:bg-backdrop p-2 rippleCard" onClick={() => setModalHidden(!modalHidden)} >
                                                 <img src={e.img} alt="" height="250" width="250" className='rounded-full' />
-                                                <div className='p-5 flex-col gap-3 flex-col space-y-2 text-white' >
+                                                <div className='p-5 gap-3 flex-col space-y-2 text-white' >
                                                     <span className='px-3 py-1 rounded-full text-xs bg-p'>{e.tags[0]}</span>
                                                     <div>
                                                         <h2 className='font-semibold mb-2 text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap'>
@@ -102,8 +91,9 @@ const FeaturedForm = () => {
                             }
                         </div>
                     </div>
+
                     <div className='mx-auto p-8 flex flex-col space-y-8' >
-                        <h2 className="text-white text-4xl">Set Featured Artists</h2>
+                        <h2 className="text-white text-4xl">Search Featured Artists</h2>
                         <SearchBar />
                         <div className="flex flex-col lg:flex-row space-x-8" >
                             {
@@ -114,10 +104,11 @@ const FeaturedForm = () => {
                                                 onClick={() => {
                                                     setModalHidden(!modalHidden)
                                                     setModalData(e)
+                                                    console.log(e)
                                                 }}
                                             >
                                                 <img src={e.img} alt="" height="250" width="250" className='rounded-full' />
-                                                <div className='p-5 flex-col gap-3 flex-col space-y-2 text-white' >
+                                                <div className='p-5 gap-3 flex-col space-y-2 text-white' >
                                                     {
                                                         (e.tags.length > 0) ? (
                                                             <span className='px-3 py-1 rounded-full text-xs bg-p'>{e.tags[0]}</span>

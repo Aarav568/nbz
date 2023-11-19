@@ -13,4 +13,15 @@ EXPOSE 3000
 
 ENV REACT_APP_BASE_URL=http://localhost:8000
 
-CMD ["npm", "start"]
+RUN npm run build
+
+## Stage 2
+## copy to caddy
+FROM caddy:2.6.4-alpine
+
+ARG CADDYFILE 
+COPY ${CADDYFILE} /etc/caddy/Caddyfile
+
+COPY --from=builder /usr/src/app/build/ /srv
+EXPOSE 80
+EXPOSE 443
